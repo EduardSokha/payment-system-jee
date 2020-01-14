@@ -31,5 +31,6 @@
     <module>payment-system-web</module>
     <module>payment-system-mvc-framework</module>
     <module>payment-system-service</module>
+    <module>payment-system-dao</module>
   </modules>
 </project>
