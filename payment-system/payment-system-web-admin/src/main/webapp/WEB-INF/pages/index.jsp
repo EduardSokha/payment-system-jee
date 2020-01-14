@@ -34,7 +34,7 @@
                 <div class="signin-form">
                     <h2 class="form-title">Sign up</h2>
                     <p class="form-title">${successRegistr}</p>
-                    <form action="identity" method="post" class="register-form" id="login-form">
+                    <form action="dashboard" method="post" class="register-form" id="login-form">
                         <div class="form-group">
                             <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label> 
                             <input type="text" name="login" id="your_name" placeholder="Login" />

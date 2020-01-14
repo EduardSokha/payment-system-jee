@@ -7,6 +7,8 @@
 		<command-url url="/" method="showIndexPage" />
 	</command>
 	
-	
+	<command command-class="by.htp.eduard.ps.webadmin.commands.DashboardCommand">
+		<command-url url="/dashboard" method="showDashboardPage" />
+	</command>
 
 </mvc-commands>
