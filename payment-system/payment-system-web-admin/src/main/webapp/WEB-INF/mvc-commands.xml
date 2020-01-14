@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mvc-commands>
+
+	<static-content url="/static-content" />
+	
+	<command command-class="by.htp.eduard.ps.webadmin.commands.IndexCommand">
+		<command-url url="/" method="showIndexPage" />
+	</command>
+	
+	
+
+</mvc-commands>
