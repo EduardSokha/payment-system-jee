@@ -6,12 +6,12 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import by.htp.eduard.dto.RoleDto;
 import by.htp.eduard.entities.User;
-import by.htp.eduard.service.RoleService;
-import by.htp.eduard.service.ServiceProvider;
-import by.htp.eduard.service.UserService;
-import by.htp.eduard.utils.HttpUtils;
+import by.htp.eduard.ps.service.RoleService;
+import by.htp.eduard.ps.service.ServiceProvider;
+import by.htp.eduard.ps.service.UserService;
+import by.htp.eduard.ps.service.dto.RoleDto;
+import by.htp.eduard.ps.utils.http.HttpUtils;
 
 public class UserCommand {
 	
