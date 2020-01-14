@@ -28,5 +28,7 @@
 
   <modules>
     <module>payment-system-web-admin</module>
+    <module>payment-system-web</module>
+    <module>payment-system-mvc-framework</module>
   </modules>
 </project>
