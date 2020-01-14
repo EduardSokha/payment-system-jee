@@ -33,5 +33,6 @@
     <module>payment-system-service</module>
     <module>payment-system-dao</module>
     <module>payment-system-dao-mysql</module>
+    <module>payment-system-utils</module>
   </modules>
 </project>

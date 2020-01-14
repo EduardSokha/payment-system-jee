@@ -37,5 +37,11 @@
 			<artifactId>payment-system-dao</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>by.htp.eduard</groupId>
+			<artifactId>payment-system-utils</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>

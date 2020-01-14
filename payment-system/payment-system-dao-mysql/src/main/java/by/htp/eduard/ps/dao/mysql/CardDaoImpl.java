@@ -14,7 +14,7 @@ import by.htp.eduard.ps.dao.CardDao;
 import by.htp.eduard.ps.dao.entities.Card;
 import by.htp.eduard.ps.dao.exceptions.DaoException;
 import by.htp.eduard.ps.dao.mysql.db.ConnectionPool;
-import by.htp.eduard.utils.DateUtils;
+import by.htp.eduard.ps.utils.DateUtils;
 
 public class CardDaoImpl implements CardDao {
 
