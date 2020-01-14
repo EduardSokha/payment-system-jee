@@ -30,5 +30,6 @@
     <module>payment-system-web-admin</module>
     <module>payment-system-web</module>
     <module>payment-system-mvc-framework</module>
+    <module>payment-system-service</module>
   </modules>
 </project>
