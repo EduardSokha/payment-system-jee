@@ -1,10 +1,10 @@
-package by.htp.eduard.service.converters;
+package by.htp.eduard.ps.service.converters;
 
 import org.dozer.DozerConverter;
 
-import by.htp.eduard.dao.PaymentSystemDao;
-import by.htp.eduard.dao.mysql.provider.DaoProvider;
-import by.htp.eduard.entities.PaymentSystem;
+import by.htp.eduard.ps.dao.PaymentSystemDao;
+import by.htp.eduard.ps.dao.entities.PaymentSystem;
+import by.htp.eduard.ps.dao.mysql.provider.DaoProvider;
 
 public class PaymentSystemIdNameConverter extends DozerConverter<Integer, String> {
 

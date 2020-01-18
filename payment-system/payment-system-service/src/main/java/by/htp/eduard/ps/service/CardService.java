@@ -2,8 +2,7 @@ package by.htp.eduard.ps.service;
 
 import java.util.List;
 
-import by.htp.eduard.entities.Account;
-import by.htp.eduard.entities.Card;
+import by.htp.eduard.ps.service.dto.AccountDto;
 import by.htp.eduard.ps.service.dto.CardDto;
 
 public interface CardService {
@@ -12,5 +11,5 @@ public interface CardService {
 	CardDto getCardById(Integer id);
 	CardDto saveCard(CardDto cardDto);
 	void deleteCard(Integer id);
-	boolean createAccountAndCard(Account account, Card card);
+	CardDto createAccountAndCard(AccountDto accountDto, CardDto cardDto);
 }

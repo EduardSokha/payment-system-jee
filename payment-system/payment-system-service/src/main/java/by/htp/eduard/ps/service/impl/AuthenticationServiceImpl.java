@@ -1,26 +1,40 @@
-package by.htp.eduard.service.impl;
+package by.htp.eduard.ps.service.impl;
 
-import by.htp.eduard.dao.AuthenticationDao;
-import by.htp.eduard.dao.mysql.provider.DaoProvider;
-import by.htp.eduard.entities.Authentication;
-import by.htp.eduard.entities.User;
-import by.htp.eduard.service.AuthenticationService;
+import by.htp.eduard.ps.dao.AuthenticationDao;
+import by.htp.eduard.ps.dao.entities.Authentication;
+import by.htp.eduard.ps.dao.entities.User;
+import by.htp.eduard.ps.dao.mysql.provider.DaoProvider;
+import by.htp.eduard.ps.service.AuthenticationService;
+import by.htp.eduard.ps.service.EntityDtoConverter;
+import by.htp.eduard.ps.service.ServiceProvider;
+import by.htp.eduard.ps.service.dto.AuthenticationDto;
+import by.htp.eduard.ps.service.dto.UserDto;
 
 public class AuthenticationServiceImpl implements AuthenticationService {
+	
 	private final AuthenticationDao authenticationDao;
+	
+	private EntityDtoConverter converter;
 
 	public AuthenticationServiceImpl() {
 		authenticationDao = DaoProvider.getInstance().getAuthenticationDao();
+		converter = ServiceProvider.getInstance().getEntityDtoConverter();
 	}
 
 	@Override
-	public User signIn(Authentication authentication) {
-		return authenticationDao.signIn(authentication);
+	public UserDto signIn(AuthenticationDto authenticationDto) {
+		Authentication authentication = converter.convertToEntity(authenticationDto, Authentication.class);
+		User user = authenticationDao.signIn(authentication);
+		UserDto userDto = converter.convertToDto(user, UserDto.class);
+		return userDto;
 	}
 
 	@Override
-	public User forgetPassword(Authentication authentication) {
-		return authenticationDao.forgetPassword(authentication);
+	public UserDto forgetPassword(AuthenticationDto authenticationDto) {
+		Authentication authentication = converter.convertToEntity(authenticationDto, Authentication.class);
+		User user = authenticationDao.forgetPassword(authentication);
+		UserDto userDto = converter.convertToDto(user, UserDto.class);
+		return userDto;
 	}
 
 }

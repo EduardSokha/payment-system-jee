@@ -1,4 +1,4 @@
-package by.htp.eduard.dto;
+package by.htp.eduard.ps.service.dto;
 
 public class RoleDto {
 	

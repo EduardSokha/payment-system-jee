@@ -1,14 +1,14 @@
-package by.htp.eduard.service.impl;
+package by.htp.eduard.ps.service.impl;
 
 import java.util.List;
 
-import by.htp.eduard.dao.AccountDao;
-import by.htp.eduard.dao.mysql.provider.DaoProvider;
-import by.htp.eduard.dto.AccountDto;
-import by.htp.eduard.entities.Account;
-import by.htp.eduard.service.AccountService;
-import by.htp.eduard.service.EntityDtoConverter;
-import by.htp.eduard.service.ServiceProvider;
+import by.htp.eduard.ps.dao.AccountDao;
+import by.htp.eduard.ps.dao.entities.Account;
+import by.htp.eduard.ps.dao.mysql.provider.DaoProvider;
+import by.htp.eduard.ps.service.AccountService;
+import by.htp.eduard.ps.service.EntityDtoConverter;
+import by.htp.eduard.ps.service.ServiceProvider;
+import by.htp.eduard.ps.service.dto.AccountDto;
 
 public class AccountServiceImpl implements AccountService {
 	

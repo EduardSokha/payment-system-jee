@@ -27,7 +27,8 @@ public class StatusDaoImpl implements StatusDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		List<Status> stat = new ArrayList<>();
-		String sq1 = "SELECT `id`, `name_status` FROM `status`";
+		String sq1 = InsertsToSQL.STATUS_DAO_IMPL_GET_ALL_STATUS;
+//		String sq1 = "SELECT `id`, `name_status` FROM `status`";
 
 		try {
 			con = cp.getConnection();
@@ -53,7 +54,8 @@ public class StatusDaoImpl implements StatusDao {
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement ps = null;
-		String sq1 = "SELECT `id`, `name_status` FROM `status` WHERE `id` = " + id;
+		String sq1 = InsertsToSQL.STATUS_DAO_IMPL_GET_NAME_STATUS_BY_ID + id;
+//		String sq1 = "SELECT `id`, `name_status` FROM `status` WHERE `id` = " + id;
 
 		try {
 			con = cp.getConnection();
@@ -79,7 +81,8 @@ public class StatusDaoImpl implements StatusDao {
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement ps = null;
-		String sq1 = "INSERT INTO `status` (`name_status`) VALUES (?)";
+		String sq1 = InsertsToSQL.STATUS_DAO_IMPL_SAVE_STATUS;
+//		String sq1 = "INSERT INTO `status` (`name_status`) VALUES (?)";
 
 		try {
 			con = cp.getConnection();
@@ -107,7 +110,8 @@ public class StatusDaoImpl implements StatusDao {
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement ps = null;
-		String sq1 = "UPDATE `status` SET `name_status` = ? WHERE `id` = ?";
+		String sq1 = InsertsToSQL.STATUS_DAO_IMPL_UPDATE_NAME_STATUS;
+//		String sq1 = "UPDATE `status` SET `name_status` = ? WHERE `id` = ?";
 
 		try {
 			con = cp.getConnection();
@@ -130,7 +134,8 @@ public class StatusDaoImpl implements StatusDao {
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement ps = null;
-		String sq1 = "DELETE FROM `status` WHERE `id` = ?";
+		String sq1 = InsertsToSQL.STATUS_DAO_IMPL_DELETE_STATUS;
+//		String sq1 = "DELETE FROM `status` WHERE `id` = ?";
 		
 		try {
 			con = cp.getConnection();

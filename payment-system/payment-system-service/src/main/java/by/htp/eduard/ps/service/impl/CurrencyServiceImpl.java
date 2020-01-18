@@ -1,14 +1,14 @@
-package by.htp.eduard.service.impl;
+package by.htp.eduard.ps.service.impl;
 
 import java.util.List;
 
-import by.htp.eduard.dao.CurrencyDao;
-import by.htp.eduard.dao.mysql.provider.DaoProvider;
-import by.htp.eduard.dto.CurrencyDto;
-import by.htp.eduard.entities.Currency;
-import by.htp.eduard.service.CurrencyService;
-import by.htp.eduard.service.EntityDtoConverter;
-import by.htp.eduard.service.ServiceProvider;
+import by.htp.eduard.ps.dao.CurrencyDao;
+import by.htp.eduard.ps.dao.entities.Currency;
+import by.htp.eduard.ps.dao.mysql.provider.DaoProvider;
+import by.htp.eduard.ps.service.CurrencyService;
+import by.htp.eduard.ps.service.EntityDtoConverter;
+import by.htp.eduard.ps.service.ServiceProvider;
+import by.htp.eduard.ps.service.dto.CurrencyDto;
 
 public class CurrencyServiceImpl implements CurrencyService {
 

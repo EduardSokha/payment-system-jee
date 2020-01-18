@@ -14,5 +14,22 @@
 	<artifactId>payment-system-service</artifactId>
 
 	<dependencies>
+		<dependency>
+			<groupId>by.htp.eduard</groupId>
+			<artifactId>payment-system-dao</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>by.htp.eduard</groupId>
+			<artifactId>payment-system-dao-mysql</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+			<version>5.5.1</version>
+		</dependency>
 	</dependencies>
 </project>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net
+      http://dozer.sourceforge.net/schema/beanmapping.xsd">
+	<mapping>
+		<class-a>by.htp.eduard.ps.dao.entities.Account</class-a>
+		<class-b>by.htp.eduard.ps.service.dto.AccountDto</class-b>
+		
+		<field>
+			<a>idUser</a>
+			<b>idUser</b>
+		</field>
+		
+		<field type="one-way" custom-converter="by.htp.eduard.ps.service.converters.UserIdNameConverter">
+			<a>idUser</a>
+			<b>userName</b>
+		</field>
+		
+		<field>
+			<a>idStatus</a>
+			<b>idStatus</b>
+		</field>
+		
+		<field type="one-way" custom-converter="by.htp.eduard.ps.service.converters.AccountStatusIdNameConverter">
+			<a>idStatus</a>
+			<b>statusName</b>
+		</field>
+		
+		<field>
+			<a>idCurrency</a>
+			<b>idCurrency</b>
+		</field>
+		
+		<field type="one-way" custom-converter="by.htp.eduard.ps.service.converters.CurrencyIdNameConverter">
+			<a>idCurrency</a>
+			<b>currencyName</b>
+		</field>
+		
+	</mapping>
+</mappings>

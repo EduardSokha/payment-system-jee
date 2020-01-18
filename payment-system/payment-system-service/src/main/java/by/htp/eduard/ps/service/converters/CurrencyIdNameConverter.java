@@ -1,10 +1,10 @@
-package by.htp.eduard.service.converters;
+package by.htp.eduard.ps.service.converters;
 
 import org.dozer.DozerConverter;
 
-import by.htp.eduard.dao.CurrencyDao;
-import by.htp.eduard.dao.mysql.provider.DaoProvider;
-import by.htp.eduard.entities.Currency;
+import by.htp.eduard.ps.dao.CurrencyDao;
+import by.htp.eduard.ps.dao.entities.Currency;
+import by.htp.eduard.ps.dao.mysql.provider.DaoProvider;
 
 public class CurrencyIdNameConverter extends DozerConverter<Integer, String> {
 

@@ -2,12 +2,12 @@ package by.htp.eduard.ps.service;
 
 import java.util.List;
 
-import by.htp.eduard.entities.NameCard;
+import by.htp.eduard.ps.service.dto.NameCardDto;
 
 public interface NameCardService {
 	
-	List<NameCard> getAllNamesCard();
-	NameCard getNameCardById(Integer id);
-	NameCard saveNameCard(NameCard nameCard);
+	List<NameCardDto> getAllNamesCard();
+	NameCardDto getNameCardById(Integer id);
+	NameCardDto saveNameCard(NameCardDto nameCardDto);
 	void deleteNameCard(Integer id);
 }

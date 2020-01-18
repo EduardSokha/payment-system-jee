@@ -1,14 +1,14 @@
-package by.htp.eduard.service.impl;
+package by.htp.eduard.ps.service.impl;
 
 import java.util.List;
 
-import by.htp.eduard.dao.RoleDao;
-import by.htp.eduard.dao.mysql.provider.DaoProvider;
-import by.htp.eduard.dto.RoleDto;
-import by.htp.eduard.entities.Role;
-import by.htp.eduard.service.EntityDtoConverter;
-import by.htp.eduard.service.RoleService;
-import by.htp.eduard.service.ServiceProvider;
+import by.htp.eduard.ps.dao.RoleDao;
+import by.htp.eduard.ps.dao.entities.Role;
+import by.htp.eduard.ps.dao.mysql.provider.DaoProvider;
+import by.htp.eduard.ps.service.EntityDtoConverter;
+import by.htp.eduard.ps.service.RoleService;
+import by.htp.eduard.ps.service.ServiceProvider;
+import by.htp.eduard.ps.service.dto.RoleDto;
 
 public class RoleServiceImpl implements RoleService{
 	

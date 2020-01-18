@@ -59,7 +59,7 @@ public class DispatcherServlet extends HttpServlet {
 		if(provider.isStaticUrl(commandName)) {
 			StaticContentProvider staticProvider = new StaticContentProvider();
 			staticProvider.provideStaticContent(request, response, commandName);
-			return ;
+			return;
 		}
 		
 		ExecutableCommand executableCommand = provider.getCommandForUrl(commandName);

@@ -1,16 +1,18 @@
-package by.htp.eduard.service.impl;
+package by.htp.eduard.ps.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
-import by.htp.eduard.dao.AccountDao;
-import by.htp.eduard.dao.CardDao;
-import by.htp.eduard.dao.mysql.provider.DaoProvider;
-import by.htp.eduard.dto.CardDto;
-import by.htp.eduard.entities.Account;
-import by.htp.eduard.entities.Card;
-import by.htp.eduard.service.CardService;
-import by.htp.eduard.service.EntityDtoConverter;
-import by.htp.eduard.service.ServiceProvider;
+import by.htp.eduard.ps.dao.AccountDao;
+import by.htp.eduard.ps.dao.CardDao;
+import by.htp.eduard.ps.dao.entities.Account;
+import by.htp.eduard.ps.dao.entities.Card;
+import by.htp.eduard.ps.dao.mysql.provider.DaoProvider;
+import by.htp.eduard.ps.service.CardService;
+import by.htp.eduard.ps.service.EntityDtoConverter;
+import by.htp.eduard.ps.service.ServiceProvider;
+import by.htp.eduard.ps.service.dto.AccountDto;
+import by.htp.eduard.ps.service.dto.CardDto;
 
 public class CardServiceImpl implements CardService {
 
@@ -59,10 +61,14 @@ public class CardServiceImpl implements CardService {
 	}
 
 	@Override
-	public boolean createAccountAndCard(Account account, Card card) {
+	public CardDto createAccountAndCard(AccountDto accountDto, CardDto cardDto) {
+		Account account = converter.convertToEntity(accountDto, Account.class);
+		Card card = converter.convertToEntity(cardDto, Card.class);
+		account.setDate(new Date());
 		Account newAccount = accountDao.saveAccount(account);
 		card.setIdAccount(newAccount.getId());
-		cardDao.saveCard(card);
-		return true;
+		Card newCard = cardDao.saveCard(card);
+		CardDto dtoCard = converter.convertToDto(newCard, CardDto.class);
+		return dtoCard;
 	}
 }

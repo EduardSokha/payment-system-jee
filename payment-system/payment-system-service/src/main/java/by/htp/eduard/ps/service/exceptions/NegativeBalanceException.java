@@ -1,4 +1,4 @@
-package by.htp.eduard.service.exceptions;
+package by.htp.eduard.ps.service.exceptions;
 
 public class NegativeBalanceException extends Exception {
 	

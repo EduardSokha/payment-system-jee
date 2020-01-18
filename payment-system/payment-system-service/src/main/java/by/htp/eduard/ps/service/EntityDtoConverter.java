@@ -1,4 +1,4 @@
-package by.htp.eduard.service;
+package by.htp.eduard.ps.service;
 
 import java.util.List;
 

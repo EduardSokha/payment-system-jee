@@ -28,7 +28,8 @@ public class PayDaoImpl implements PayDao{
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		List<Pay> payments = new ArrayList<Pay>();
-		String sq1 = "SELECT `id`, `date`, `price`, `idaccount`, `description` FROM `payments`";
+		String sq1 = InsertsToSQL.PAY_DAO_IMPL_GET_ALL_PAY;
+//		String sq1 = "SELECT `id`, `date`, `price`, `idaccount`, `description` FROM `payments`";
 
 		try {
 			con = cp.getConnection();
@@ -54,7 +55,8 @@ public class PayDaoImpl implements PayDao{
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement ps = null;
-		String sq1 = "SELECT `id`, `date`, `price`, `idaccount`, `description` FROM `payments` WHERE `id` = " + id;
+		String sq1 = InsertsToSQL.PAY_DAO_IMPL_GET_PAY_BY_ID + id;
+//		String sq1 = "SELECT `id`, `date`, `price`, `idaccount`, `description` FROM `payments` WHERE `id` = " + id;
 
 		try {
 			con = cp.getConnection();
@@ -80,7 +82,8 @@ public class PayDaoImpl implements PayDao{
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement ps = null;
-		String sq1 = "INSERT INTO `payments` (`date`, `price`, `idaccount`, `description`) VALUES (?,?,?,?)";
+		String sq1 = InsertsToSQL.PAY_DAO_IMPL_SAVE_PAY;
+//		String sq1 = "INSERT INTO `payments` (`date`, `price`, `idaccount`, `description`) VALUES (?,?,?,?)";
 		
 		try {
 			con = cp.getConnection();
@@ -111,7 +114,8 @@ public class PayDaoImpl implements PayDao{
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement ps = null;
-		String sq1 = "DELETE FROM `payments` WHERE `id` = ?";
+		String sq1 = InsertsToSQL.PAY_DAO_IMPL_DELETE_PAY;
+//		String sq1 = "DELETE FROM `payments` WHERE `id` = ?";
 		
 		try {
 			con = cp.getConnection();

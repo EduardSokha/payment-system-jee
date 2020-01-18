@@ -1,4 +1,4 @@
-package by.htp.eduard.dto;
+package by.htp.eduard.ps.service.dto;
 
 import java.util.Date;
 
@@ -9,6 +9,8 @@ public class CardDto {
 	private Date date;
 	
 	private Integer idAccount;
+	
+	private String numberAccount;
 	
 	private Integer idPaymentSystem;
 	
@@ -43,6 +45,14 @@ public class CardDto {
 
 	public void setIdAccount(Integer idAccount) {
 		this.idAccount = idAccount;
+	}
+
+	public String getNumberAccount() {
+		return numberAccount;
+	}
+
+	public void setNumberAccount(String numberAccount) {
+		this.numberAccount = numberAccount;
 	}
 
 	public Integer getIdPaymentSystem() {
@@ -109,8 +119,8 @@ public class CardDto {
 
 	@Override
 	public String toString() {
-		return "CardDto [id=" + id + ", date=" + date + ", idAccount=" + idAccount + ", idPaymentSystem="
-				+ idPaymentSystem + ", namePaymentSystem=" + namePaymentSystem + ", idTradeNameCard=" + idTradeNameCard
-				+ ", tradeNameCard=" + tradeNameCard + "]";
+		return "CardDto [id=" + id + ", date=" + date + ", idAccount=" + idAccount + ", numberAccount=" + numberAccount
+				+ ", idPaymentSystem=" + idPaymentSystem + ", namePaymentSystem=" + namePaymentSystem
+				+ ", idTradeNameCard=" + idTradeNameCard + ", tradeNameCard=" + tradeNameCard + "]";
 	}
 }

@@ -68,6 +68,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="status-list" class="nav-link"> 
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            List Status<i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="cards-list" class="nav-link"> 
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
@@ -88,14 +96,6 @@
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             List Payments<i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="status-list" class="nav-link"> 
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            List Status<i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                 </li>

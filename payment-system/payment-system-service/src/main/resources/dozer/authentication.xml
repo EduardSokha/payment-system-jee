@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net
+      http://dozer.sourceforge.net/schema/beanmapping.xsd">
+	<mapping>
+		<class-a>by.htp.eduard.ps.dao.entities.Authentication</class-a>
+		<class-b>by.htp.eduard.ps.service.dto.AuthenticationDto</class-b>
+		<field>
+			<a>login</a>
+			<b>login</b>
+		</field>
+	</mapping>
+</mappings>

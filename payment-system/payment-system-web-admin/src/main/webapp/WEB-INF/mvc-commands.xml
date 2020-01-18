@@ -10,5 +10,89 @@
 	<command command-class="by.htp.eduard.ps.webadmin.commands.DashboardCommand">
 		<command-url url="/dashboard" method="showDashboardPage" />
 	</command>
+	
+	<command command-class="by.htp.eduard.ps.webadmin.commands.UserCommand">
+		<command-url url="/user-list" method="showUserList" />
+		<command-url url="/user" method="showUserDetail" />
+		<command-url url="/add-user" method="addUser" />
+		<command-url url="/save-user" method="saveUser" />
+		<command-url url="/edit-user" method="editUser" />
+		<command-url url="/delete-user" method="deleteUser" />
+	</command>
+	
+	<command command-class="by.htp.eduard.ps.webadmin.commands.PaymentSystemCommand">
+		<command-url url="/payment-system-list" method="showAllPaymentSystems"/>
+		<command-url url="/add-payment-system" method="addPaymentSystem"/>
+		<command-url url="/save-payment-system" method="savePaymentSystem"/>
+		<command-url url="/edit-payment-system" method="editPaymentSystem"/>
+		<command-url url="/delete-payment-system" method="deletePaymentSystem"/>
+	</command>
+	
+	<command command-class="by.htp.eduard.ps.webadmin.commands.NameCardCommand">
+		<command-url url="/trade-names-list" method="showTradeNamesCards"/>
+		<command-url url="/add-trade-name-cards" method="addTradeNameCards"/>
+		<command-url url="/save-trade-name-cards" method="saveTradeNameCards"/>
+		<command-url url="/edit-trade-name-cards" method="editTradeNameCards"/>
+		<command-url url="/delete-trade-name-cards" method="deleteTradeNameCards"/>
+	</command>
+	
+	<command command-class="by.htp.eduard.ps.webadmin.commands.CurrencyCommand">
+		<command-url url="/currency-list" method="showAllCurrencies"/>
+		<command-url url="/add-currency" method="addCurrency"/>
+		<command-url url="/save-currency" method="saveCurrency"/>
+		<command-url url="/edit-currency" method="editCurrency"/>
+		<command-url url="/delete-currency" method="deleteCurrency"/>
+	</command>
+
+	<command command-class="by.htp.eduard.ps.webadmin.commands.RoleCommand">
+		<command-url url="/roles-list" method="showAllRoles"/>
+		<command-url url="/add-role" method="addRole"/>
+		<command-url url="/save-role" method="saveRole"/>
+		<command-url url="/edit-role" method="editRole"/>
+		<command-url url="/delete-role" method="deleteRole"/>
+	</command>
+	
+	<command command-class="by.htp.eduard.ps.webadmin.commands.CardCommands">
+		<command-url url="/cards-list" method="showAllCards"/>
+		<command-url url="/add-card" method="addCard"/>
+		<command-url url="/save-card" method="saveCard"/>
+		<command-url url="/edit-card" method="editCard"/>
+		<command-url url="/delete-card" method="deleteCard"/>
+		<command-url url="/add-card-and-account" method="addCardAndAccount"/>
+		<command-url url="/save-card-and-account" method="saveCardAndAccount"/>	
+	</command>
+	
+	<command command-class="by.htp.eduard.ps.webadmin.commands.AccountCommands">
+		<command-url url="/accounts-list" method="showAllAccounts"/>
+		<command-url url="/add-account" method="addAccount"/>
+		<command-url url="/save-account" method="saveAccount"/>
+		<command-url url="/edit-account" method="editAccount"/>
+		<command-url url="/delete-account" method="deleteAccount"/>
+		<command-url url="/lock-unlock-account" method="lockUnlockAccount"/>
+		<command-url url="/add-card-to-account" method="addCard"/>
+	</command>
+	
+	<command command-class="by.htp.eduard.ps.webadmin.commands.PayCommands">
+		<command-url url="/payments-list" method="showAllPayments"/>
+		<command-url url="/create-pay" method="createPay"/>
+		<command-url url="/save-pay" method="savePay"/>
+		<command-url url="/delete-pay" method="deletePay"/>
+	</command>
+	
+	<command command-class="by.htp.eduard.ps.webadmin.commands.AuthenticationCommands">
+		<command-url url="/identity" method="authorization"/>
+		<command-url url="/registration" method="registrationNewUser"/>
+		<command-url url="/save-new-user" method="saveNewUser" />
+		<command-url url="/forget-password" method="forgetPassword"/>
+		<command-url url="/get-password" method="getForgetPassword" />		
+	</command>
+	
+	<command command-class="by.htp.eduard.ps.webadmin.commands.StatusCommands">
+		<command-url url="/status-list" method="showAllStatus"/>
+		<command-url url="/add-status" method="addStatus"/>
+		<command-url url="/save-status" method="saveStatus"/>
+		<command-url url="/edit-status" method="editStatus"/>
+		<command-url url="/delete-status" method="deleteStatus"/>
+	</command>
 
 </mvc-commands>

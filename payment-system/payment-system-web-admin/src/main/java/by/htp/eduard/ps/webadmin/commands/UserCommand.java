@@ -6,11 +6,11 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import by.htp.eduard.entities.User;
 import by.htp.eduard.ps.service.RoleService;
 import by.htp.eduard.ps.service.ServiceProvider;
 import by.htp.eduard.ps.service.UserService;
 import by.htp.eduard.ps.service.dto.RoleDto;
+import by.htp.eduard.ps.service.dto.UserDto;
 import by.htp.eduard.ps.utils.http.HttpUtils;
 
 public class UserCommand {
@@ -24,7 +24,7 @@ public class UserCommand {
 	}
 
 	public String showUserList(HttpServletRequest request) throws IOException, ServletException {
-		List<User> allUsers = userService.getAllUsers();
+		List<UserDto> allUsers = userService.getAllUsers();
 		request.setAttribute("allUsers", allUsers);
 		return "/WEB-INF/pages/users/user-list.jsp";
 	}
@@ -53,7 +53,7 @@ public class UserCommand {
 		String phoneNumber = request.getParameter("phoneNumber");
 		String residenceRegistr = request.getParameter("residenceRegistr");
 		
-		User user = new User();
+		UserDto user = new UserDto();
 		user.setId(id);
 		user.setLogin(login);
 		user.setPassword(password);
@@ -76,7 +76,7 @@ public class UserCommand {
 		List<RoleDto> allRoles = roleService.getAllRoles();
 		request.setAttribute("allRoles", allRoles);
 		Integer id = HttpUtils.getIntParam("userId", request);
-		User user = userService.getUserById(id);
+		UserDto user = userService.getUserById(id);
 		request.setAttribute("user", user);
 		return "/WEB-INF/pages/users/user-details.jsp";
 	}

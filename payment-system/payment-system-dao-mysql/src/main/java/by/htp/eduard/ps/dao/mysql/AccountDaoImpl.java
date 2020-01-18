@@ -171,7 +171,8 @@ public class AccountDaoImpl implements AccountDao {
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement ps = null;
-		String sq1 = "UPDATE `account` SET `idstatus` = ? WHERE `id` = ?";
+		String sq1 = InsertsToSQL.ACCOUNT_DAO_IMPL_LOCK_UNLOCK_ACCOUNT;
+//		String sq1 = "UPDATE `account` SET `idstatus` = ? WHERE `id` = ?";
 
 		try {
 			con = cp.getConnection();
@@ -194,7 +195,8 @@ public class AccountDaoImpl implements AccountDao {
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement ps = null;
-		String sq1 = "UPDATE `account` SET `balance` = ? WHERE `id` = ?";
+		String sq1 = InsertsToSQL.ACCOUNT_DAO_IMPL_UPDATE_BALANCE_ACCOUNT;
+//		String sq1 = "UPDATE `account` SET `balance` = ? WHERE `id` = ?";
 
 		try {
 			con = cp.getConnection();
@@ -217,8 +219,9 @@ public class AccountDaoImpl implements AccountDao {
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement ps = null;
-		String sq1 = "DELETE FROM `account` WHERE `id` = ?";
-		
+		String sq1 = InsertsToSQL.ACCOUNT_DAO_IMPL_DELETE_ACCOUNT;
+//		String sq1 = "DELETE FROM `account` WHERE `id` = ?";
+
 		try {
 			con = cp.getConnection();
 			ps = con.prepareStatement(sq1);

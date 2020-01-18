@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net
+      http://dozer.sourceforge.net/schema/beanmapping.xsd">
+	
+	<mapping>
+		<class-a>by.htp.eduard.ps.dao.entities.Pay</class-a>
+		<class-b>by.htp.eduard.ps.service.dto.PayDto</class-b>
+		
+		<field>
+			<a>idAccount</a>
+			<b>idAccount</b>
+		</field>
+		
+		<field type="one-way" custom-converter="by.htp.eduard.ps.service.converters.AccountNumberConverter">
+			<a>idAccount</a>
+			<b>numberAccount</b>
+		</field>
+		
+	</mapping>
+	
+</mappings>
