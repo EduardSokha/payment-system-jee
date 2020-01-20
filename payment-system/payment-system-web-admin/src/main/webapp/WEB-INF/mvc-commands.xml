@@ -76,6 +76,7 @@
 		<command-url url="/payments-list" method="showAllPayments"/>
 		<command-url url="/create-pay" method="createPay"/>
 		<command-url url="/save-pay" method="savePay"/>
+		<command-url url="/new-pay" method="newPay"/>
 		<command-url url="/delete-pay" method="deletePay"/>
 	</command>
 	

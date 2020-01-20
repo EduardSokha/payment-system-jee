@@ -59,7 +59,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <a href="create-pay" class="btn btn-success">Create Pay</a> <br> <br>
+                                    <a href="new-pay" class="btn btn-success">Create Pay</a> <br> <br>
 
                                     <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                                         <thead>

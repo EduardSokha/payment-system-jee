@@ -5,9 +5,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import by.htp.eduard.ps.service.AccountService;
 import by.htp.eduard.ps.service.CardService;
 import by.htp.eduard.ps.service.PayService;
 import by.htp.eduard.ps.service.ServiceProvider;
+import by.htp.eduard.ps.service.dto.AccountDto;
 import by.htp.eduard.ps.service.dto.CardDto;
 import by.htp.eduard.ps.service.dto.PayDto;
 import by.htp.eduard.ps.service.exceptions.NegativeBalanceException;
@@ -17,10 +19,12 @@ public class PayCommands {
 	
 	private final PayService payService;
 	private final CardService cardService;	
+	private final AccountService accountService;
 
 	public PayCommands() {
 		payService = ServiceProvider.getInstance().getPayService();
 		cardService = ServiceProvider.getInstance().getCardService();
+		accountService = ServiceProvider.getInstance().getAccountService();
 	}
 	
 	public String showAllPayments(HttpServletRequest request) {
@@ -62,6 +66,13 @@ public class PayCommands {
 		
 		return "redirect:payments-list";
 //		cards-list
+	}
+	
+	public String newPay(HttpServletRequest request) {
+		List<AccountDto> allAccounts = accountService.getAllAccounts();
+		request.setAttribute("allAccounts", allAccounts);
+		
+		return "/WEB-INF/pages/pay/new-pay.jsp";
 	}
 	
 	public String deletePay(HttpServletRequest request) {

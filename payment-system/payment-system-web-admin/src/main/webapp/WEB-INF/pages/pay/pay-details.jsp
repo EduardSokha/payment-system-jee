@@ -83,7 +83,7 @@
                                             
                                             <div class="form-group row">
                                                 <div class="offset-sm-2 col-sm-10">
-                                                    <a href="payments-list" type="submit" class="btn btn-default">Cancel</a>
+                                                    <a href="cards-list" type="submit" class="btn btn-default">Cancel</a>
                                                     <button type="submit" class="btn btn-info float-right">Save</button>
                                                 </div>
                                             </div>
