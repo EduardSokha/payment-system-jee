@@ -51,11 +51,10 @@ public class CardDaoImpl implements CardDao {
 	}
 	
 	@Override
-	public List<Card> getCardByIdAccount(Integer id) {
+	public Card getCardByIdAccount(Integer id) {
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement ps = null;
-		List<Card> cards = new ArrayList<Card>();
 		String sq1 = InsertsToSQL.CARD_DAO_IMPL_GET_CARD_BY_ID_ACCOUNT + id;
 //		String sq1 = "SELECT `id`, `creation_date`, `account_idaccount`, `payment_system_card_idpayment_system_card`, `name_card_idname_card` FROM `card` WHERE `account_idaccount` = " + id;
 
@@ -64,9 +63,9 @@ public class CardDaoImpl implements CardDao {
 			ps = con.prepareStatement(sq1);
 			rs = ps.executeQuery(sq1);
 
-			while (rs.next()) {
+			if (rs.next()) {
 				Card card = createCard(rs);
-				cards.add(card);
+				return card;
 			}
 		} catch (SQLException e) {
 			logger.debug("SQLException DAO", e);
@@ -75,7 +74,7 @@ public class CardDaoImpl implements CardDao {
 			cp.releaseDbResourses(con, ps, rs);
 		}
 
-		return cards;
+		return null;
 	}
 
 	@Override

@@ -18,7 +18,7 @@ public class UserIdNameConverter extends DozerConverter<Integer, String> {
 	@Override
 	public String convertTo(Integer source, String destination) {		
 		User user = userDao.getUserById(source);
-		return user.getName();
+		return user.getLogin();
 	}
 
 	@Override

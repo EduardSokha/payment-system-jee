@@ -17,10 +17,8 @@ public class PayCommands {
 	
 	private final PayService payService;
 	private final CardService cardService;	
-//	private final AccountService accountService;
 
 	public PayCommands() {
-//		accountService = ServiceProvider.getInstance().getAccountService();
 		payService = ServiceProvider.getInstance().getPayService();
 		cardService = ServiceProvider.getInstance().getCardService();
 	}

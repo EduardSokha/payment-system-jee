@@ -205,4 +205,30 @@ public class UserDaoImpl implements UserDao {
 		user.setResidenceRegistr(rs.getString("residence_registr_data_passport"));
 		return user;
 	}
+
+	@Override
+	public User getUserByLogin(String login) {
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		String sq1 = "SELECT `id`, `login`, `password`, `name`, `surname`, `address`, `role_idrole`, `series_number_passport`, `identification_number_passport`, `codeword`, `phone_number`, `residence_registr_data_passport` FROM `users` WHERE `login` = '" + login + "'";
+
+		try {
+			con = cp.getConnection();
+			ps = con.prepareStatement(sq1);
+			rs = ps.executeQuery(sq1);
+
+			if (rs.next()) {
+				User user = createUser(rs);
+				return user;
+			}
+		} catch (SQLException e) {
+			logger.debug("SQLException DAO", e);
+			throw new DaoException(e);
+		} finally {
+			cp.releaseDbResourses(con, ps, rs);
+		}
+		
+		return null;
+	}
 }

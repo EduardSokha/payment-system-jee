@@ -1,5 +1,6 @@
 package by.htp.eduard.ps.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,9 +35,26 @@ public class CardServiceImpl implements CardService {
 	}
 
 	@Override
-	public List<CardDto> getCardByIdAccount(Integer id) {
-		List<Card> listCards = cardDao.getCardByIdAccount(id);
-		List<CardDto> dtoList = converter.convertToDtoList(listCards, CardDto.class);
+	public CardDto getCardByIdAccount(Integer id) {
+		Card card = cardDao.getCardByIdAccount(id);
+		CardDto dtoCard = converter.convertToDto(card, CardDto.class);
+		return dtoCard;
+	}
+
+	@Override
+	public List<CardDto> getCardByIdUser(Integer id) {
+		List<Card> cardsByIdUser = new ArrayList<Card>();
+		List<Account> accountsByIdUser = accountDao.getAccountByIdUser(id);
+		
+		if(accountsByIdUser == null) {
+			return null;
+		}
+		
+		for (Account account : accountsByIdUser) {
+			Card card = cardDao.getCardByIdAccount(account.getId());
+			cardsByIdUser.add(card);
+		}
+		List<CardDto> dtoList = converter.convertToDtoList(cardsByIdUser, CardDto.class);
 		return dtoList;
 	}
 

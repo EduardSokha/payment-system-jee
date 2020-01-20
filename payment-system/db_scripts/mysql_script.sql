@@ -13,7 +13,7 @@ INSERT INTO `role` VALUES (1,'Admin'),(2,'User');
 
 CREATE TABLE `users` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `login` varchar(45) DEFAULT NULL,
+  `login` varchar(45) NOT NULL,
   `password` varchar(255) DEFAULT NULL,
   `name` varchar(45) DEFAULT NULL,
   `surname` varchar(45) DEFAULT NULL,

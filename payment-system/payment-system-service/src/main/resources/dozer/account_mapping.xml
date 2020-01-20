@@ -14,7 +14,7 @@
 		
 		<field type="one-way" custom-converter="by.htp.eduard.ps.service.converters.UserIdNameConverter">
 			<a>idUser</a>
-			<b>userName</b>
+			<b>userLogin</b>
 		</field>
 		
 		<field>

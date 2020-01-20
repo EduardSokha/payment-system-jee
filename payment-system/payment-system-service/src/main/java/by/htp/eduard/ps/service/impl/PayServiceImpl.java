@@ -1,10 +1,12 @@
 package by.htp.eduard.ps.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import by.htp.eduard.ps.dao.AccountDao;
 import by.htp.eduard.ps.dao.PayDao;
 import by.htp.eduard.ps.dao.entities.Account;
+import by.htp.eduard.ps.dao.entities.Card;
 import by.htp.eduard.ps.dao.entities.Pay;
 import by.htp.eduard.ps.dao.mysql.provider.DaoProvider;
 import by.htp.eduard.ps.service.EntityDtoConverter;
@@ -33,10 +35,36 @@ public class PayServiceImpl implements PayService {
 	}
 
 	@Override
+	public List<PayDto> getPayByIdAccount(Integer id) {
+		List<Pay> allPay = payDao.getPayByIdAccount(id);
+		List<PayDto> dtoList = converter.convertToDtoList(allPay, PayDto.class);
+		return dtoList;
+	}
+
+	@Override
 	public PayDto getPayById(Integer id) {
 		Pay pay = payDao.getPayById(id);
 		PayDto payDto = converter.convertToDto(pay, PayDto.class);
 		return payDto;
+	}
+
+	@Override
+	public List<PayDto> getPayByIdUser(Integer id) {
+		List<Pay> allPay = new ArrayList<>();
+		List<Account> accountsByIdUser = accountDao.getAccountByIdUser(id);
+		
+		if(accountsByIdUser == null) {
+			return null;
+		}
+		for (Account account : accountsByIdUser) {
+			List<Pay> payByIdAccount = payDao.getPayByIdAccount(account.getId());
+			for (Pay pay : payByIdAccount) {
+				allPay.add(pay);
+			}
+		}
+		
+		List<PayDto> dtoList = converter.convertToDtoList(allPay, PayDto.class);
+		return dtoList;
 	}
 
 	@Override
@@ -60,5 +88,4 @@ public class PayServiceImpl implements PayService {
 	public void deletePay(Integer id) {
 		payDao.deletePay(id);
 	}
-
 }

@@ -8,6 +8,8 @@ public interface UserService {
 	
 	List<UserDto> getAllUsers();
 	UserDto getUserById(Integer id);
+	boolean isLoginExists(String login);
+	UserDto getUserByLogin(String login);
 	UserDto saveUser(UserDto userDto);
 	void deleteUser(Integer id);
 	

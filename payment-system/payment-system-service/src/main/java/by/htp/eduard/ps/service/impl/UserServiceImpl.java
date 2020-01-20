@@ -52,4 +52,18 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(Integer id) {
 		userDao.deleteUser(id);
 	}
+
+	@Override
+	public UserDto getUserByLogin(String login) {
+		User user = userDao.getUserByLogin(login);
+		UserDto dto = converter.convertToDto(user, UserDto.class);
+		return dto;
+	}
+
+	@Override
+	public boolean isLoginExists(String login) {
+		UserDto dbUser = getUserByLogin(login);
+		
+		return (dbUser != null);
+	}
 }

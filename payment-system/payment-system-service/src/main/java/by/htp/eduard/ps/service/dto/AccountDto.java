@@ -14,7 +14,7 @@ public class AccountDto {
 	
 	private Integer idUser;
 	
-	private String userName;
+	private String userLogin;
 	
 	private Integer idStatus;
 	
@@ -67,12 +67,12 @@ public class AccountDto {
 		this.idUser = idUser;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUserLogin() {
+		return userLogin;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserLogin(String userLogin) {
+		this.userLogin = userLogin;
 	}
 
 	public Integer getIdStatus() {
@@ -140,7 +140,7 @@ public class AccountDto {
 	@Override
 	public String toString() {
 		return "AccountDto [id=" + id + ", number=" + number + ", balance=" + balance + ", date=" + date + ", idUser="
-				+ idUser + ", userName=" + userName + ", idStatus=" + idStatus + ", statusName=" + statusName
+				+ idUser + ", userLogin=" + userLogin + ", idStatus=" + idStatus + ", statusName=" + statusName
 				+ ", idCurrency=" + idCurrency + ", currencyName=" + currencyName + "]";
 	}
 }

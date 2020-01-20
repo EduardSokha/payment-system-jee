@@ -73,7 +73,7 @@
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                                                     aria-label="Platform(s): activate to sort column ascending">Date</th>
                                                 <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending"
-                                                    aria-label="Rendering engine: activate to sort column descending">Id User</th>
+                                                    aria-label="Rendering engine: activate to sort column descending">Login User</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                                                     aria-label="Platform(s): activate to sort column ascending">Status</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
@@ -90,7 +90,7 @@
                                                     <td>${account.number}</td>
                                                     <td>${account.balance}</td>
                                                     <td>${account.date}</td>
-                                                    <td>${account.userName}</td>
+                                                    <td>${account.userLogin}</td>
                                                     <td>${account.statusName}</td>
                                                     <td>${account.currencyName}</td>
                                                     

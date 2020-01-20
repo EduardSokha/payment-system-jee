@@ -1,10 +1,13 @@
 package by.htp.eduard.ps.webadmin.commands;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang3.StringUtils;
 
 import by.htp.eduard.ps.service.RoleService;
 import by.htp.eduard.ps.service.ServiceProvider;
@@ -40,9 +43,19 @@ public class UserCommand {
 	}
 
 	public String saveUser(HttpServletRequest request) throws IOException, ServletException {
+		List<String> validationErrors = new ArrayList<>();
 		Integer id = HttpUtils.getIntParam("id", request);
 		String login = request.getParameter("login");
+		if(StringUtils.isBlank(login)) {
+			validationErrors.add("user.login.empty");
+		}
+		if(userService.isLoginExists(login)) {
+			validationErrors.add("user.login.duplicate");
+		}
 		String password = request.getParameter("password");
+		if(StringUtils.isBlank(password)) {
+			validationErrors.add("user.password.empty");
+		}
 		String name = request.getParameter("name");
 		String surname = request.getParameter("surname");
 		String address = request.getParameter("address");
@@ -52,6 +65,13 @@ public class UserCommand {
 		String codeWord = request.getParameter("codeWord");
 		String phoneNumber = request.getParameter("phoneNumber");
 		String residenceRegistr = request.getParameter("residenceRegistr");
+		
+		if(!validationErrors.isEmpty()) {
+			request.setAttribute("validationErrors", validationErrors);
+			List<RoleDto> allRoles = roleService.getAllRoles();
+			request.setAttribute("allRoles", allRoles);
+			return "/WEB-INF/pages/users/user-details.jsp";
+		}
 		
 		UserDto user = new UserDto();
 		user.setId(id);

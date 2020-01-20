@@ -37,6 +37,7 @@ public class InsertsToSQL {
 	 public static final String NAME_CARD_DAO_IMPL_DELETE_NAME_CARD = "DELETE FROM `name_card` WHERE `id` = ?";
 	 
 	 public static final String PAY_DAO_IMPL_GET_ALL_PAY = "SELECT `id`, `date`, `price`, `idaccount`, `description` FROM `payments`";
+	 public static final String PAY_DAO_IMPL_GET_PAY_BY_ID_ACCOUNT = "SELECT `id`, `date`, `price`, `idaccount`, `description` FROM `payments` WHERE `idaccount` = ";
 	 public static final String PAY_DAO_IMPL_GET_PAY_BY_ID = "SELECT `id`, `date`, `price`, `idaccount`, `description` FROM `payments` WHERE `id` = ";
 	 public static final String PAY_DAO_IMPL_SAVE_PAY = "INSERT INTO `payments` (`date`, `price`, `idaccount`, `description`) VALUES (?,?,?,?)";
 	 public static final String PAY_DAO_IMPL_DELETE_PAY = "DELETE FROM `payments` WHERE `id` = ?";	

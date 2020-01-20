@@ -51,6 +51,33 @@ public class PayDaoImpl implements PayDao{
 	}
 
 	@Override
+	public List<Pay> getPayByIdAccount(Integer id) {
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		List<Pay> payments = new ArrayList<Pay>();
+		String sq1 = InsertsToSQL.PAY_DAO_IMPL_GET_PAY_BY_ID_ACCOUNT + id;
+
+		try {
+			con = cp.getConnection();
+			ps = con.prepareStatement(sq1);
+			rs = ps.executeQuery(sq1);
+
+			while (rs.next()) {
+				Pay pay = createPay(rs);
+				payments.add(pay);
+			}
+		} catch (SQLException e) {
+			logger.debug("SQLException DAO", e);
+			throw new DaoException(e);
+		} finally {
+			cp.releaseDbResourses(con, ps, rs);
+		}
+
+		return payments;
+	}
+
+	@Override
 	public Pay getPayById(Integer id) {
 		Connection con = null;
 		ResultSet rs = null;
@@ -142,5 +169,4 @@ public class PayDaoImpl implements PayDao{
 
 		return pay;
 	}
-
 }
