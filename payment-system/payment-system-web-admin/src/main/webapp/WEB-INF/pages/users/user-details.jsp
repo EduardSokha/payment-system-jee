@@ -1,6 +1,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="mvc" uri="http://java.sun.com/jsp/jstl/core"%>
+<%-- <%@ taglib prefix="mvc" uri="http://by.htp.eduard/ps/mvc"%> --%>
 <!DOCTYPE html>
 <html>
 <head>

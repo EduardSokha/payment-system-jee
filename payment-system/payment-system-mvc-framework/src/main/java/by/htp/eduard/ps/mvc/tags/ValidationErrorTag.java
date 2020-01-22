@@ -8,6 +8,8 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 
 public class ValidationErrorTag extends BodyTagSupport {
 	
+	private static final long serialVersionUID = 1L;
+	
 	private String code;
 
 	@Override

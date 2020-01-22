@@ -5,30 +5,28 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
     version="2.1">
     
-  <description>JSTL 1.1 core library</description>
-  <display-name>JSTL core</display-name>
+  <description>Data validation</description>
+  <display-name>Validation</display-name>
   <tlib-version>1.1</tlib-version>
-  <short-name>c</short-name>
-  <uri>http://java.sun.com/jsp/jstl/core</uri>
+  <short-name>mvc</short-name>
+ <!--  <uri>http://by.htp.eduard/ps/mvc</uri> -->
+ <uri>http://java.sun.com/jsp/jstl/core</uri>
 
-  <validator>
+<!--   <validator>
     <description>
         Provides core validation features for JSTL tags.
     </description>
     <validator-class>
         org.apache.taglibs.standard.tlv.JstlCoreTLV
     </validator-class>
-  </validator>
+  </validator> -->
 
   <tag>
-    <description>
-        Catches any Throwable that occurs in its body and optionally
-        exposes it.
-    </description>
-    <name>catch</name>
-    <tag-class>org.apache.taglibs.standard.tag.common.core.CatchTag</tag-class>
+    <description>Error tag</description>
+    <name>error</name>
+    <tag-class>by.htp.eduard.ps.mvc.tags.ValidationErrorTag</tag-class>
     <body-content>JSP</body-content>
-    <attribute>
+    <!-- <attribute>
         <description>
 Name of the exported scoped variable for the
 exception thrown from a nested action. The type of the
@@ -37,10 +35,10 @@ scoped variable is the type of the exception thrown.
         <name>var</name>
         <required>false</required>
         <rtexprvalue>false</rtexprvalue>
-    </attribute>
+    </attribute> -->
   </tag>
 
-  <tag>
+  <!-- <tag>
     <description>
 	Simple conditional tag that establishes a context for
 	mutually exclusive conditional operations, marked by
@@ -567,6 +565,6 @@ body content should be processed.
         <rtexprvalue>true</rtexprvalue>
 	<type>boolean</type>
     </attribute>
-  </tag>
+  </tag> -->
 
 </taglib>

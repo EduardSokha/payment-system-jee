@@ -3,63 +3,75 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Log in</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Sign in</title>
+<jsp:include page="/WEB-INF/pages/common/css-include.jsp"></jsp:include>
 
-<c:url value="/static-content/css/logination/fonts/material-icon/css/material-design-iconic-font.min.css" var="designIconic"></c:url>
-<!-- Font Icon -->
-<link rel="stylesheet" href="${designIconic}">
-
-<c:url value="/static-content/css/logination/css/style.css" var="styleCss"></c:url>
-<!-- Main css -->
-<link rel="stylesheet" href="${styleCss}">
-
+  
 </head>
-<body class="hold-transition sidebar-mini">
 
-    <section class="sign-in">
-        <div class="container">
-            <div class="signin-content">
-                <div class="signin-image">
-                    <figure>
-                        <c:url value="/static-content/images/payment-system.jpg" var="image"></c:url>
-                        <img src="${image}" alt="sing up image">
-                    </figure>
-                    <a href="registration" class="signup-image-link">Create an account</a>                    
-                </div>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <p><b>Admin</b>LTE</p>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="form-title">${successRegistr}</p>
 
-                <div class="signin-form">
-                    <h2 class="form-title">Sign up</h2>
-                    <p class="form-title">${successRegistr}</p>
-                    <form action="identity" method="post" class="register-form" id="login-form">
-                        <div class="form-group">
-                            <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label> 
-                            <input type="text" name="login" id="your_name" placeholder="Login" />
-                        </div>
-                        <div class="form-group">
-                            <label for="your_pass"><i class="zmdi zmdi-lock"></i></label> 
-                            <input type="password" name="password" id="your_pass" placeholder="Password" />
-                        </div>
-                        <div class="form-group">
-                            <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" /> 
-                            <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
-                        </div>
-                        <div class="form-group form-button">
-                            <input type="submit" name="signin" id="signin" class="form-submit" value="Log in" />
-                        </div>
-                    </form>
-                    
-                    <div class="social-login">
-                            <a href="forget-password" class="signup-image-link">Forget Password</a>
-                    </div>
-                    
-                </div>
+      <form action="identity" method="post">
+        <div class="input-group mb-3">
+          <input type="text" name="login" class="form-control" placeholder="Login">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
             </div>
+          </div>
         </div>
-    </section>
+        <div class="input-group mb-3">
+          <input type="password" name="password" class="form-control" placeholder="Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember">
+              <label for="remember">
+                Remember Me
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <p class="mb-1">
+        <a href="forget-password">I forgot my password</a>
+      </p>
+      <p class="mb-0">
+        <a href="registration" class="text-center">Register a new membership</a>
+      </p>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<jsp:include page="/WEB-INF/pages/common/js-include.jsp"></jsp:include>
 
 </body>
 </html>

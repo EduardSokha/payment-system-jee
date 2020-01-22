@@ -3,69 +3,82 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Get a password</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Sign Up Form by Colorlib</title>
-
-<c:url value="/static-content/css/logination/fonts/material-icon/css/material-design-iconic-font.min.css" var="designIconic"></c:url>
-<!-- Font Icon -->
-<link rel="stylesheet" href="${designIconic}">
-
-<c:url value="/static-content/css/logination/css/style.css" var="styleCss"></c:url>
-<!-- Main css -->
-<link rel="stylesheet" href="${styleCss}">
-
+  <jsp:include page="/WEB-INF/pages/common/css-include.jsp"></jsp:include>
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition register-page">
+<div class="register-box">
+  <div class="register-logo">
+    <p><b>Admin</b>LTE</p>
+  </div>
 
-    <section class="sign-in">
-        <div class="container">
-            <div class="signin-content">
-                <div class="signin-image">
-                    <figure>
-                        <c:url value="/static-content/images/payment-system.jpg" var="image"></c:url>
-                        <img src="${image}" alt="sing up image">
-                    </figure>                  
-                </div>
+  <div class="card">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg">Get a password</p>
+       <c:if test="${user != null}">
+            <p class="form-title">
+                Your login = '${user.login}', your password = '${user.password}'
+            </p>
+       </c:if>
 
-                <div class="signin-form">
-                    <h2 class="form-title">Sign up</h2>
-                    <c:if test="${user != null}">
-                        <p class="form-title">
-                            Your login = '${user.login}', your password = '${user.password}'
-                        </p>
-                    </c:if>
-                    <form action="get-password" method="post" class="register-form" id="login-form">
-                    
-                            <div class="form-group">
-                                <label for="name"><i class="zmdi"></i></label>
-                                <input type="text" name="passportSeries" id="name" placeholder="Passport Series"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><i class="zmdi"></i></label>
-                                <input type="text" name="passportId" id="name" placeholder="Passport Id"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><i class="zmdi"></i></label>
-                                <input type="text" name="codeWord" id="name" placeholder="CodeWord"/>
-                            </div>                            
-                            
-                            <div class="form-group form-button">
-                                <input type="submit" name="signup" id="signup" class="form-submit" value="Get Password"/>
-                            </div>
-                    </form>
-                    
-                    <div class="social-login">
-                    <c:url value="/" var="backUrl"></c:url>
-                            <a href="${backUrl}" class="signup-image-link">Back</a>
-                    </div>
-                    
-                </div>
+      <form action="get-password" method="post">
+	  
+		<div class="input-group mb-3">
+          <input type="text" name="passportSeries" class="form-control" placeholder="Passport Series">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="far fa-address-card"></span>
             </div>
+          </div>
         </div>
-    </section>
+		<div class="input-group mb-3">
+          <input type="text" name="passportId" class="form-control" placeholder="Passport Id">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="far fa-address-card"></span>
+            </div>
+          </div>
+        </div>
+		<div class="input-group mb-3">
+          <input type="text" name="codeWord" class="form-control" placeholder="Code Word">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-key"></span>
+            </div>
+          </div>
+        </div>
+		
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+              <label for="agreeTerms">
+               I agree to the <a href="#">terms</a>
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Send</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+		<c:url value="/" var="backUrl"></c:url>
+		<a href="${backUrl}" class="text-center">Back</a>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+
+<jsp:include page="/WEB-INF/pages/common/js-include.jsp"></jsp:include>
 
 </body>
 </html>
