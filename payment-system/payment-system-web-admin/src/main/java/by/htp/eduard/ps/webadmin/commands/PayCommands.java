@@ -1,5 +1,6 @@
 package by.htp.eduard.ps.webadmin.commands;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -60,8 +61,11 @@ public class PayCommands {
 		try {
 			payService.savePay(pay);
 		} catch (NegativeBalanceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			List<String> validationErrors = new ArrayList<>();
+			validationErrors.add("pay.balance.negative");
+			request.setAttribute("validationErrors", validationErrors);
+			return "/WEB-INF/pages/pay/pay-details.jsp";
+//			throw new RuntimeException("You have no enough money!!!");
 		}
 		
 		return "redirect:payments-list";

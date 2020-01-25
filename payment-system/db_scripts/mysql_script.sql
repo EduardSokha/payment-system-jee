@@ -156,5 +156,5 @@ CREATE TABLE `payments` (
   `idaccount` INTEGER NOT NULL,
   `description` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_payments_account1` FOREIGN KEY (`idaccount`) REFERENCES `account` (`id`)
+  CONSTRAINT `fk_payments_account1` FOREIGN KEY (`idaccount`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

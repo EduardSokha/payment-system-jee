@@ -70,7 +70,7 @@ public class DozerEntityDtoConverter implements EntityDtoConverter{
 		mappings.add("dozer/authentication.xml");
 		mappings.add("dozer/name-card-mapping.xml");
 		mappings.add("dozer/payment-system-mapping.xml");
-		mappings.add("dozer/status-mapping.xml");
+//		mappings.add("dozer/status-mapping.xml");
 		mappings.add("dozer/pay-mapping.xml");
 		return mappings;
 	}

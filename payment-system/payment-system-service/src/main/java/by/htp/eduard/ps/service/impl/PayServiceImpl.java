@@ -54,13 +54,11 @@ public class PayServiceImpl implements PayService {
 		List<Account> accountsByIdUser = accountDao.getAccountByIdUser(id);
 		
 		if(accountsByIdUser == null) {
-			return null;
+			return new ArrayList<PayDto>();
 		}
 		for (Account account : accountsByIdUser) {
 			List<Pay> payByIdAccount = payDao.getPayByIdAccount(account.getId());
-			for (Pay pay : payByIdAccount) {
-				allPay.add(pay);
-			}
+			allPay.addAll(payByIdAccount);
 		}
 		
 		List<PayDto> dtoList = converter.convertToDtoList(allPay, PayDto.class);

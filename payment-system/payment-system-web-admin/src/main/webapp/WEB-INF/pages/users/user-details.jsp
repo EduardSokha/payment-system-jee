@@ -1,8 +1,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="mvc" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <%@ taglib prefix="mvc" uri="http://by.htp.eduard/ps/mvc"%> --%>
+<%@ taglib prefix="mvc" uri="http://eduard.htp.by/mvc"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,24 +63,18 @@
                                 <div class="col-sm-6">
                                     <div class="tab-pane" id="settings">
                                         <form action="save-user" method="post" class="form-horizontal">
-                                        <input type="hidden" name="id" value="${user.id}">
+                                            <input type="hidden" name="id" value="${user.id}">
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Login</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="login" value="${user.login}" class="form-control" id="inputName" placeholder="Login">
-                                                    <% 
-                                                        List<String> validationErrors = (List<String>)request.getAttribute("validationErrors");
-                                                        if(validationErrors != null && validationErrors.contains("user.login.empty")){
-                                                    %>
-                                                            <span id="inputLogin-error" class="error">Please enter a login</span>
-                                                    <% }%>
                                                     
-                                                    <% 
-                                                        if(validationErrors != null && validationErrors.contains("user.login.duplicate")){
-                                                    %>
-                                                            <span id="inputLogin-error" class="error">User with this login already exist!</span>
-                                                    <% }%>
-                                                    
+                                                    <mvc:error code="user.login.empty">
+                                                        <span id="inputLogin-error" class="error">Please enter a login</span>
+                                                    </mvc:error>
+                                                    <mvc:error code="user.login.duplicate">
+                                                        <span id="inputLogin-error" class="error">User with this login already exist!</span>
+                                                    </mvc:error>
                                                     
                                                 </div>
                                             </div>
@@ -89,7 +82,7 @@
                                                 <label for="inputName" class="col-sm-2 col-form-label">Password</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="password" value="${user.password}" class="form-control" id="inputName" placeholder="Password">
-                                                   
+
                                                     <mvc:error code="user.password.empty">
                                                         <span id="inputLogin-error" class="error">Please enter a password</span>
                                                     </mvc:error>
@@ -113,31 +106,32 @@
                                                     <input type="text" name="address" value="${user.address}" class="form-control" id="inputName" placeholder="Address">
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group">
-                                                <label>Role</label> 
-                                                <select name="roleId" class="form-control select2 select2-hidden-accessible" style="width: 100%;"
+                                                <label>Role</label> <select name="roleId" class="form-control select2 select2-hidden-accessible" style="width: 100%;"
                                                     data-select2-id="1" tabindex="-1" aria-hidden="true">
-                                                    
+
                                                     <c:forEach var="role" items="${allRoles}">
                                                         <option value="${role.id}" data-select2-id="30">${role.roleName}</option>
                                                     </c:forEach>
-                                                    
-                                                </select> 
-                                                <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus"
-                                                    dir="ltr" data-select2-id="2" style="width: 100%;"><span class="selection"></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+                                                </select> <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus"
+                                                    dir="ltr" data-select2-id="2" style="width: 100%;"><span class="selection"></span><span
+                                                    class="dropdown-wrapper" aria-hidden="true"></span></span>
                                             </div>
-                                            
+
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Passport Series</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="passportSeries" value="${user.passportSeries}" class="form-control" id="inputName" placeholder="Passport Series">
+                                                    <input type="text" name="passportSeries" value="${user.passportSeries}" class="form-control" id="inputName"
+                                                        placeholder="Passport Series">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Passport Id</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="passportId" value="${user.passportId}" class="form-control" id="inputName" placeholder="Passport Id">
+                                                    <input type="text" name="passportId" value="${user.passportId}" class="form-control" id="inputName"
+                                                        placeholder="Passport Id">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -149,13 +143,15 @@
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Phone Number</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="phoneNumber" value="${user.phoneNumber}" class="form-control" id="inputName" placeholder="Phone Number">
+                                                    <input type="text" name="phoneNumber" value="${user.phoneNumber}" class="form-control" id="inputName"
+                                                        placeholder="Phone Number">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Residence Registration</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="residenceRegistr" value="${user.residenceRegistr}" class="form-control" id="inputName" placeholder="Residence Registration">
+                                                    <input type="text" name="residenceRegistr" value="${user.residenceRegistr}" class="form-control" id="inputName"
+                                                        placeholder="Residence Registration">
                                                 </div>
                                             </div>
                                             <div class="form-group row">

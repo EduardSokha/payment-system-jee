@@ -47,7 +47,7 @@ public class CardServiceImpl implements CardService {
 		List<Account> accountsByIdUser = accountDao.getAccountByIdUser(id);
 		
 		if(accountsByIdUser == null) {
-			return null;
+			return new ArrayList<CardDto>();
 		}
 		
 		for (Account account : accountsByIdUser) {
