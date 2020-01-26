@@ -77,7 +77,7 @@
                                             <c:forEach var="currency" items="${allCurrencies}">
                                                 <tr role="row" class="odd">
                                                     <td class="sorting_1">${currency.id}</td>
-                                                    <td>${currency.currencyName}</td>
+                                                    <td>${currency.name}</td>
                                                     <td>
                                                         <c:url value="edit-currency" var="editUrl">
                                                             <c:param name="currencyId" value="${currency.id}" />

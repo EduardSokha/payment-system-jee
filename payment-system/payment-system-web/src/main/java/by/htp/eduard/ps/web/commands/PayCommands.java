@@ -10,6 +10,7 @@ import by.htp.eduard.ps.service.PayService;
 import by.htp.eduard.ps.service.ServiceProvider;
 import by.htp.eduard.ps.service.dto.CardDto;
 import by.htp.eduard.ps.service.dto.PayDto;
+import by.htp.eduard.ps.service.exceptions.NegativeAmountException;
 import by.htp.eduard.ps.service.exceptions.NegativeBalanceException;
 import by.htp.eduard.ps.utils.http.HttpUtils;
 
@@ -60,6 +61,9 @@ public class PayCommands {
 		try {
 			payService.savePay(pay);
 		} catch (NegativeBalanceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NegativeAmountException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

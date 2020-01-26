@@ -34,7 +34,7 @@ public class CurrencyCommand {
 		
 		CurrencyDto currency = new CurrencyDto();
 		currency.setId(id);
-		currency.setCurrencyName(name);
+		currency.setName(name);
 		
 		currencyService.saveCurrency(currency);
 		

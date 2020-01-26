@@ -62,15 +62,11 @@ public class DozerEntityDtoConverter implements EntityDtoConverter{
 	private List<String> configDozerMappings() {
 		List<String> mappings = new ArrayList<String>();
 		
-		mappings.add("dozer/role_maping.xml");
+//		mappings.add("dozer/role_maping.xml");
 		mappings.add("dozer/account_mapping.xml");
-		mappings.add("dozer/currency_mapping.xml");
+//		mappings.add("dozer/currency_mapping.xml");
 		mappings.add("dozer/card_mapping.xml");
 		mappings.add("dozer/user_mapping.xml");
-		mappings.add("dozer/authentication.xml");
-		mappings.add("dozer/name-card-mapping.xml");
-		mappings.add("dozer/payment-system-mapping.xml");
-//		mappings.add("dozer/status-mapping.xml");
 		mappings.add("dozer/pay-mapping.xml");
 		return mappings;
 	}

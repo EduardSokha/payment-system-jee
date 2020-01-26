@@ -13,6 +13,7 @@ import by.htp.eduard.ps.service.ServiceProvider;
 import by.htp.eduard.ps.service.dto.AccountDto;
 import by.htp.eduard.ps.service.dto.CardDto;
 import by.htp.eduard.ps.service.dto.PayDto;
+import by.htp.eduard.ps.service.exceptions.NegativeAmountException;
 import by.htp.eduard.ps.service.exceptions.NegativeBalanceException;
 import by.htp.eduard.ps.utils.http.HttpUtils;
 
@@ -61,15 +62,24 @@ public class PayCommands {
 		try {
 			payService.savePay(pay);
 		} catch (NegativeBalanceException e) {
+			List<AccountDto> allAccounts = accountService.getAllAccounts();
+			request.setAttribute("allAccounts", allAccounts);
+			
 			List<String> validationErrors = new ArrayList<>();
 			validationErrors.add("pay.balance.negative");
 			request.setAttribute("validationErrors", validationErrors);
-			return "/WEB-INF/pages/pay/pay-details.jsp";
-//			throw new RuntimeException("You have no enough money!!!");
+			return "/WEB-INF/pages/pay/new-pay.jsp";
+		} catch (NegativeAmountException e) {
+			List<AccountDto> allAccounts = accountService.getAllAccounts();
+			request.setAttribute("allAccounts", allAccounts);
+			
+			List<String> validationErrors = new ArrayList<>();
+			validationErrors.add("pay.amount.negative");
+			request.setAttribute("validationErrors", validationErrors);
+			return "/WEB-INF/pages/pay/new-pay.jsp";
 		}
 		
 		return "redirect:payments-list";
-//		cards-list
 	}
 	
 	public String newPay(HttpServletRequest request) {

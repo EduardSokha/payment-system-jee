@@ -65,7 +65,7 @@
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="newRole" value="${role.roleName}" class="form-control" id="inputName" placeholder="Name">
+                                                    <input type="text" name="newRole" value="${role.name}" class="form-control" id="inputName" placeholder="Name">
                                                 </div>
                                             </div>
                                             <div class="form-group row">

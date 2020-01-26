@@ -70,14 +70,11 @@
                                                     <mvc:error code="pay.balance.negative">
                                                         <span id="inputLogin-error" class="error">You have no enough money!!!</span>
                                                     </mvc:error>
+                                                    <mvc:error code="pay.amount.negative">
+                                                        <span id="inputLogin-error" class="error">The payment amount must be without a minus!!!</span>
+                                                    </mvc:error>
                                                 </div>
                                             </div>
-                                            <!-- <div class="form-group row">
-                                                <label for="inputName" class="col-sm-2 col-form-label">Id Account</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="idAccount" class="form-control" id="inputName" placeholder="Id Account">
-                                                </div>
-                                            </div> -->
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Description</label>
                                                 <div class="col-sm-10">

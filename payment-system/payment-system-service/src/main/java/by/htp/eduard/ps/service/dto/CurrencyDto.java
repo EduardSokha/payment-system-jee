@@ -4,7 +4,7 @@ public class CurrencyDto {
 	
 	private Integer id;
 
-	private String currencyName;
+	private String name;
 
 	public CurrencyDto() {
 	}
@@ -17,12 +17,12 @@ public class CurrencyDto {
 		this.id = id;
 	}
 
-	public String getCurrencyName() {
-		return currencyName;
+	public String getName() {
+		return name;
 	}
 
-	public void setCurrencyName(String currencyName) {
-		this.currencyName = currencyName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override
@@ -57,6 +57,6 @@ public class CurrencyDto {
 
 	@Override
 	public String toString() {
-		return "CurrencyDto [id=" + id + ", currencyName=" + currencyName + "]";
+		return "CurrencyDto [id=" + id + ", name=" + name + "]";
 	}
 }

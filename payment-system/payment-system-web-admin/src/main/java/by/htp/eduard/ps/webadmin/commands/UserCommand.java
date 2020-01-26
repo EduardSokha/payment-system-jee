@@ -66,13 +66,6 @@ public class UserCommand {
 		String phoneNumber = request.getParameter("phoneNumber");
 		String residenceRegistr = request.getParameter("residenceRegistr");
 		
-		if(!validationErrors.isEmpty()) {
-			request.setAttribute("validationErrors", validationErrors);
-			List<RoleDto> allRoles = roleService.getAllRoles();
-			request.setAttribute("allRoles", allRoles);
-			return "/WEB-INF/pages/users/user-details.jsp";
-		}
-		
 		UserDto user = new UserDto();
 		user.setId(id);
 		user.setLogin(login);
@@ -86,6 +79,16 @@ public class UserCommand {
 		user.setCodeWord(codeWord);
 		user.setPhoneNumber(phoneNumber);
 		user.setResidenceRegistr(residenceRegistr);
+		
+		if(!validationErrors.isEmpty()) {
+			request.setAttribute("validationErrors", validationErrors);
+			
+			List<RoleDto> allRoles = roleService.getAllRoles();
+			request.setAttribute("allRoles", allRoles);
+			
+			request.setAttribute("user", user);
+			return "/WEB-INF/pages/users/user-details.jsp";
+		}
 		
 		userService.saveUser(user);
 		

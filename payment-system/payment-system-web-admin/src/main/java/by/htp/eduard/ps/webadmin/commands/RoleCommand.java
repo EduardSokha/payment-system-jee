@@ -34,7 +34,7 @@ public class RoleCommand {
 		
 		RoleDto role = new RoleDto();
 		role.setId(id);
-		role.setRoleName(name);
+		role.setName(name);
 		
 		roleService.saveRole(role);
 		

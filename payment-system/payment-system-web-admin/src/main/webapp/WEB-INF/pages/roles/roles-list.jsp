@@ -77,7 +77,7 @@
                                             <c:forEach var="role" items="${allRoles}">
                                                 <tr role="row" class="odd">
                                                     <td class="sorting_1">${role.id}</td>
-                                                    <td>${role.roleName}</td>
+                                                    <td>${role.name}</td>
                                                     <td>
                                                         <c:url value="edit-role" var="editUrl">
                                                             <c:param name="roleId" value="${role.id}" />

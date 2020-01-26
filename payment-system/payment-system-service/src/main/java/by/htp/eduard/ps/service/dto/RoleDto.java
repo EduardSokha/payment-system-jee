@@ -4,7 +4,7 @@ public class RoleDto {
 	
 	private Integer id;
 
-	private String roleName;
+	private String name;
 
 	public RoleDto() {
 	}
@@ -17,12 +17,12 @@ public class RoleDto {
 		this.id = id;
 	}
 
-	public String getRoleName() {
-		return roleName;
+	public String getName() {
+		return name;
 	}
 
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override
@@ -57,6 +57,6 @@ public class RoleDto {
 
 	@Override
 	public String toString() {
-		return "RoleDto [id=" + id + ", roleName=" + roleName + "]";
+		return "RoleDto [id=" + id + ", name=" + name + "]";
 	}
 }

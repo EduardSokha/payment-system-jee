@@ -6,13 +6,13 @@ import java.util.List;
 import by.htp.eduard.ps.dao.AccountDao;
 import by.htp.eduard.ps.dao.PayDao;
 import by.htp.eduard.ps.dao.entities.Account;
-import by.htp.eduard.ps.dao.entities.Card;
 import by.htp.eduard.ps.dao.entities.Pay;
 import by.htp.eduard.ps.dao.mysql.provider.DaoProvider;
 import by.htp.eduard.ps.service.EntityDtoConverter;
 import by.htp.eduard.ps.service.PayService;
 import by.htp.eduard.ps.service.ServiceProvider;
 import by.htp.eduard.ps.service.dto.PayDto;
+import by.htp.eduard.ps.service.exceptions.NegativeAmountException;
 import by.htp.eduard.ps.service.exceptions.NegativeBalanceException;
 
 public class PayServiceImpl implements PayService {
@@ -66,7 +66,10 @@ public class PayServiceImpl implements PayService {
 	}
 
 	@Override
-	public PayDto savePay(PayDto payDto) throws NegativeBalanceException {
+	public PayDto savePay(PayDto payDto) throws NegativeBalanceException, NegativeAmountException {
+		if(payDto.getPrice()<0) {
+			throw new NegativeAmountException();
+		}
 		Pay pay = converter.convertToEntity(payDto, Pay.class);
 		Account account = accountDao.getAccountById(pay.getIdAccount());
 		Double newBalance = account.getBalance() - pay.getPrice();
