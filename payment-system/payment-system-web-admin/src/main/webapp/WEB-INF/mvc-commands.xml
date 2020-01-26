@@ -12,10 +12,6 @@
 		<command-url url="/" method="showIndexPage" />
 	</command>
 	
-	<command command-class="by.htp.eduard.ps.webadmin.commands.DashboardCommand">
-		<command-url url="/dashboard" method="showDashboardPage" />
-	</command>
-	
 	<command command-class="by.htp.eduard.ps.webadmin.commands.UserCommand">
 		<command-url url="/user-list" method="showUserList" />
 		<command-url url="/user" method="showUserDetail" />

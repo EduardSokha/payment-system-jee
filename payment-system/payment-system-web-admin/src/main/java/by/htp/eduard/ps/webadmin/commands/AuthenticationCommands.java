@@ -1,8 +1,13 @@
 package by.htp.eduard.ps.webadmin.commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import org.apache.commons.lang3.StringUtils;
 
 import by.htp.eduard.ps.service.AuthenticationService;
 import by.htp.eduard.ps.service.ServiceProvider;
@@ -22,23 +27,39 @@ public class AuthenticationCommands {
 	}
 	
 	public String authorization(HttpServletRequest request) {
+		List<String> validationErrors = new ArrayList<>();
 		
 		String login = request.getParameter("login");
+		if(StringUtils.isBlank(login)) {
+			validationErrors.add("user.login.empty");
+		}
 		String password = request.getParameter("password");
+		if(StringUtils.isBlank(password)) {
+			validationErrors.add("user.password.empty");
+		}
 		
 		AuthenticationDto authentication = new AuthenticationDto();
 		authentication.setLogin(login);
 		authentication.setPassword(password);
 		
+		if(!validationErrors.isEmpty()) {
+			request.setAttribute("validationErrors", validationErrors);
+			
+			request.setAttribute("authentication", authentication);
+
+			return "/WEB-INF/pages/index.jsp";
+		}
+		
 		UserDto user = authenticationService.signIn(authentication);
 		if(user==null) {
-			ServletContext context = request.getServletContext();
-			String contextPath = context.getContextPath();
-			return "redirect:" + contextPath;
+			validationErrors.add("no.such.user");
+			request.setAttribute("validationErrors", validationErrors);
+			
+			return "/WEB-INF/pages/index.jsp";
 		}
 		request.setAttribute("user", user);
 		
-		return "/WEB-INF/pages/users/user-edit.jsp";
+		return "/WEB-INF/pages/dashboard/dashboard.jsp";
 	}
 	
 	public String registrationNewUser(HttpServletRequest request) {
@@ -46,25 +67,57 @@ public class AuthenticationCommands {
 	}
 	
 	public String saveNewUser(HttpServletRequest request) {
+		List<String> validationErrors = new ArrayList<>();
 		HttpSession session = request.getSession();	
 		if(!request.getParameter("password").equals(request.getParameter("password2"))) {
-			String response = "Password1 And Password2 Don't Match!";
-			session.setAttribute("response", response);
-			return "redirect:registration";
+			String response = "Password1 and Password2 don't match!";
+			
+			request.setAttribute("response", response);
+			return "/WEB-INF/pages/users/registration-new-user.jsp";
 		}
 		
 		Integer id = HttpUtils.getIntParam("id", request);
 		String login = request.getParameter("login");
+		if(StringUtils.isBlank(login)) {
+			validationErrors.add("user.login.empty");
+		}
+		if(userService.isLoginExists(login)) {
+			validationErrors.add("user.login.duplicate");
+		}
 		String password = request.getParameter("password");
+		if(StringUtils.isBlank(password)) {
+			validationErrors.add("user.password.empty");
+		}
 		String name = request.getParameter("name");
+		if(StringUtils.isBlank(name)) {
+			validationErrors.add("user.name.empty");
+		}
 		String surname = request.getParameter("surname");
+		if(StringUtils.isBlank(surname)) {
+			validationErrors.add("user.surname.empty");
+		}
 		String address = request.getParameter("address");
 		Integer roleId = HttpUtils.getIntParam("roleId", request);
 		String passportSeries = request.getParameter("passportSeries");
+		if(StringUtils.isBlank(passportSeries)) {
+			validationErrors.add("user.passportSeries.empty");
+		}
 		String passportId = request.getParameter("passportId");
+		if(StringUtils.isBlank(passportId)) {
+			validationErrors.add("user.passportId.empty");
+		}
 		String codeWord = request.getParameter("codeWord");
+		if(StringUtils.isBlank(codeWord)) {
+			validationErrors.add("user.codeWord.empty");
+		}
 		String phoneNumber = request.getParameter("phoneNumber");
+		if(StringUtils.isBlank(phoneNumber)) {
+			validationErrors.add("user.phoneNumber.empty");
+		}
 		String residenceRegistr = request.getParameter("residenceRegistr");
+		if(StringUtils.isBlank(residenceRegistr)) {
+			validationErrors.add("user.residenceRegistr.empty");
+		}
 		
 		UserDto user = new UserDto();
 		user.setId(id);
@@ -79,6 +132,13 @@ public class AuthenticationCommands {
 		user.setCodeWord(codeWord);
 		user.setPhoneNumber(phoneNumber);
 		user.setResidenceRegistr(residenceRegistr);
+		
+		if(!validationErrors.isEmpty()) {
+			request.setAttribute("validationErrors", validationErrors);
+			
+			request.setAttribute("user", user);
+			return "/WEB-INF/pages/users/registration-new-user.jsp";
+		}
 		
 		userService.saveUser(user);
 		
@@ -98,20 +158,36 @@ public class AuthenticationCommands {
 	}
 
 	public String getForgetPassword(HttpServletRequest request) {
+		List<String> validationErrors = new ArrayList<>();
+		
 		String passportSeries = request.getParameter("passportSeries");
+		if(StringUtils.isBlank(passportSeries)) {
+			validationErrors.add("user.passportSeries.empty");
+		}
 		String passportId = request.getParameter("passportId");
+		if(StringUtils.isBlank(passportId)) {
+			validationErrors.add("user.passportId.empty");
+		}
 		String codeWord = request.getParameter("codeWord");
+		if(StringUtils.isBlank(codeWord)) {
+			validationErrors.add("user.codeWord.empty");
+		}
 		
 		AuthenticationDto authentication = new AuthenticationDto();
 		authentication.setPassportSeries(passportSeries);
 		authentication.setPassportId(passportId);
 		authentication.setCodeWord(codeWord);
 		
+		if(!validationErrors.isEmpty()) {
+			request.setAttribute("validationErrors", validationErrors);
+			
+			request.setAttribute("authentication", authentication);
+			return "/WEB-INF/pages/authentication/forget-password.jsp";
+		}
+		
 		UserDto user = authenticationService.forgetPassword(authentication);
 		
-//		String response = "Your login = '" + user.getLogin() + "', your password = '" + user.getPassword() + "'";
 		request.setAttribute("user", user);
-//		return "redirect:forget-password";
 		return "/WEB-INF/pages/authentication/forget-password.jsp";
 	}
 	
