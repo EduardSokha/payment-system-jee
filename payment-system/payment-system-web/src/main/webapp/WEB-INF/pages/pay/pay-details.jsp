@@ -68,12 +68,6 @@
                                                     <input type="text" name="price" class="form-control" id="inputName" placeholder="Amount">
                                                 </div>
                                             </div>
-                                            <!-- <div class="form-group row">
-                                                <label for="inputName" class="col-sm-2 col-form-label">Id Account</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="idAccount" class="form-control" id="inputName" placeholder="Id Account">
-                                                </div>
-                                            </div> -->
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Description</label>
                                                 <div class="col-sm-10">
