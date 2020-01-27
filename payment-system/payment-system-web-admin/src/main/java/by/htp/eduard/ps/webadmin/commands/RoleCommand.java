@@ -38,7 +38,7 @@ public class RoleCommand {
 		
 		roleService.saveRole(role);
 		
-		return "redirect:roles-list";
+		return "redirect:/roles-list";
 	}
 
 	public String editRole(HttpServletRequest request) {

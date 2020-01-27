@@ -3,6 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
@@ -11,7 +12,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>payment-system-mvc-framework</artifactId>
+	<artifactId>payment-system-security-framework</artifactId>
 
 	<dependencies>
 		<dependency>
@@ -22,18 +23,10 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.0</version>
-			<scope>provided</scope>
-		</dependency>
-		
-		<dependency>
 			<groupId>by.htp.eduard</groupId>
 			<artifactId>payment-system-utils-http</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
 	</dependencies>
-
 </project>

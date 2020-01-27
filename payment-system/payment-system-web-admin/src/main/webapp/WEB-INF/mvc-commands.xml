@@ -86,7 +86,8 @@
 		<command-url url="/registration" method="registrationNewUser"/>
 		<command-url url="/save-new-user" method="saveNewUser" />
 		<command-url url="/forget-password" method="forgetPassword"/>
-		<command-url url="/get-password" method="getForgetPassword" />		
+		<command-url url="/get-password" method="getForgetPassword" />	
+		<command-url url="/sign-in" method="signIn" />
 	</command>
 	
 	<command command-class="by.htp.eduard.ps.webadmin.commands.StatusCommands">

@@ -1,5 +1,6 @@
 package by.htp.eduard.ps.utils.http;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 public class HttpUtils {
@@ -23,6 +24,15 @@ public class HttpUtils {
 		}
 		
 		return value;
+	}
+	
+	public static String getPageContext(HttpServletRequest request) {
+		String requestURI = request.getRequestURI();
+		ServletContext servletContext = request.getServletContext();
+		String contextPath = servletContext.getContextPath();
+		String pageContext = requestURI.replace(contextPath, "");
+		
+		return pageContext;
 	}
 
 }

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import by.htp.eduard.ps.mvc.router.Rourter;
 import by.htp.eduard.ps.mvc.router.RouterFactory;
 import by.htp.eduard.ps.mvc.staticcontent.StaticContentProvider;
+import by.htp.eduard.ps.utils.http.HttpUtils;
 
 public class DispatcherServlet extends HttpServlet {
 
@@ -52,10 +53,8 @@ public class DispatcherServlet extends HttpServlet {
 	private void doService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		String requestURI = request.getRequestURI();
-		ServletContext servletContext = request.getServletContext();
-		String contextPath = servletContext.getContextPath();
-		String commandName = requestURI.replace(contextPath, "");
+		
+		String commandName = HttpUtils.getPageContext(request);
 		if(provider.isStaticUrl(commandName)) {
 			StaticContentProvider staticProvider = new StaticContentProvider();
 			staticProvider.provideStaticContent(request, response, commandName);
@@ -66,7 +65,6 @@ public class DispatcherServlet extends HttpServlet {
 		Method executableMethod = executableCommand.getExecutableMethod();
 		Object command = executableCommand.getCommand();
 		Object result = executableMethod.invoke(command, request);
-		
 		
 		String viewName = (String)result;
 		Rourter router = RouterFactory.getRouter(viewName, request, response);
