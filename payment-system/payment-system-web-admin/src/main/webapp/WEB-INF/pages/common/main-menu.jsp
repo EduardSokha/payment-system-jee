@@ -99,6 +99,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="logout" class="nav-link"> 
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Log out<i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

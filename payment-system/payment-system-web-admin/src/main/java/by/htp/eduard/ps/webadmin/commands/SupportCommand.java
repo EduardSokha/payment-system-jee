@@ -16,50 +16,14 @@ import by.htp.eduard.ps.service.dto.AuthenticationDto;
 import by.htp.eduard.ps.service.dto.UserDto;
 import by.htp.eduard.ps.utils.http.HttpUtils;
 
-public class AuthenticationCommands {
+public class SupportCommand {
 	
 	private final AuthenticationService authenticationService;
 	private final UserService userService;
 
-	public AuthenticationCommands() {
+	public SupportCommand() {
 		authenticationService = ServiceProvider.getInstance().getAuthenticationService();
 		userService = ServiceProvider.getInstance().getUserService();
-	}
-	
-	public String authorization(HttpServletRequest request) {
-		List<String> validationErrors = new ArrayList<>();
-		
-		String login = request.getParameter("login");
-		if(StringUtils.isBlank(login)) {
-			validationErrors.add("user.login.empty");
-		}
-		String password = request.getParameter("password");
-		if(StringUtils.isBlank(password)) {
-			validationErrors.add("user.password.empty");
-		}
-		
-		AuthenticationDto authentication = new AuthenticationDto();
-		authentication.setLogin(login);
-		authentication.setPassword(password);
-		
-		if(!validationErrors.isEmpty()) {
-			request.setAttribute("validationErrors", validationErrors);
-			
-			request.setAttribute("authentication", authentication);
-
-			return "/WEB-INF/pages/index.jsp";
-		}
-		
-		UserDto user = authenticationService.signIn(authentication);
-		if(user==null) {
-			validationErrors.add("no.such.user");
-			request.setAttribute("validationErrors", validationErrors);
-			
-			return "/WEB-INF/pages/index.jsp";
-		}
-		request.setAttribute("user", user);
-		
-		return "/WEB-INF/pages/dashboard/dashboard.jsp";
 	}
 	
 	public String registrationNewUser(HttpServletRequest request) {
