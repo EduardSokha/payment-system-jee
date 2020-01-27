@@ -142,15 +142,11 @@ public class AuthenticationCommands {
 		
 		userService.saveUser(user);
 		
-		String response = "Registration Was Successful";
-		session.setAttribute("successRegistr", response);
+		session.setAttribute("successRegistr", true);
+		
 		ServletContext context = request.getServletContext();
 		String contextPath = context.getContextPath();
 		return "redirect:" + contextPath;
-		
-//		String response = "Registration Was Successful!";
-//		request.setAttribute("response", response);
-//		return "/WEB-INF/pages/index2.jsp";
 	}
 	
 	public String forgetPassword(HttpServletRequest request) {
