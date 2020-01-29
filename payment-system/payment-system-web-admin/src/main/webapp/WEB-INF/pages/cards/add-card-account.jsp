@@ -127,7 +127,7 @@
                                                     data-select2-id="1" tabindex="-1" aria-hidden="true">
                                                     
                                                     <c:forEach var="currency" items="${allCurrencies}">
-                                                        <option value="${currency.id}" data-select2-id="30">${currency.currencyName}</option>
+                                                        <option value="${currency.id}" data-select2-id="30">${currency.name}</option>
                                                     </c:forEach>
                                                     
                                                 </select> 

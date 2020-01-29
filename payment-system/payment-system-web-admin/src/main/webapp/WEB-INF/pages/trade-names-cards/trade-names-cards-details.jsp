@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="mvc" uri="http://eduard.htp.by/mvc"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +47,7 @@
                 <!-- Default box -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Save Trade Name Card</h3>
+                        <h3 class="card-title">Save trade name card</h3>
 
                         <jsp:include page="/WEB-INF/pages/common/card-panel-tools.jsp"></jsp:include>
                     </div>
@@ -66,6 +67,9 @@
                                                 <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="newTradeName" value="${nameCard.name}" class="form-control" id="inputName" placeholder="Name">
+                                                    <mvc:error code="tradeName.empty">
+                                                        <span id="inputLogin-error" class="error">Please enter name!</span>
+                                                    </mvc:error>
                                                 </div>
                                             </div>
                                             <div class="form-group row">

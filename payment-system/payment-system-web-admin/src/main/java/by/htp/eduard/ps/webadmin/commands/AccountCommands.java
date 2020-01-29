@@ -1,5 +1,6 @@
 package by.htp.eduard.ps.webadmin.commands;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -56,12 +57,27 @@ public class AccountCommands {
 	}
 	
 	public String saveAccount(HttpServletRequest request) {
-		
+		List<String> validationErrors = new ArrayList<>();
 		Integer id = HttpUtils.getIntParam("id", request);
 		Double balance = HttpUtils.getDoubleParam("balance", request);
+		if(balance == null) {
+			validationErrors.add("balance.empty");
+		}
 		Integer idUser = HttpUtils.getIntParam("idUser", request);
 		Integer idStatus = HttpUtils.getIntParam("idStatus", request);
 		Integer idCurrency = HttpUtils.getIntParam("idCurrency", request);
+		
+		if(!validationErrors.isEmpty()) {
+			request.setAttribute("validationErrors", validationErrors);
+			
+			AccountDto account = accountService.getAccountById(id);
+			request.setAttribute("account", account);
+			
+			List<StatusDto> allStatus = statusService.getAllStatus();
+			request.setAttribute("allStatus", allStatus);
+			
+			return "/WEB-INF/pages/accounts/accounts-edit.jsp";
+		}
 		
 		AccountDto account = new AccountDto();
 		account.setId(id);

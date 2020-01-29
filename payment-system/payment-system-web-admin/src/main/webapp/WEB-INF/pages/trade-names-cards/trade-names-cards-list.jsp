@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>AdminLTE 3 | Blank Page</title>
+<title>Trade names cards</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -27,7 +27,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Trade Names Cards</h1>
+                            <h1>Trade names cards</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -46,7 +46,7 @@
                 <!-- Default box -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">List Trade Names Cards</h3>
+                        <h3 class="card-title">List trade names cards</h3>
 
                         <jsp:include page="/WEB-INF/pages/common/card-panel-tools.jsp"></jsp:include>
                     </div>
@@ -59,7 +59,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <a href="add-trade-name-cards" class="btn btn-success">Add Trade Name Card</a> <br> <br>
+                                    <a href="add-trade-name-cards" class="btn btn-success">Add trade name card</a> <br> <br>
 
                                     <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                                         <thead>

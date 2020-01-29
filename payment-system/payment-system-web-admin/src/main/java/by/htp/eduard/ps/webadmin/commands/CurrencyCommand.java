@@ -1,8 +1,11 @@
 package by.htp.eduard.ps.webadmin.commands;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang3.StringUtils;
 
 import by.htp.eduard.ps.service.CurrencyService;
 import by.htp.eduard.ps.service.ServiceProvider;
@@ -29,8 +32,20 @@ public class CurrencyCommand {
 	}
 	
 	public String saveCurrency(HttpServletRequest request) {
+		List<String> validationErrors = new ArrayList<>();
 		Integer id = HttpUtils.getIntParam("id", request);
 		String name = request.getParameter("newCurrency");
+		if(StringUtils.isBlank(name)) {
+			validationErrors.add("name.currency.empty");
+		}
+		
+		if(!validationErrors.isEmpty()) {
+			request.setAttribute("validationErrors", validationErrors);
+			
+			CurrencyDto currency = currencyService.getNameCurrencyById(id);
+			request.setAttribute("currency", currency);
+			return "/WEB-INF/pages/currencies/currency-details.jsp";
+		}
 		
 		CurrencyDto currency = new CurrencyDto();
 		currency.setId(id);

@@ -67,12 +67,17 @@
                                                 <label for="inputName" class="col-sm-2 col-form-label">Amount</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="price" class="form-control" id="inputName" placeholder="Amount">
+                                                    
                                                     <mvc:error code="pay.balance.negative">
                                                         <span id="inputLogin-error" class="error">You have no enough money!!!</span>
                                                     </mvc:error>
                                                     <mvc:error code="pay.amount.negative">
                                                         <span id="inputLogin-error" class="error">The payment amount must be without a minus!!!</span>
                                                     </mvc:error>
+                                                    <mvc:error code="amount.empty">
+                                                        <span id="inputLogin-error" class="error">Enter payment amount!!!</span>
+                                                    </mvc:error>
+                                                    
                                                 </div>
                                             </div>
                                             <div class="form-group row">

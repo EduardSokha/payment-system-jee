@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="mvc" uri="http://eduard.htp.by/mvc"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,14 +75,17 @@
                                             <input type="hidden" name="id" value="${account.id}">
                                             <input type="hidden" name="idUser" value="${account.idUser}">
                                             <input type="hidden" name="idCurrency" value="${account.idCurrency}">
-                                            
+
                                             <div class="form-group">
                                                 <label for="balance" class="col-sm-2 col-form-label">Balance</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="balance" value="${account.balance}" class="form-control" id="balance" placeholder="Name">
+                                                    <mvc:error code="balance.empty">
+                                                        <span id="inputLogin-error" class="error">Please enter balance!</span>
+                                                    </mvc:error>
                                                 </div>
                                             </div>
-                                           
+
                                             <div class="form-group">
                                                 <label for="idStatus" class="col-sm-2 col-form-label">Status</label> 
                                                 <select name="idStatus" id="idStatus" class="form-control select2 select2-hidden-accessible" style="width: 100%;"

@@ -73,6 +73,9 @@
                                                     <mvc:error code="pay.amount.negative">
                                                         <span id="inputLogin-error" class="error">The payment amount must be without a minus!!!</span>
                                                     </mvc:error>
+                                                    <mvc:error code="amount.empty">
+                                                        <span id="inputLogin-error" class="error">Enter payment amount!!!</span>
+                                                    </mvc:error>
                                                     
                                                 </div>
                                             </div>

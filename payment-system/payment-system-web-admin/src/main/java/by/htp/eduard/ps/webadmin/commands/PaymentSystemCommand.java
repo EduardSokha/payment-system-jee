@@ -1,8 +1,11 @@
 package by.htp.eduard.ps.webadmin.commands;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang3.StringUtils;
 
 import by.htp.eduard.ps.service.PaymentSystemService;
 import by.htp.eduard.ps.service.ServiceProvider;
@@ -29,8 +32,21 @@ private final PaymentSystemService paymentSystemService;
 	}
 	
 	public String savePaymentSystem(HttpServletRequest request) {
+		List<String> validationErrors = new ArrayList<>();
 		Integer id = HttpUtils.getIntParam("id", request);
 		String name = request.getParameter("newNamePaySyst");
+		
+		if(StringUtils.isBlank(name)) {
+			validationErrors.add("name.paymentSystem.empty");
+		}
+		
+		if(!validationErrors.isEmpty()) {
+			request.setAttribute("validationErrors", validationErrors);
+			
+			PaymentSystemDto paymentSystem = paymentSystemService.getPaymentSystemById(id);
+			request.setAttribute("paymentSystem", paymentSystem);
+			return "/WEB-INF/pages/payment-systems/payment-system-details.jsp";
+		}
 		
 		PaymentSystemDto paymentSystem = new PaymentSystemDto();
 		paymentSystem.setId(id);

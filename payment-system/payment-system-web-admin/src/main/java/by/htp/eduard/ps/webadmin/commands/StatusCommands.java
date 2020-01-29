@@ -1,8 +1,11 @@
 package by.htp.eduard.ps.webadmin.commands;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang3.StringUtils;
 
 import by.htp.eduard.ps.service.ServiceProvider;
 import by.htp.eduard.ps.service.StatusService;
@@ -29,8 +32,21 @@ public class StatusCommands {
 	}
 	
 	public String saveStatus(HttpServletRequest request) {
+		List<String> validationErrors = new ArrayList<>();		
 		Integer id = HttpUtils.getIntParam("id", request);
 		String name = request.getParameter("nameStatus");
+		
+		if(StringUtils.isBlank(name)) {
+			validationErrors.add("name.status.empty");
+		}
+		
+		if(!validationErrors.isEmpty()) {
+			request.setAttribute("validationErrors", validationErrors);
+			
+			StatusDto status = statusService.getNameStatusById(id);
+			request.setAttribute("status", status);
+			return "/WEB-INF/pages/status/status-details.jsp";
+		}
 		
 		StatusDto status = new StatusDto();
 		status.setId(id);

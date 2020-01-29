@@ -47,10 +47,23 @@ public class PayCommands {
 	}
 	
 	public String savePay(HttpServletRequest request) {
+		List<String> validationErrors = new ArrayList<>();
 		Integer id = HttpUtils.getIntParam("id", request);
 		Double price = HttpUtils.getDoubleParam("price", request);
+		if(price == null) {
+			validationErrors.add("amount.empty");
+		}
 		Integer idAccount = HttpUtils.getIntParam("idAccount", request);
 		String description = request.getParameter("description");
+		
+		if(!validationErrors.isEmpty()) {
+			request.setAttribute("validationErrors", validationErrors);
+			
+			List<AccountDto> allAccounts = accountService.getAllAccounts();
+			request.setAttribute("allAccounts", allAccounts);
+			
+			return "/WEB-INF/pages/pay/new-pay.jsp";
+		}
 		
 		PayDto pay = new PayDto();
 		pay.setId(id);
@@ -65,7 +78,6 @@ public class PayCommands {
 			List<AccountDto> allAccounts = accountService.getAllAccounts();
 			request.setAttribute("allAccounts", allAccounts);
 			
-			List<String> validationErrors = new ArrayList<>();
 			validationErrors.add("pay.balance.negative");
 			request.setAttribute("validationErrors", validationErrors);
 			return "/WEB-INF/pages/pay/new-pay.jsp";
@@ -73,7 +85,6 @@ public class PayCommands {
 			List<AccountDto> allAccounts = accountService.getAllAccounts();
 			request.setAttribute("allAccounts", allAccounts);
 			
-			List<String> validationErrors = new ArrayList<>();
 			validationErrors.add("pay.amount.negative");
 			request.setAttribute("validationErrors", validationErrors);
 			return "/WEB-INF/pages/pay/new-pay.jsp";

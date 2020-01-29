@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="mvc" uri="http://eduard.htp.by/mvc"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>AdminLTE 3 | Blank Page</title>
+<title>Currencies</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -46,7 +47,7 @@
                 <!-- Default box -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Update Currency</h3>
+                        <h3 class="card-title">Update currency</h3>
 
                         <jsp:include page="/WEB-INF/pages/common/card-panel-tools.jsp"></jsp:include>
                     </div>
@@ -66,6 +67,9 @@
                                                 <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="newCurrency" value="${currency.name}" class="form-control" id="inputName" placeholder="Name">
+                                                    <mvc:error code="name.currency.empty">
+                                                        <span id="inputLogin-error" class="error">Please enter name!</span>
+                                                    </mvc:error>
                                                 </div>
                                             </div>
                                             <div class="form-group row">

@@ -1,8 +1,11 @@
 package by.htp.eduard.ps.webadmin.commands;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang3.StringUtils;
 
 import by.htp.eduard.ps.service.NameCardService;
 import by.htp.eduard.ps.service.ServiceProvider;
@@ -29,8 +32,21 @@ public class NameCardCommand {
 	}
 	
 	public String saveTradeNameCards(HttpServletRequest request) {
+		List<String> validationErrors = new ArrayList<>();
 		Integer id = HttpUtils.getIntParam("id", request);
 		String name = request.getParameter("newTradeName");
+		
+		if(StringUtils.isBlank(name)) {
+			validationErrors.add("tradeName.empty");
+		}
+		
+		if(!validationErrors.isEmpty()) {
+			request.setAttribute("validationErrors", validationErrors);
+			
+			NameCardDto nameCard = nameCardService.getNameCardById(id);
+			request.setAttribute("nameCard", nameCard);
+			return "/WEB-INF/pages/trade-names-cards/trade-names-cards-details.jsp";
+		}
 		
 		NameCardDto nameCard = new NameCardDto();
 		nameCard.setId(id);

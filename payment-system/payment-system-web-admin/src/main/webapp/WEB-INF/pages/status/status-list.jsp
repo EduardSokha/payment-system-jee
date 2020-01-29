@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Payment System</title>
+<title>List status</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -46,7 +46,7 @@
                 <!-- Default box -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">List Status</h3>
+                        <h3 class="card-title">List status</h3>
 
                         <jsp:include page="/WEB-INF/pages/common/card-panel-tools.jsp"></jsp:include>
                     </div>
@@ -59,7 +59,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <a href="add-status" class="btn btn-success">Add Status</a> <br> <br>
+                                    <a href="add-status" class="btn btn-success">Add status</a> <br> <br>
 
                                     <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                                         <thead>
