@@ -150,8 +150,4 @@ public class SupportCommand {
 		request.setAttribute("user", user);
 		return "/WEB-INF/pages/authentication/forget-password.jsp";
 	}
-	
-	public String signIn(HttpServletRequest request) {
-		return "/WEB-INF/pages/index.jsp";
-	}
 }

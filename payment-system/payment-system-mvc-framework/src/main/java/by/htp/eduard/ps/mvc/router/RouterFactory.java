@@ -8,7 +8,7 @@ public class RouterFactory {
 	public static Rourter getRouter(String viewName, HttpServletRequest request, HttpServletResponse response) {
 
 		if (viewName.startsWith("redirect:")) {
-			return new RedirectRouter(response);
+			return new RedirectRouter(request, response);
 		}
 		
 		return new ForwardRouter(request, response);

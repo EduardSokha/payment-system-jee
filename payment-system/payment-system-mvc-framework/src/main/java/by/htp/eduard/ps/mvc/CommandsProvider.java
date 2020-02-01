@@ -73,13 +73,14 @@ public class CommandsProvider {
 
 			allCommands.put(classAttribute, command);
 		}
-
-		System.out.println(allCommands);
-
 	}
 
 	public static CommandsProvider getInstance() {
 		return instance;
+	}
+	
+	public void addCommand(String commandClass, CommandInfo command) {
+		allCommands.put(commandClass, command);
 	}
 
 	public ExecutableCommand getCommandForUrl(String url) {

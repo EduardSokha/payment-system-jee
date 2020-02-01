@@ -19,7 +19,7 @@ import by.htp.eduard.ps.service.dto.PayDto;
 import by.htp.eduard.ps.service.dto.UserDto;
 import by.htp.eduard.ps.utils.http.HttpUtils;
 
-public class AuthenticationCommands {
+public class SupportCommands {
 	
 	private final AuthenticationService authenticationService;
 	private final UserService userService;
@@ -27,7 +27,7 @@ public class AuthenticationCommands {
 	private final CardService cardService;
 	private final PayService payService;
 
-	public AuthenticationCommands() {
+	public SupportCommands() {
 		authenticationService = ServiceProvider.getInstance().getAuthenticationService();
 		userService = ServiceProvider.getInstance().getUserService();
 		accountService = ServiceProvider.getInstance().getAccountService();

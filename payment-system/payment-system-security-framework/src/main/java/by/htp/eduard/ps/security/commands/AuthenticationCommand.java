@@ -22,7 +22,11 @@ public class AuthenticationCommand {
 		authenticationService = ServiceProvider.getInstance().getAuthenticationService();
 	}
 	
-	public String authorization(HttpServletRequest request) {
+	public String signIn(HttpServletRequest request) {
+		return "/WEB-INF/pages/index.jsp";
+	}
+	
+	public String authentication(HttpServletRequest request) {
 		List<String> validationErrors = new ArrayList<>();
 		
 		String login = request.getParameter("login");
@@ -48,7 +52,7 @@ public class AuthenticationCommand {
 		
 		UserDto user = authenticationService.signIn(authentication);
 		
-		if(user==null) {
+		if(user == null) {
 			validationErrors.add("no.such.user");
 			request.setAttribute("validationErrors", validationErrors);
 			
@@ -58,7 +62,17 @@ public class AuthenticationCommand {
 		HttpSession session = request.getSession();
 		session.setAttribute("authentication", user);
 		
-		return "redirect:dashboard";
+		String redirectUrl = (String)session.getAttribute("user-required-url");
+		session.removeAttribute("user-required-url");
+		
+		if(redirectUrl == null) {
+			return "redirect:dashboard";
+		}
+		
+		if(!redirectUrl.startsWith("redirect:")) {
+			redirectUrl = "redirect:" + redirectUrl;
+		}
+		return redirectUrl;
 	}
 	
 	public String logout(HttpServletRequest request) {

@@ -42,7 +42,7 @@
                             <span id="inputLogin-error" class="error">Please enter a password</span>
                 </mvc:error>
                 
-                <form action="identity" method="post">
+                <form action="auth" method="post">
                     <div class="input-group mb-3">
                         <input type="text" name="login" value="${authentication.login}" class="form-control" placeholder="Login">
                         <div class="input-group-append">

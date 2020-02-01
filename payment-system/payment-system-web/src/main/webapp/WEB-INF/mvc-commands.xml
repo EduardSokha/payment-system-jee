@@ -43,8 +43,7 @@
 		<command-url url="/delete-pay" method="deletePay"/>
 	</command>
 	
-	<command command-class="by.htp.eduard.ps.web.commands.AuthenticationCommands">
-		<command-url url="/identity" method="authorization"/>
+	<command command-class="by.htp.eduard.ps.web.commands.SupportCommands">
 		<command-url url="/registration" method="registrationNewUser"/>
 		<command-url url="/save-new-user" method="saveNewUser" />
 		<command-url url="/forget-password" method="forgetPassword"/>

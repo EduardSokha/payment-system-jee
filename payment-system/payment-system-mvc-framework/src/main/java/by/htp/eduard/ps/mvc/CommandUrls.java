@@ -3,10 +3,10 @@ package by.htp.eduard.ps.mvc;
 import java.util.HashSet;
 import java.util.Set;
 
-public class CommandUrls {
+class CommandUrls {
 	private Set<UrlInfo> urls;
 
-	public CommandUrls() {
+	CommandUrls() {
 		super();
 		urls = new HashSet<UrlInfo>();
 	}

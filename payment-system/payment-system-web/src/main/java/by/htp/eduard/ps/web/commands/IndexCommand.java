@@ -12,7 +12,7 @@ public class IndexCommand {
 		
 		request.setAttribute("successRegistr", successRegistr);
 		
-		return "/WEB-INF/pages/index.jsp";
+		return "/WEB-INF/pages/users/user-edit.jsp";
 	}
 
 }

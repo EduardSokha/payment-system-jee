@@ -13,7 +13,7 @@
 	</command>
 	
 	<command command-class="by.htp.eduard.ps.webadmin.commands.IndexCommand">
-		<command-url url="/" method="showIndexPage" />
+		<command-url url="/" method="showDashboardPage"/>
 	</command>
 	
 	<command command-class="by.htp.eduard.ps.webadmin.commands.UserCommand">
@@ -86,17 +86,10 @@
 	</command>
 	
 	<command command-class="by.htp.eduard.ps.webadmin.commands.SupportCommand">
-		<command-url url="/identity" method="authorization"/>
 		<command-url url="/registration" method="registrationNewUser"/>
 		<command-url url="/save-new-user" method="saveNewUser" />
 		<command-url url="/forget-password" method="forgetPassword"/>
-		<command-url url="/get-password" method="getForgetPassword" />	
-		<command-url url="/sign-in" method="signIn" />
-	</command>
-	
-	<command command-class="by.htp.eduard.ps.security.commands.AuthenticationCommand">
-		<command-url url="/identity" method="authorization"/>
-		<command-url url="/logout" method="logout"/>
+		<command-url url="/get-password" method="getForgetPassword" />
 	</command>
 	
 	<command command-class="by.htp.eduard.ps.webadmin.commands.StatusCommands">
