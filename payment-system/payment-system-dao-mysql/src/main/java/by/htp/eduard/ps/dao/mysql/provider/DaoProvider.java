@@ -1,7 +1,6 @@
 package by.htp.eduard.ps.dao.mysql.provider;
 
 import by.htp.eduard.ps.dao.AccountDao;
-import by.htp.eduard.ps.dao.AuthenticationDao;
 import by.htp.eduard.ps.dao.CardDao;
 import by.htp.eduard.ps.dao.CurrencyDao;
 import by.htp.eduard.ps.dao.NameCardDao;
@@ -11,7 +10,6 @@ import by.htp.eduard.ps.dao.RoleDao;
 import by.htp.eduard.ps.dao.StatusDao;
 import by.htp.eduard.ps.dao.UserDao;
 import by.htp.eduard.ps.dao.mysql.AccountDaoImpl;
-import by.htp.eduard.ps.dao.mysql.AuthenticationDaoImpl;
 import by.htp.eduard.ps.dao.mysql.CardDaoImpl;
 import by.htp.eduard.ps.dao.mysql.CurrencyDaoImpl;
 import by.htp.eduard.ps.dao.mysql.NameCardDaoImpl;
@@ -40,8 +38,6 @@ public class DaoProvider {
 	private AccountDao accountDao = new AccountDaoImpl();
 	
 	private PayDao payDao = new PayDaoImpl();
-	
-	private AuthenticationDao authenticationDao = new AuthenticationDaoImpl();
 	
 	private StatusDao statusDao = new StatusDaoImpl();
 
@@ -82,10 +78,6 @@ public class DaoProvider {
 
 	public PayDao getPayDao() {
 		return payDao;
-	}
-
-	public AuthenticationDao getAuthenticationDao() {
-		return authenticationDao;
 	}
 
 	public StatusDao getStatusDao() {

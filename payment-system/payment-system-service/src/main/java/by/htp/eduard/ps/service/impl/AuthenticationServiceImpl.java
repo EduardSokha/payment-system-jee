@@ -1,7 +1,6 @@
 package by.htp.eduard.ps.service.impl;
 
-import by.htp.eduard.ps.dao.AuthenticationDao;
-import by.htp.eduard.ps.dao.entities.Authentication;
+import by.htp.eduard.ps.dao.UserDao;
 import by.htp.eduard.ps.dao.entities.User;
 import by.htp.eduard.ps.dao.mysql.provider.DaoProvider;
 import by.htp.eduard.ps.service.AuthenticationService;
@@ -12,29 +11,28 @@ import by.htp.eduard.ps.service.dto.UserDto;
 
 public class AuthenticationServiceImpl implements AuthenticationService {
 	
-	private final AuthenticationDao authenticationDao;
+	private final UserDao userDao;
 	
 	private EntityDtoConverter converter;
 
 	public AuthenticationServiceImpl() {
-		authenticationDao = DaoProvider.getInstance().getAuthenticationDao();
+		userDao = DaoProvider.getInstance().getUserDao();
 		converter = ServiceProvider.getInstance().getEntityDtoConverter();
 	}
 
 	@Override
 	public UserDto signIn(AuthenticationDto authenticationDto) {
-		Authentication authentication = converter.convertToEntity(authenticationDto, Authentication.class);
-		User user = authenticationDao.signIn(authentication);
-		UserDto userDto = converter.convertToDto(user, UserDto.class);
+		User user = converter.convertToEntity(authenticationDto, User.class);
+		User userResp = userDao.signIn(user);
+		UserDto userDto = converter.convertToDto(userResp, UserDto.class);
 		return userDto;
 	}
 
 	@Override
 	public UserDto forgetPassword(AuthenticationDto authenticationDto) {
-		Authentication authentication = converter.convertToEntity(authenticationDto, Authentication.class);
-		User user = authenticationDao.forgetPassword(authentication);
-		UserDto userDto = converter.convertToDto(user, UserDto.class);
+		User user = converter.convertToEntity(authenticationDto, User.class);
+		User userResp = userDao.forgetPassword(user);
+		UserDto userDto = converter.convertToDto(userResp, UserDto.class);
 		return userDto;
 	}
-
 }
