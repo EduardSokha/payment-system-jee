@@ -13,7 +13,7 @@
 	</command>
 	
 	<command command-class="by.htp.eduard.ps.webadmin.commands.IndexCommand">
-		<command-url url="/" method="showDashboardPage"/>
+		<command-url url="/" method="showIndexPage"/>
 	</command>
 	
 	<command command-class="by.htp.eduard.ps.webadmin.commands.UserCommand">

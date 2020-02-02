@@ -25,7 +25,7 @@
       <p class="login-box-msg">Sign in to start your session</p>
       <p class="form-title">${successRegistr}</p>
 
-      <form action="identity" method="post">
+      <form action="auth" method="post">
         <div class="input-group mb-3">
           <input type="text" name="login" class="form-control" placeholder="Login">
           <div class="input-group-append">

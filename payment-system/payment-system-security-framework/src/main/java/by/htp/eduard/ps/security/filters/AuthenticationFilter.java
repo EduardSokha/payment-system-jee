@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import by.htp.eduard.ps.mvc.CommandInfo;
 import by.htp.eduard.ps.mvc.CommandsProvider;
 import by.htp.eduard.ps.mvc.UrlInfo;
+import by.htp.eduard.ps.security.config.SecurityConfig;
 import by.htp.eduard.ps.utils.http.HttpUtils;
 
 public class AuthenticationFilter extends HttpFilter {
@@ -21,24 +22,32 @@ public class AuthenticationFilter extends HttpFilter {
 
 	@Override
 	public void init() throws ServletException {
-			UrlInfo signInInfo = new UrlInfo("/sign-in", "signIn");
-			UrlInfo authenticationInfo = new UrlInfo("/auth", "authentication");
-			UrlInfo logOutInfo = new UrlInfo("/logout", "logout");
-			
-			CommandInfo securityInfo;
-			
-			try {
-				securityInfo = new CommandInfo("by.htp.eduard.ps.security.commands.AuthenticationCommand");
-			} catch (Exception e) {
-				throw new ServletException(e);
-			} 
-			
-			securityInfo.addCommandUrl(signInInfo);
-			securityInfo.addCommandUrl(authenticationInfo);
-			securityInfo.addCommandUrl(logOutInfo);
-			
-			CommandsProvider commandsProvider = CommandsProvider.getInstance();
-			commandsProvider.addCommand("by.htp.eduard.ps.security.commands.AuthenticationCommand", securityInfo);
+		ServletContext context = this.getServletContext();
+		SecurityConfig config = SecurityConfig.getConfig();
+		try {
+			config.init(context);
+		} catch (Exception e1) {
+			throw new ServletException();
+		}
+		
+		UrlInfo signInInfo = new UrlInfo("/sign-in", "signIn");
+		UrlInfo authenticationInfo = new UrlInfo("/auth", "authentication");
+		UrlInfo logOutInfo = new UrlInfo("/logout", "logout");
+
+		CommandInfo securityInfo;
+
+		try {
+			securityInfo = new CommandInfo("by.htp.eduard.ps.security.commands.AuthenticationCommand");
+		} catch (Exception e) {
+			throw new ServletException(e);
+		}
+
+		securityInfo.addCommandUrl(signInInfo);
+		securityInfo.addCommandUrl(authenticationInfo);
+		securityInfo.addCommandUrl(logOutInfo);
+
+		CommandsProvider commandsProvider = CommandsProvider.getInstance();
+		commandsProvider.addCommand("by.htp.eduard.ps.security.commands.AuthenticationCommand", securityInfo);
 	}
 
 	@Override
@@ -72,7 +81,7 @@ public class AuthenticationFilter extends HttpFilter {
 			chain.doFilter(req, res);
 			return;
 		}
-		
+
 		session.setAttribute("user-required-url", url);
 
 		ServletContext context = req.getServletContext();

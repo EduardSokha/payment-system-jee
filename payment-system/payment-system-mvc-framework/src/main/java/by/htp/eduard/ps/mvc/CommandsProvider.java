@@ -18,6 +18,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import by.htp.eduard.ps.utils.http.HttpUtils;
+
 public class CommandsProvider {
 
 	private static final CommandsProvider instance = new CommandsProvider();
@@ -32,10 +34,8 @@ public class CommandsProvider {
 
 	public void init(ServletContext context) throws ParserConfigurationException, SAXException, IOException,
 			ClassNotFoundException, InstantiationException, IllegalAccessException {
-
-		String commandsFilePath = "/WEB-INF/mvc-commands.xml";
-		String fullCommandsPath = context.getRealPath(commandsFilePath);
-		File mvcCommandsFile = new File(fullCommandsPath);
+		
+		File mvcCommandsFile = HttpUtils.getFileFromWebInf("/WEB-INF/mvc-commands.xml", context);
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();

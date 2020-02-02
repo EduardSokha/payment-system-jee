@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 
+import by.htp.eduard.ps.security.config.SecurityConfig;
 import by.htp.eduard.ps.service.AuthenticationService;
 import by.htp.eduard.ps.service.ServiceProvider;
 import by.htp.eduard.ps.service.dto.AuthenticationDto;
@@ -23,7 +24,7 @@ public class AuthenticationCommand {
 	}
 	
 	public String signIn(HttpServletRequest request) {
-		return "/WEB-INF/pages/index.jsp";
+		return SecurityConfig.getConfig().getLoginPage();
 	}
 	
 	public String authentication(HttpServletRequest request) {
@@ -47,7 +48,7 @@ public class AuthenticationCommand {
 			
 			request.setAttribute("authentication", authentication);
 
-			return "/WEB-INF/pages/index.jsp";
+			return SecurityConfig.getConfig().getLoginPage();
 		}
 		
 		UserDto user = authenticationService.signIn(authentication);
@@ -56,7 +57,7 @@ public class AuthenticationCommand {
 			validationErrors.add("no.such.user");
 			request.setAttribute("validationErrors", validationErrors);
 			
-			return "/WEB-INF/pages/index.jsp";
+			return SecurityConfig.getConfig().getLoginPage();
 		}
 		
 		HttpSession session = request.getSession();
@@ -66,7 +67,7 @@ public class AuthenticationCommand {
 		session.removeAttribute("user-required-url");
 		
 		if(redirectUrl == null) {
-			return "redirect:dashboard";
+			return "redirect:" + SecurityConfig.getConfig().getSuccsessLoginUrl();
 		}
 		
 		if(!redirectUrl.startsWith("redirect:")) {

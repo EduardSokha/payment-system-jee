@@ -1,5 +1,7 @@
 package by.htp.eduard.ps.utils.http;
 
+import java.io.File;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,5 +36,11 @@ public class HttpUtils {
 		
 		return pageContext;
 	}
-
+	
+	public static File getFileFromWebInf(String filePath, ServletContext context) {
+		String fullPath = context.getRealPath(filePath);
+		File file = new File(fullPath);
+		
+		return file;
+	}
 }
