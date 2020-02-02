@@ -57,14 +57,35 @@ public class UserCommand {
 			validationErrors.add("user.password.empty");
 		}
 		String name = request.getParameter("name");
+		if(StringUtils.isBlank(name)) {
+			validationErrors.add("user.name.empty");
+		}
 		String surname = request.getParameter("surname");
+		if(StringUtils.isBlank(surname)) {
+			validationErrors.add("user.surname.empty");
+		}
 		String address = request.getParameter("address");
 		Integer roleId = HttpUtils.getIntParam("roleId", request);
 		String passportSeries = request.getParameter("passportSeries");
+		if(StringUtils.isBlank(passportSeries)) {
+			validationErrors.add("user.passportSeries.empty");
+		}
 		String passportId = request.getParameter("passportId");
+		if(StringUtils.isBlank(passportId)) {
+			validationErrors.add("user.passportId.empty");
+		}
 		String codeWord = request.getParameter("codeWord");
+		if(StringUtils.isBlank(codeWord)) {
+			validationErrors.add("user.codeWord.empty");
+		}
 		String phoneNumber = request.getParameter("phoneNumber");
+		if(StringUtils.isBlank(phoneNumber)) {
+			validationErrors.add("user.phoneNumber.empty");
+		}
 		String residenceRegistr = request.getParameter("residenceRegistr");
+		if(StringUtils.isBlank(residenceRegistr)) {
+			validationErrors.add("user.residenceRegistr.empty");
+		}
 		
 		UserDto user = new UserDto();
 		user.setId(id);

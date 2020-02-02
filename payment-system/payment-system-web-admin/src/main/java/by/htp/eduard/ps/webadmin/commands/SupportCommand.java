@@ -33,11 +33,12 @@ public class SupportCommand {
 	public String saveNewUser(HttpServletRequest request) {
 		List<String> validationErrors = new ArrayList<>();
 		HttpSession session = request.getSession();	
+		
 		if(!request.getParameter("password").equals(request.getParameter("password2"))) {
-			String response = "Password1 and Password2 don't match!";
-			
-			request.setAttribute("response", response);
-			return "/WEB-INF/pages/users/registration-new-user.jsp";
+//			String response = "Password1 and Password2 don't match!";
+//			request.setAttribute("response", response);
+//			return "/WEB-INF/pages/users/registration-new-user.jsp";
+			validationErrors.add("password.match");
 		}
 		
 		Integer id = HttpUtils.getIntParam("id", request);

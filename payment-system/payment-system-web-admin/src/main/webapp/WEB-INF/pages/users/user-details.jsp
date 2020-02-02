@@ -92,12 +92,18 @@
                                                 <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="name" value="${user.name}" class="form-control" id="inputName" placeholder="Name">
+                                                    <mvc:error code="user.name.empty">
+                                                        <span id="inputLogin-error" class="error">Please enter name</span>
+                                                    </mvc:error>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Surname</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="surname" value="${user.surname}" class="form-control" id="inputName" placeholder="Surname">
+                                                    <mvc:error code="user.surname.empty">
+                                                        <span id="inputLogin-error" class="error">Please enter surname</span>
+                                                    </mvc:error>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -123,35 +129,46 @@
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Passport Series</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="passportSeries" value="${user.passportSeries}" class="form-control" id="inputName"
-                                                        placeholder="Passport Series">
+                                                    <input type="text" name="passportSeries" value="${user.passportSeries}" class="form-control" id="inputName" placeholder="Passport Series">
+                                                    <mvc:error code="user.passportSeries.empty">
+                                                        <span id="inputLogin-error" class="error">Please enter passport series</span>
+                                                    </mvc:error>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Passport Id</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="passportId" value="${user.passportId}" class="form-control" id="inputName"
-                                                        placeholder="Passport Id">
+                                                    <input type="text" name="passportId" value="${user.passportId}" class="form-control" id="inputName" placeholder="Passport Id">
+                                                    <mvc:error code="user.passportId.empty">
+                                                        <span id="inputLogin-error" class="error">Please enter passport id</span>
+                                                    </mvc:error>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Codeword</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="codeWord" value="${user.codeWord}" class="form-control" id="inputName" placeholder="Codeword">
+                                                    <mvc:error code="user.codeWord.empty">
+                                                        <span id="inputLogin-error" class="error">Please enter codeword</span>
+                                                    </mvc:error>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Phone Number</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="phoneNumber" value="${user.phoneNumber}" class="form-control" id="inputName"
-                                                        placeholder="Phone Number">
+                                                    <input type="text" name="phoneNumber" value="${user.phoneNumber}" class="form-control" id="inputName" placeholder="Phone Number">
+                                                    <mvc:error code="user.phoneNumber.empty">
+                                                        <span id="inputLogin-error" class="error">Please enter phone number</span>
+                                                    </mvc:error>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Residence Registration</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="residenceRegistr" value="${user.residenceRegistr}" class="form-control" id="inputName"
-                                                        placeholder="Residence Registration">
+                                                    <input type="text" name="residenceRegistr" value="${user.residenceRegistr}" class="form-control" id="inputName" placeholder="Residence Registration">
+                                                    <mvc:error code="user.residenceRegistr.empty">
+                                                        <span id="inputLogin-error" class="error">Please enter residence registration</span>
+                                                    </mvc:error>
                                                 </div>
                                             </div>
                                             <div class="form-group row">

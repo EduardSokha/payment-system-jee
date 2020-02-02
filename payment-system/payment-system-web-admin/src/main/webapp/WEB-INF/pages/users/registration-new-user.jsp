@@ -24,6 +24,9 @@
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Register a new membership</p>
                 <p class="form-title">${response}</p>
+                <mvc:error code="password.match">
+                    <span id="inputLogin-error" class="error">Password1 and Password2 don't match!</span>
+                </mvc:error>
 
                 <form action="save-new-user" method="post">
                     <input type="hidden" name="roleId" value="2">
