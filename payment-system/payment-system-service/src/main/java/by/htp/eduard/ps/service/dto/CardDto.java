@@ -19,6 +19,12 @@ public class CardDto {
 	private Integer idTradeNameCard;
 	
 	private String tradeNameCard;
+	
+	private String balance;
+	
+	private String currency;
+	
+	private String status;
 
 	public CardDto() {
 	}
@@ -87,6 +93,30 @@ public class CardDto {
 		this.tradeNameCard = tradeNameCard;
 	}
 
+	public String getBalance() {
+		return balance;
+	}
+
+	public void setBalance(String balance) {
+		this.balance = balance;
+	}
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -121,6 +151,7 @@ public class CardDto {
 	public String toString() {
 		return "CardDto [id=" + id + ", date=" + date + ", idAccount=" + idAccount + ", numberAccount=" + numberAccount
 				+ ", idPaymentSystem=" + idPaymentSystem + ", namePaymentSystem=" + namePaymentSystem
-				+ ", idTradeNameCard=" + idTradeNameCard + ", tradeNameCard=" + tradeNameCard + "]";
+				+ ", idTradeNameCard=" + idTradeNameCard + ", tradeNameCard=" + tradeNameCard + ", balance=" + balance
+				+ ", currency=" + currency + ", status=" + status + "]";
 	}
 }

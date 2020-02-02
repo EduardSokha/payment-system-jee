@@ -150,7 +150,13 @@
                                                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                                                                 aria-label="Platform(s): activate to sort column ascending">Payment System</th>
                                                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                                                aria-label="Platform(s): activate to sort column ascending">Trade Name Card</th>                                                
+                                                                aria-label="Platform(s): activate to sort column ascending">Trade Name Card</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                                aria-label="Platform(s): activate to sort column ascending">Balance</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                                aria-label="Platform(s): activate to sort column ascending">Currency</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                                aria-label="Platform(s): activate to sort column ascending">Status</th>
                                                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                                                                 aria-label="Browser: activate to sort column ascending">Actions</th>
                                                         </tr>
@@ -164,6 +170,9 @@
                                                                 <td>${card.numberAccount}</td>
                                                                 <td>${card.namePaymentSystem}</td>
                                                                 <td>${card.tradeNameCard}</td>
+                                                                <td>${card.balance}</td>
+                                                                <td>${card.currency}</td>
+                                                                <td>${card.status}</td>
                                                                 
                                                                 <td>
                                                                 

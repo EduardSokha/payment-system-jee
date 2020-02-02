@@ -17,6 +17,21 @@
 			<b>numberAccount</b>
 		</field>
 		
+		<field type="one-way" custom-converter="by.htp.eduard.ps.service.converters.AccountBalanceConverter">
+			<a>idAccount</a>
+			<b>balance</b>
+		</field>
+		
+		<field type="one-way" custom-converter="by.htp.eduard.ps.service.converters.StatusCardConverter">
+			<a>idAccount</a>
+			<b>status</b>
+		</field>
+		
+		<field type="one-way" custom-converter="by.htp.eduard.ps.service.converters.CurrencyCardConverter">
+			<a>idAccount</a>
+			<b>currency</b>
+		</field>
+		
 		<field>
 			<a>idPaymentSystem</a>
 			<b>idPaymentSystem</b>

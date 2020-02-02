@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security-config>
+
+	<login-page page="/WEB-INF/pages/login/login.jsp"></login-page>
+
+	<success-login-url url="home"></success-login-url>
+
+	<permit-all-urls>
+
+		<permit-all-url process-strategy="contains">/static-content</permit-all-url>
+		<permit-all-url process-strategy="equals">/logout</permit-all-url>
+		<permit-all-url process-strategy="equals">/sign-in</permit-all-url>
+		<permit-all-url process-strategy="equals">/auth</permit-all-url>
+
+	</permit-all-urls>
+
+</security-config>

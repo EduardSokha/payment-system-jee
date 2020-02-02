@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security-config>
+
+	<login-page page="/WEB-INF/pages/index.jsp"></login-page>	
+
+</security-config>
