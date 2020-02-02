@@ -29,7 +29,7 @@
                 
                 <li class="nav-item">
                     <a href="user-list" class="nav-link"> 
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <i class="nav-icon fas far fa-user"></i>
                             <p>
                                 Users <i class="right fas fa-angle-left"></i>
                             </p>
@@ -37,7 +37,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="payment-system-list" class="nav-link"> 
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <i class="nav-icon fas fal fa-globe-europe"></i>
                         <p>
                             Payment Systems <i class="right fas fa-angle-left"></i>
                         </p>
@@ -45,7 +45,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="trade-names-list" class="nav-link"> 
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <i class="nav-icon fas far fa-file-signature"></i>
                         <p>
                             Trade Names Cards <i class="right fas fa-angle-left"></i>
                         </p>
@@ -53,7 +53,7 @@
                 </li>                
                 <li class="nav-item">
                     <a href="currency-list" class="nav-link"> 
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <i class="nav-icon fas fad fa-coins"></i>
                         <p>
                             Currencies <i class="right fas fa-angle-left"></i>
                         </p>
@@ -61,7 +61,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="roles-list" class="nav-link"> 
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <i class="nav-icon fas far fa-users"></i>
                         <p>
                             Roles <i class="right fas fa-angle-left"></i>
                         </p>
@@ -69,7 +69,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="status-list" class="nav-link"> 
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <i class="nav-icon fas far fa-unlock-alt"></i>
                         <p>
                             List Status<i class="right fas fa-angle-left"></i>
                         </p>
@@ -77,7 +77,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="cards-list" class="nav-link"> 
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <i class="nav-icon fas fa fa-credit-card"></i>
                         <p>
                             Cards <i class="right fas fa-angle-left"></i>
                         </p>
@@ -85,7 +85,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="accounts-list" class="nav-link"> 
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <i class="nav-icon fas far fa-file-invoice-dollar"></i>
                         <p>
                             Accounts <i class="right fas fa-angle-left"></i>
                         </p>
@@ -93,7 +93,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="payments-list" class="nav-link"> 
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <i class="nav-icon fas far fa-money-check-alt"></i>
                         <p>
                             List Payments<i class="right fas fa-angle-left"></i>
                         </p>
@@ -101,7 +101,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="logout" class="nav-link"> 
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>
                             Log out<i class="right fas fa-angle-left"></i>
                         </p>
