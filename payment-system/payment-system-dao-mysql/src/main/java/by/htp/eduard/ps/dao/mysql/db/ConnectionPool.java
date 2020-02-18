@@ -26,8 +26,12 @@ public class ConnectionPool {
 		dataSource.setUrl(db.getValue(DBParameters.DB_URL));
 	}
 
-	public Connection getConnection() throws SQLException {
-		return dataSource.getConnection();
+	public Connection getConnection(){
+		try {
+			return dataSource.getConnection();
+		} catch (SQLException e) {
+			throw new RuntimeException("Some problem accured during opening new connection!", e);
+		}
 	}
 
 	public void releaseDbResourses(Connection con, Statement statement) {

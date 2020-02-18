@@ -9,6 +9,7 @@ import by.htp.eduard.ps.service.AccountService;
 import by.htp.eduard.ps.service.EntityDtoConverter;
 import by.htp.eduard.ps.service.ServiceProvider;
 import by.htp.eduard.ps.service.dto.AccountDto;
+import by.htp.eduard.ps.transaction.TransactionManeger;
 
 public class AccountServiceImpl implements AccountService {
 	
@@ -23,8 +24,10 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public List<AccountDto> getAllAccounts() {
+		TransactionManeger.getTransactionManeger().beginTransaction();
 		List<Account> allAccounts = accountDao.getAllAccounts();
 		List<AccountDto> allDtos = converter.convertToDtoList(allAccounts, AccountDto.class);
+		TransactionManeger.getTransactionManeger().comitTransaction();
 		return allDtos;
 	}
 	
