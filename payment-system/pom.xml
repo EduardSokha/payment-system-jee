@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>by.htp.eduard</groupId>
@@ -23,18 +25,39 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.1.1</version>
+				<configuration>
+					<!-- Default configuration for all reports -->
+				</configuration>
+				<executions>
+					<execution>
+						<id>aggregate</id>
+						<goals>
+							<goal>aggregate</goal>
+						</goals>
+						<phase>install</phase>
+						<configuration>
+							<!-- Specific configuration for the aggregate report -->
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
-  <modules>
-    <module>payment-system-web-admin</module>
-    <module>payment-system-web</module>
-    <module>payment-system-mvc-framework</module>
-    <module>payment-system-service</module>
-    <module>payment-system-dao</module>
-    <module>payment-system-dao-mysql</module>
-    <module>payment-system-utils</module>
-    <module>payment-system-utils-http</module>
-    <module>payment-system-security-framework</module>
-  </modules>
+	<modules>
+		<module>payment-system-web-admin</module>
+		<module>payment-system-web</module>
+		<module>payment-system-mvc-framework</module>
+		<module>payment-system-service</module>
+		<module>payment-system-dao</module>
+		<module>payment-system-dao-mysql</module>
+		<module>payment-system-utils</module>
+		<module>payment-system-utils-http</module>
+		<module>payment-system-security-framework</module>
+	</modules>
 </project>

@@ -19,9 +19,21 @@ import by.htp.eduard.ps.mvc.router.RouterFactory;
 import by.htp.eduard.ps.mvc.staticcontent.StaticContentProvider;
 import by.htp.eduard.ps.utils.http.HttpUtils;
 
+/**
+ * sertsrthsretshd
+ * sdhrtsdrthsdrths
+ * drthrdthxdrt
+ * 
+ * @author Eduard
+ *
+ */
 public class DispatcherServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * edrjtdrtysjrtsydtykdtu
+	 */
 	private final CommandsProvider provider = CommandsProvider.getInstance();
 	
 	public DispatcherServlet() {
