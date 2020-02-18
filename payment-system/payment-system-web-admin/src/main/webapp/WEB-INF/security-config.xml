@@ -2,5 +2,20 @@
 <security-config>
 
 	<login-page page="/WEB-INF/pages/index.jsp"></login-page>	
+	
+	<success-login-url url="dashboard"></success-login-url>
+	
+	<permit-all-urls>
+
+		<permit-all-url process-strategy="contains">/static-content</permit-all-url>
+		<permit-all-url process-strategy="equals">/logout</permit-all-url>
+		<permit-all-url process-strategy="equals">/sign-in</permit-all-url>
+		<permit-all-url process-strategy="equals">/auth</permit-all-url>
+		<permit-all-url process-strategy="equals">/forget-password</permit-all-url>
+		<permit-all-url process-strategy="equals">/get-password</permit-all-url>
+		<permit-all-url process-strategy="equals">/registration</permit-all-url>
+		<permit-all-url process-strategy="equals">/save-new-user</permit-all-url>
+
+	</permit-all-urls>
 
 </security-config>

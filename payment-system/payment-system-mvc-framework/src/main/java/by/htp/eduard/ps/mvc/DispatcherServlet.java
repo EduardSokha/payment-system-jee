@@ -3,13 +3,17 @@ package by.htp.eduard.ps.mvc;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import by.htp.eduard.ps.mvc.model.ModelAndView;
 import by.htp.eduard.ps.mvc.router.Rourter;
 import by.htp.eduard.ps.mvc.router.RouterFactory;
 import by.htp.eduard.ps.mvc.staticcontent.StaticContentProvider;
@@ -21,7 +25,6 @@ public class DispatcherServlet extends HttpServlet {
 	private final CommandsProvider provider = CommandsProvider.getInstance();
 	
 	public DispatcherServlet() {
-		super();
 	}
 
 	@Override
@@ -66,9 +69,41 @@ public class DispatcherServlet extends HttpServlet {
 		Object command = executableCommand.getCommand();
 		Object result = executableMethod.invoke(command, request);
 		
-		String viewName = (String)result;
-		Rourter router = RouterFactory.getRouter(viewName, request, response);
-		router.route(viewName);
+		if(result.getClass() == String.class) {
+			
+			ModelAndView modelAndView = new ModelAndView(result.toString());
+			
+			Rourter router = RouterFactory.getRouter(modelAndView, request, response);
+			router.route(modelAndView);
+			
+			return;
+			
+		}
+		
+		
+		ModelAndView modelAndView = (ModelAndView)result;
+		
+		HttpSession session = request.getSession();
+		ModelAndView redirectModelAndView = (ModelAndView)session.getAttribute("redirectModelAndView");
+		
+		if(redirectModelAndView != null) {
+			modelAndView.addAllValidationError(redirectModelAndView.getValidationErrors());
+			modelAndView.addAllViewData(redirectModelAndView.getViewData());
+			
+			session.removeAttribute("redirectModelAndView");
+		}
+		
+		Set<String> validationErrors = modelAndView.getValidationErrors();
+		request.setAttribute("validationErrors", validationErrors);
+		
+		Map<String, Object> viewData = modelAndView.getViewData();
+		Set<String> dataKeys = viewData.keySet();
+		for (String key : dataKeys) {
+			request.setAttribute(key, viewData.get(key));
+		}
+		
+		Rourter router = RouterFactory.getRouter(modelAndView, request, response);
+		router.route(modelAndView);
 	}
 
 }

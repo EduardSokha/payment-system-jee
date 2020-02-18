@@ -6,6 +6,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import by.htp.eduard.ps.mvc.model.ModelAndView;
 
 public class RedirectRouter implements Rourter {
 	private HttpServletResponse response;
@@ -19,7 +22,8 @@ public class RedirectRouter implements Rourter {
 
 
 	@Override
-	public void route(String viewName) throws ServletException, IOException{
+	public void route(ModelAndView modelAndView) throws ServletException, IOException{
+		String viewName = modelAndView.getViewName();
 		viewName = viewName.replace("redirect:", "");
 		
 		ServletContext context = request.getServletContext();
@@ -31,6 +35,9 @@ public class RedirectRouter implements Rourter {
 			}
 			viewName = contextPath + viewName;
 		}
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("redirectModelAndView", modelAndView);
 		
 		response.sendRedirect(viewName);
 	}

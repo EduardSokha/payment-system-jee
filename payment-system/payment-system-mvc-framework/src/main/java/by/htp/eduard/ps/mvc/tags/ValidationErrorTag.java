@@ -1,6 +1,6 @@
 package by.htp.eduard.ps.mvc.tags;
 
-import java.util.List;
+import java.util.Collection;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.jsp.JspException;
@@ -21,7 +21,7 @@ public class ValidationErrorTag extends BodyTagSupport {
 	public int doStartTag() throws JspException {
 		
 		ServletRequest request = pageContext.getRequest();
-		List<String> validationErrors = (List<String>)request.getAttribute("validationErrors");
+		Collection<String> validationErrors = (Collection<String>)request.getAttribute("validationErrors");
 		if(validationErrors == null) {
 			return SKIP_BODY;
 		}

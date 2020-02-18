@@ -7,7 +7,6 @@ class CommandUrls {
 	private Set<UrlInfo> urls;
 
 	CommandUrls() {
-		super();
 		urls = new HashSet<UrlInfo>();
 	}
 	

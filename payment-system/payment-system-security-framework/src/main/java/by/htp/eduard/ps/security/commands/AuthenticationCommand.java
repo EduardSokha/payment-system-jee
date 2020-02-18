@@ -1,7 +1,7 @@
 package by.htp.eduard.ps.security.commands;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 
+import by.htp.eduard.ps.mvc.model.ModelAndView;
 import by.htp.eduard.ps.security.config.SecurityConfig;
 import by.htp.eduard.ps.service.AuthenticationService;
 import by.htp.eduard.ps.service.ServiceProvider;
@@ -23,12 +24,14 @@ public class AuthenticationCommand {
 		authenticationService = ServiceProvider.getInstance().getAuthenticationService();
 	}
 	
-	public String signIn(HttpServletRequest request) {
-		return SecurityConfig.getConfig().getLoginPage();
+	public ModelAndView signIn(HttpServletRequest request) {
+		String viewName = SecurityConfig.getConfig().getLoginPage();
+		ModelAndView modelAndView = new ModelAndView(viewName);
+		return modelAndView;
 	}
 	
-	public String authentication(HttpServletRequest request) {
-		List<String> validationErrors = new ArrayList<>();
+	public ModelAndView authentication(HttpServletRequest request) {
+		Set<String> validationErrors = new HashSet<>();
 		
 		String login = request.getParameter("login");
 		if(StringUtils.isBlank(login)) {
@@ -44,20 +47,23 @@ public class AuthenticationCommand {
 		authentication.setPassword(password);
 		
 		if(!validationErrors.isEmpty()) {
-			request.setAttribute("validationErrors", validationErrors);
 			
-			request.setAttribute("authentication", authentication);
+			String viewName = SecurityConfig.getConfig().getLoginPage();
+			ModelAndView modelAndView = new ModelAndView(viewName);
+			modelAndView.addAllValidationError(validationErrors);
+			modelAndView.addViewData("authentication", authentication);
 
-			return SecurityConfig.getConfig().getLoginPage();
+			return modelAndView;
 		}
 		
 		UserDto user = authenticationService.signIn(authentication);
 		
 		if(user == null) {
-			validationErrors.add("no.such.user");
-			request.setAttribute("validationErrors", validationErrors);
+			String viewName = SecurityConfig.getConfig().getLoginPage();
+			ModelAndView modelAndView = new ModelAndView(viewName);
+			modelAndView.addValidationError("no.such.user");
 			
-			return SecurityConfig.getConfig().getLoginPage();
+			return modelAndView;
 		}
 		
 		HttpSession session = request.getSession();
@@ -67,21 +73,27 @@ public class AuthenticationCommand {
 		session.removeAttribute("user-required-url");
 		
 		if(redirectUrl == null) {
-			return "redirect:" + SecurityConfig.getConfig().getSuccsessLoginUrl();
+			String viewName = "redirect:" + SecurityConfig.getConfig().getSuccsessLoginUrl();
+			ModelAndView modelAndView = new ModelAndView(viewName);
+			return modelAndView;
 		}
 		
 		if(!redirectUrl.startsWith("redirect:")) {
 			redirectUrl = "redirect:" + redirectUrl;
 		}
-		return redirectUrl;
+		
+		ModelAndView modelAndView = new ModelAndView(redirectUrl);
+		return modelAndView;
 	}
 	
-	public String logout(HttpServletRequest request) {
+	public ModelAndView logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		
 		ServletContext context = request.getServletContext();
 		String contextPath = context.getContextPath();
-		return "redirect:" + contextPath;
+		
+		ModelAndView modelAndView = new ModelAndView("redirect:" + contextPath);
+		return modelAndView;
 	}
 }

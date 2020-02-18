@@ -9,7 +9,6 @@ public class ExecutableCommand {
 	private final UrlInfo urlInfo;
 	
 	public ExecutableCommand(CommandInfo commandInfo, UrlInfo urlInfo) {
-		super();
 		this.commandInfo = commandInfo;
 		this.urlInfo = urlInfo;
 	}
@@ -24,7 +23,4 @@ public class ExecutableCommand {
 		Method executableMethod = commandClass.getDeclaredMethod(methodName, HttpServletRequest.class);
 		return executableMethod;
 	}
-	
-	
-
 }

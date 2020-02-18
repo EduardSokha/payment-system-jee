@@ -5,7 +5,6 @@ public class UrlInfo {
 	private final String method;
 
 	public UrlInfo(String url, String method) {
-		super();
 		this.url = url;
 		this.method = method;
 	}

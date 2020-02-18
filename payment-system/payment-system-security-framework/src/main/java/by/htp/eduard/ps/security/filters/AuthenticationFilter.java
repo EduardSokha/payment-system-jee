@@ -1,6 +1,7 @@
 package by.htp.eduard.ps.security.filters;
 
 import java.io.IOException;
+import java.util.Set;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletContext;
@@ -13,7 +14,9 @@ import javax.servlet.http.HttpSession;
 import by.htp.eduard.ps.mvc.CommandInfo;
 import by.htp.eduard.ps.mvc.CommandsProvider;
 import by.htp.eduard.ps.mvc.UrlInfo;
+import by.htp.eduard.ps.security.config.PermitAllUrl;
 import by.htp.eduard.ps.security.config.SecurityConfig;
+import by.htp.eduard.ps.security.config.urlcheckers.UrlChecker;
 import by.htp.eduard.ps.utils.http.HttpUtils;
 
 public class AuthenticationFilter extends HttpFilter {
@@ -54,25 +57,19 @@ public class AuthenticationFilter extends HttpFilter {
 	protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
 		String url = HttpUtils.getPageContext(req);
-
-		if (url.contains("/static-content")) {
-			chain.doFilter(req, res);
-			return;
-		}
-
-		if (url.equals("/logout")) {
-			chain.doFilter(req, res);
-			return;
-		}
-
-		if (url.equals("/sign-in")) {
-			chain.doFilter(req, res);
-			return;
-		}
-
-		if (url.equals("/auth")) {
-			chain.doFilter(req, res);
-			return;
+		
+		Set<PermitAllUrl> allUrl = SecurityConfig.getConfig().getPermitAllUrls();
+		
+		for (PermitAllUrl permitAllUrl : allUrl) {
+			String urlForFiltr = permitAllUrl.getUrl();
+			UrlChecker urlChecker = permitAllUrl.getUrlChecker();
+			
+			if(urlChecker.checkUrl(url, urlForFiltr)) {
+				chain.doFilter(req, res);
+				System.out.println("succsess for = " + urlForFiltr);
+				return;
+			}
+			
 		}
 
 		HttpSession session = req.getSession();

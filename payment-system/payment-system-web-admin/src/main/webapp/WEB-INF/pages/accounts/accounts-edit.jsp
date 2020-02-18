@@ -98,7 +98,7 @@
                                                 </select> 
                                                 <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus"
                                                     dir="ltr" data-select2-id="2" style="width: 100%;"><span class="selection"></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                            </div>
+                                            </div>                                            
                                            
                                             <div class="form-group row">
                                                 <div class="offset-sm-2 col-sm-10">

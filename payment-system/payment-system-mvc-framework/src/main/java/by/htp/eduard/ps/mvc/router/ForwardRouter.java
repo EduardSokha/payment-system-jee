@@ -7,20 +7,23 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ForwardRouter implements Rourter{
-	
+import by.htp.eduard.ps.mvc.model.ModelAndView;
+
+public class ForwardRouter implements Rourter {
+
 	private HttpServletRequest request;
-	
+
 	private HttpServletResponse response;
-	
+
 	public ForwardRouter(HttpServletRequest request, HttpServletResponse response) {
 		super();
 		this.request = request;
-		this.response = response;		
+		this.response = response;
 	}
 
 	@Override
-	public void route(String viewName) throws ServletException, IOException {
+	public void route(ModelAndView modelAndView) throws ServletException, IOException {
+		String viewName = modelAndView.getViewName();
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewName);
 		dispatcher.forward(request, response);
 	}

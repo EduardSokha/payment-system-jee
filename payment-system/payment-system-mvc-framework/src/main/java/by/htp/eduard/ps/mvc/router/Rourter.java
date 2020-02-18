@@ -4,8 +4,10 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 
+import by.htp.eduard.ps.mvc.model.ModelAndView;
+
 public interface Rourter {
 	
-	public void route(String viewName) throws ServletException, IOException;
+	public void route(ModelAndView modelAndView) throws ServletException, IOException;
 
 }

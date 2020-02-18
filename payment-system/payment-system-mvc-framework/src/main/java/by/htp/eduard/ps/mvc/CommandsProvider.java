@@ -27,7 +27,6 @@ public class CommandsProvider {
 	private final Set<String> staticContentUrls;
 
 	private CommandsProvider() {
-		super();
 		allCommands = new HashMap<String, CommandInfo>();
 		staticContentUrls = new HashSet<String>();
 	}
