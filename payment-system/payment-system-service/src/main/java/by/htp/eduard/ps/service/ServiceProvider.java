@@ -1,7 +1,6 @@
 package by.htp.eduard.ps.service;
 
 import by.htp.eduard.ps.service.impl.AccountServiceImpl;
-import by.htp.eduard.ps.service.impl.AuthenticationServiceImpl;
 import by.htp.eduard.ps.service.impl.CardServiceImpl;
 import by.htp.eduard.ps.service.impl.CurrencyServiceImpl;
 import by.htp.eduard.ps.service.impl.DozerEntityDtoConverter;
@@ -33,8 +32,6 @@ private static final ServiceProvider instance = new ServiceProvider();
 	private AccountService accountService = null;
 
 	private PayService payService = null;
-	
-	private AuthenticationService authenticationService = null;
 	
 	private StatusService statusService = null;
 	
@@ -106,14 +103,6 @@ private static final ServiceProvider instance = new ServiceProvider();
 		}
 		
 		return payService;
-	}
-
-	public AuthenticationService getAuthenticationService() {
-		if(authenticationService == null) {
-			authenticationService = new AuthenticationServiceImpl();
-		}
-		
-		return authenticationService;
 	}
 
 	public StatusService getStatusService() {

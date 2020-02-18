@@ -25,6 +25,7 @@ public class SecurityConfig {
 	private String loginPage;
 	private String succsessLoginUrl;
 	private Set<PermitAllUrl> permitAllUrls;
+	private String permitRole = null;
 
 	private SecurityConfig() {
 	}
@@ -45,8 +46,9 @@ public class SecurityConfig {
 
 		loginPage = getTagAttribute(securityConfig, "login-page", "page");
 		
-		succsessLoginUrl = getTagAttribute(securityConfig, "success-login-url", "home");
+		succsessLoginUrl = getTagAttribute(securityConfig, "success-login-url", "url");
 		
+		permitRole = getTagAttribute(securityConfig, "permit-security-role", "role");
 		
 		
 		NodeList tagPermitAllUrls = securityConfig.getElementsByTagName("permit-all-urls");
@@ -85,8 +87,16 @@ public class SecurityConfig {
 		return permitAllUrls;
 	}
 
+	public String getPermitRole() {
+		return permitRole;
+	}
+
 	private String getTagAttribute(Element parentTag, String tagName, String attrName) {
 		NodeList tags = parentTag.getElementsByTagName(tagName);
+		if(tags == null || tags.getLength() == 0) {
+			return null;
+		}
+		
 		Element tag = (Element) tags.item(0);
 		String attrValue = tag.getAttribute(attrName);
 		

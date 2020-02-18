@@ -1,4 +1,4 @@
-package by.htp.eduard.ps.service.dto;
+package by.htp.eduard.ps.security.dto;
 
 public class AuthenticationDto {
 

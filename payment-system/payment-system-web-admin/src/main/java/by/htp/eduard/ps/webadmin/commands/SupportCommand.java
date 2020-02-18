@@ -9,10 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 
-import by.htp.eduard.ps.service.AuthenticationService;
+import by.htp.eduard.ps.security.dto.AuthenticationDto;
+import by.htp.eduard.ps.security.service.AuthenticationService;
+import by.htp.eduard.ps.security.service.AuthenticationServiceProvider;
 import by.htp.eduard.ps.service.ServiceProvider;
 import by.htp.eduard.ps.service.UserService;
-import by.htp.eduard.ps.service.dto.AuthenticationDto;
 import by.htp.eduard.ps.service.dto.UserDto;
 import by.htp.eduard.ps.utils.http.HttpUtils;
 
@@ -22,7 +23,7 @@ public class SupportCommand {
 	private final UserService userService;
 
 	public SupportCommand() {
-		authenticationService = ServiceProvider.getInstance().getAuthenticationService();
+		authenticationService = AuthenticationServiceProvider.getInstance().getAuthenticationService();
 		userService = ServiceProvider.getInstance().getUserService();
 	}
 	

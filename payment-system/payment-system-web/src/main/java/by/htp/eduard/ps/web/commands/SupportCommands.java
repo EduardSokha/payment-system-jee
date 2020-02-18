@@ -6,14 +6,15 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import by.htp.eduard.ps.security.dto.AuthenticationDto;
+import by.htp.eduard.ps.security.service.AuthenticationService;
+import by.htp.eduard.ps.security.service.AuthenticationServiceProvider;
 import by.htp.eduard.ps.service.AccountService;
-import by.htp.eduard.ps.service.AuthenticationService;
 import by.htp.eduard.ps.service.CardService;
 import by.htp.eduard.ps.service.PayService;
 import by.htp.eduard.ps.service.ServiceProvider;
 import by.htp.eduard.ps.service.UserService;
 import by.htp.eduard.ps.service.dto.AccountDto;
-import by.htp.eduard.ps.service.dto.AuthenticationDto;
 import by.htp.eduard.ps.service.dto.CardDto;
 import by.htp.eduard.ps.service.dto.PayDto;
 import by.htp.eduard.ps.service.dto.UserDto;
@@ -28,7 +29,7 @@ public class SupportCommands {
 	private final PayService payService;
 
 	public SupportCommands() {
-		authenticationService = ServiceProvider.getInstance().getAuthenticationService();
+		authenticationService = AuthenticationServiceProvider.getInstance().getAuthenticationService();
 		userService = ServiceProvider.getInstance().getUserService();
 		accountService = ServiceProvider.getInstance().getAccountService();
 		cardService = ServiceProvider.getInstance().getCardService();

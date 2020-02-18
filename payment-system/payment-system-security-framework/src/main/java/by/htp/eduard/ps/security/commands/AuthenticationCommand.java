@@ -11,9 +11,9 @@ import org.apache.commons.lang3.StringUtils;
 
 import by.htp.eduard.ps.mvc.model.ModelAndView;
 import by.htp.eduard.ps.security.config.SecurityConfig;
-import by.htp.eduard.ps.service.AuthenticationService;
-import by.htp.eduard.ps.service.ServiceProvider;
-import by.htp.eduard.ps.service.dto.AuthenticationDto;
+import by.htp.eduard.ps.security.dto.AuthenticationDto;
+import by.htp.eduard.ps.security.service.AuthenticationService;
+import by.htp.eduard.ps.security.service.AuthenticationServiceProvider;
 import by.htp.eduard.ps.service.dto.UserDto;
 
 public class AuthenticationCommand {
@@ -21,7 +21,7 @@ public class AuthenticationCommand {
 	private final AuthenticationService authenticationService;
 
 	public AuthenticationCommand() {
-		authenticationService = ServiceProvider.getInstance().getAuthenticationService();
+		authenticationService = AuthenticationServiceProvider.getInstance().getAuthenticationService();
 	}
 	
 	public ModelAndView signIn(HttpServletRequest request) {
