@@ -14,17 +14,6 @@
 	<artifactId>payment-system-dao-mysql</artifactId>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-dbcp2</artifactId>
-			<version>2.7.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.17</version>
-		</dependency>
 
 		<dependency>
 			<groupId>log4j</groupId>
@@ -46,7 +35,13 @@
 		
 		<dependency>
 			<groupId>by.htp.eduard</groupId>
-			<artifactId>payment-system-transaction-manager</artifactId>
+			<artifactId>payment-system-transactions</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>by.htp.eduard</groupId>
+			<artifactId>payment-system-jdbc-mysql</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		

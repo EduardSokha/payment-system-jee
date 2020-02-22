@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import by.htp.eduard.ps.dao.mysql.db.ConnectionPool;
+import by.htp.eduard.ps.jdbc.mysql.ConnectionPool;
 import by.htp.eduard.ps.transaction.TransactionManeger;
 
 public class JdbcTransationManager implements TransactionManeger{

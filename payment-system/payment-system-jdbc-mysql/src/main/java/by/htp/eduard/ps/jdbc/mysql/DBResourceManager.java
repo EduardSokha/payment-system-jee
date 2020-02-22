@@ -1,4 +1,4 @@
-package by.htp.eduard.ps.dao.mysql.db;
+package by.htp.eduard.ps.jdbc.mysql;
 
 import java.util.ResourceBundle;
 
@@ -6,7 +6,7 @@ public class DBResourceManager {
 
 	private final static DBResourceManager instance = new DBResourceManager();
 
-	private final static String DB_PROPERTIES_FILE = "mysql.db";
+	private final static String DB_PROPERTIES_FILE = "db";
 
 	private ResourceBundle bundle = ResourceBundle.getBundle(DB_PROPERTIES_FILE);
 

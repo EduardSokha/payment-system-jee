@@ -1,4 +1,4 @@
-package by.htp.eduard.ps.dao.mysql.db;
+package by.htp.eduard.ps.jdbc.mysql;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

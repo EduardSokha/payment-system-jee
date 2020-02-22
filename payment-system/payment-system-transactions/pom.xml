@@ -3,6 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
@@ -11,32 +12,15 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>payment-system-service</artifactId>
+	<artifactId>payment-system-transactions</artifactId>
 
 	<dependencies>
-		<dependency>
-			<groupId>by.htp.eduard</groupId>
-			<artifactId>payment-system-dao</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 
 		<dependency>
 			<groupId>by.htp.eduard</groupId>
-			<artifactId>payment-system-dao-mysql</artifactId>
+			<artifactId>payment-system-jdbc-mysql</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		
-		<dependency>
-			<groupId>net.sf.dozer</groupId>
-			<artifactId>dozer</artifactId>
-			<version>5.5.1</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>by.htp.eduard</groupId>
-			<artifactId>payment-system-transactions</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		
+
 	</dependencies>
 </project>

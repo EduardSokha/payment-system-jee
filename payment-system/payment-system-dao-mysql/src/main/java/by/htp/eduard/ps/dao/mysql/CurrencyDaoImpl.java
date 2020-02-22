@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
 import by.htp.eduard.ps.dao.CurrencyDao;
 import by.htp.eduard.ps.dao.entities.Currency;
 import by.htp.eduard.ps.dao.exceptions.DaoException;
-import by.htp.eduard.ps.dao.mysql.db.ConnectionPool;
+import by.htp.eduard.ps.jdbc.mysql.ConnectionPool;
 
 public class CurrencyDaoImpl implements CurrencyDao {
 

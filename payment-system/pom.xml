@@ -57,6 +57,7 @@
 		<module>payment-system-utils</module>
 		<module>payment-system-utils-http</module>
 		<module>payment-system-security-framework</module>
-    <module>payment-system-transaction-manager</module>
+    <module>payment-system-transactions</module>
+    <module>payment-system-jdbc-mysql</module>
   </modules>
 </project>

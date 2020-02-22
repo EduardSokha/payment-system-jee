@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
 import by.htp.eduard.ps.dao.PayDao;
 import by.htp.eduard.ps.dao.entities.Pay;
 import by.htp.eduard.ps.dao.exceptions.DaoException;
-import by.htp.eduard.ps.dao.mysql.db.ConnectionPool;
+import by.htp.eduard.ps.jdbc.mysql.ConnectionPool;
 import by.htp.eduard.ps.utils.DateUtils;
 
 public class PayDaoImpl implements PayDao{

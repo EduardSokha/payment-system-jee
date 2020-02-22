@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
 import by.htp.eduard.ps.dao.PaymentSystemDao;
 import by.htp.eduard.ps.dao.entities.PaymentSystem;
 import by.htp.eduard.ps.dao.exceptions.DaoException;
-import by.htp.eduard.ps.dao.mysql.db.ConnectionPool;
+import by.htp.eduard.ps.jdbc.mysql.ConnectionPool;
 
 public class PaymentSystemDaoImpl implements PaymentSystemDao {
 
