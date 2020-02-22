@@ -66,7 +66,6 @@ public class AuthenticationFilter extends HttpFilter {
 			
 			if(urlChecker.checkUrl(url, urlForFiltr)) {
 				chain.doFilter(req, res);
-				System.out.println("succsess for = " + urlForFiltr);
 				return;
 			}
 			
