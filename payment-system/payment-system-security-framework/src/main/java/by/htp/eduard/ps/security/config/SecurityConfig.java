@@ -66,8 +66,6 @@ public class SecurityConfig {
 			PermitAllUrl permit = new PermitAllUrl(url, urlChecker);
 			permitAllUrls.add(permit);
 		}
-		
-		System.out.println(permitAllUrls);
 
 	}
 

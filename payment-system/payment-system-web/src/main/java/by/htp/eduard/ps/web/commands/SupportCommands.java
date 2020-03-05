@@ -6,6 +6,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import by.htp.eduard.ps.mvc.model.ModelAndView;
 import by.htp.eduard.ps.security.dto.AuthenticationDto;
 import by.htp.eduard.ps.security.service.AuthenticationService;
 import by.htp.eduard.ps.security.service.AuthenticationServiceProvider;
@@ -65,8 +66,8 @@ public class SupportCommands {
 		return "/WEB-INF/pages/users/user-edit.jsp";
 	}
 	
-	public String registrationNewUser(HttpServletRequest request) {
-		return "/WEB-INF/pages/users/registration-new-user.jsp";
+	public ModelAndView registrationNewUser(HttpServletRequest request) {
+		return new ModelAndView("/WEB-INF/pages/users/registration-new-user.jsp");
 	}
 	
 	public String saveNewUser(HttpServletRequest request) {
@@ -110,18 +111,17 @@ public class SupportCommands {
 		session.setAttribute("successRegistr", response);
 		ServletContext context = request.getServletContext();
 		String contextPath = context.getContextPath();
-		return "redirect:" + contextPath;
 		
-//		String response = "Registration Was Successful!";
-//		request.setAttribute("response", response);
-//		return "/WEB-INF/pages/index2.jsp";
+		return "redirect:" + contextPath;
 	}
 	
-	public String forgetPassword(HttpServletRequest request) {
-		return "/WEB-INF/pages/authentication/forget-password.jsp";
+	public ModelAndView forgetPassword(HttpServletRequest request) {
+		return new ModelAndView("/WEB-INF/pages/authentication/forget-password.jsp");
 	}
 
-	public String getForgetPassword(HttpServletRequest request) {
+	public ModelAndView getForgetPassword(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/authentication/forget-password.jsp");
+		
 		String passportSeries = request.getParameter("passportSeries");
 		String passportId = request.getParameter("passportId");
 		String codeWord = request.getParameter("codeWord");
@@ -132,11 +132,8 @@ public class SupportCommands {
 		authentication.setCodeWord(codeWord);
 		
 		UserDto user = authenticationService.forgetPassword(authentication);
+		modelAndView.addViewData("user", user);
 		
-//		String response = "Your login = '" + user.getLogin() + "', your password = '" + user.getPassword() + "'";
-		request.setAttribute("user", user);
-//		return "redirect:forget-password";
-		return "/WEB-INF/pages/authentication/forget-password.jsp";
+		return modelAndView;
 	}
-	
 }

@@ -26,6 +26,10 @@
                 <c:if test="${user != null}">
                     <p class="form-title">Your login = '${user.login}', your password = '${user.password}'</p>
                 </c:if>
+                
+                <mvc:error code="user.forgetPassword.invalid">
+                    <span id="inputLogin-error" class="error">Please enter correct passport data</span>
+                </mvc:error>
 
                 <form action="get-password" method="post">
 

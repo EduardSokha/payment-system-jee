@@ -1,12 +1,14 @@
 package by.htp.eduard.ps.webadmin.commands;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 
+import by.htp.eduard.ps.mvc.model.ModelAndView;
 import by.htp.eduard.ps.service.PaymentSystemService;
 import by.htp.eduard.ps.service.ServiceProvider;
 import by.htp.eduard.ps.service.dto.PaymentSystemDto;
@@ -20,19 +22,20 @@ private final PaymentSystemService paymentSystemService;
 		paymentSystemService = ServiceProvider.getInstance().getPaymentSystemService();
 	}
 	
-	public String showAllPaymentSystems(HttpServletRequest request) {
+	public ModelAndView showAllPaymentSystems(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/payment-systems/payment-system-list.jsp");
 		List<PaymentSystemDto> allPaymentSystems = paymentSystemService.getAllPaymentSystems();
-		request.setAttribute("allPaymentSystems", allPaymentSystems);
+		modelAndView.addViewData("allPaymentSystems", allPaymentSystems);
 		
-		return "/WEB-INF/pages/payment-systems/payment-system-list.jsp";
+		return modelAndView;
 	}
 	
-	public String addPaymentSystem(HttpServletRequest request) {		
-		return "/WEB-INF/pages/payment-systems/payment-system-details.jsp";
+	public ModelAndView addPaymentSystem(HttpServletRequest request) {		
+		return new ModelAndView("/WEB-INF/pages/payment-systems/payment-system-details.jsp");
 	}
 	
-	public String savePaymentSystem(HttpServletRequest request) {
-		List<String> validationErrors = new ArrayList<>();
+	public ModelAndView savePaymentSystem(HttpServletRequest request) {
+		Set<String> validationErrors = new HashSet<>();
 		Integer id = HttpUtils.getIntParam("id", request);
 		String name = request.getParameter("newNamePaySyst");
 		
@@ -41,11 +44,13 @@ private final PaymentSystemService paymentSystemService;
 		}
 		
 		if(!validationErrors.isEmpty()) {
-			request.setAttribute("validationErrors", validationErrors);
+			ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/payment-systems/payment-system-details.jsp");
+			modelAndView.addAllValidationError(validationErrors);
 			
 			PaymentSystemDto paymentSystem = paymentSystemService.getPaymentSystemById(id);
-			request.setAttribute("paymentSystem", paymentSystem);
-			return "/WEB-INF/pages/payment-systems/payment-system-details.jsp";
+			modelAndView.addViewData("paymentSystem", paymentSystem);
+			
+			return modelAndView;
 		}
 		
 		PaymentSystemDto paymentSystem = new PaymentSystemDto();
@@ -53,20 +58,25 @@ private final PaymentSystemService paymentSystemService;
 		paymentSystem.setName(name);
 		
 		paymentSystemService.savePaymentSystem(paymentSystem);
+		ModelAndView modelAndView = new ModelAndView("redirect:payment-system-list");
 		
-		return "redirect:payment-system-list";
+		return modelAndView;
 	}
 	
-	public String editPaymentSystem(HttpServletRequest request) {
+	public ModelAndView editPaymentSystem(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/payment-systems/payment-system-details.jsp");
 		Integer id = HttpUtils.getIntParam("systemId", request);
 		PaymentSystemDto paymentSystem = paymentSystemService.getPaymentSystemById(id);
-		request.setAttribute("paymentSystem", paymentSystem);
-		return "/WEB-INF/pages/payment-systems/payment-system-details.jsp";
+		modelAndView.addViewData("paymentSystem", paymentSystem);
+		
+		return modelAndView;
 	}
 	
-	public String deletePaymentSystem(HttpServletRequest request) {
+	public ModelAndView deletePaymentSystem(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("redirect:payment-system-list");
 		Integer id = HttpUtils.getIntParam("systemId", request);
 		paymentSystemService.deletePaymentSystem(id);
-		return "redirect:payment-system-list";
+		
+		return modelAndView;
 	}
 }

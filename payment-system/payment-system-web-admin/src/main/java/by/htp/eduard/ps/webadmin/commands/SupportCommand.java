@@ -1,7 +1,7 @@
 package by.htp.eduard.ps.webadmin.commands;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -9,12 +9,15 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 
+import by.htp.eduard.ps.mvc.model.ModelAndView;
 import by.htp.eduard.ps.security.dto.AuthenticationDto;
 import by.htp.eduard.ps.security.service.AuthenticationService;
 import by.htp.eduard.ps.security.service.AuthenticationServiceProvider;
+import by.htp.eduard.ps.service.EmailService;
 import by.htp.eduard.ps.service.ServiceProvider;
 import by.htp.eduard.ps.service.UserService;
 import by.htp.eduard.ps.service.dto.UserDto;
+import by.htp.eduard.ps.service.impl.EmailServiceImpl;
 import by.htp.eduard.ps.utils.http.HttpUtils;
 
 public class SupportCommand {
@@ -27,18 +30,15 @@ public class SupportCommand {
 		userService = ServiceProvider.getInstance().getUserService();
 	}
 	
-	public String registrationNewUser(HttpServletRequest request) {
-		return "/WEB-INF/pages/users/registration-new-user.jsp";
+	public ModelAndView registrationNewUser(HttpServletRequest request) {
+		return new ModelAndView("/WEB-INF/pages/users/registration-new-user.jsp");
 	}
 	
-	public String saveNewUser(HttpServletRequest request) {
-		List<String> validationErrors = new ArrayList<>();
+	public ModelAndView saveNewUser(HttpServletRequest request) {
+		Set<String> validationErrors = new HashSet<>();
 		HttpSession session = request.getSession();	
 		
 		if(!request.getParameter("password").equals(request.getParameter("password2"))) {
-//			String response = "Password1 and Password2 don't match!";
-//			request.setAttribute("response", response);
-//			return "/WEB-INF/pages/users/registration-new-user.jsp";
 			validationErrors.add("password.match");
 		}
 		
@@ -100,10 +100,11 @@ public class SupportCommand {
 		user.setResidenceRegistr(residenceRegistr);
 		
 		if(!validationErrors.isEmpty()) {
-			request.setAttribute("validationErrors", validationErrors);
+			ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/users/registration-new-user.jsp");
+			modelAndView.addAllValidationError(validationErrors);
 			
-			request.setAttribute("user", user);
-			return "/WEB-INF/pages/users/registration-new-user.jsp";
+			modelAndView.addViewData("user", user);
+			return modelAndView;
 		}
 		
 		userService.saveUser(user);
@@ -112,15 +113,16 @@ public class SupportCommand {
 		
 		ServletContext context = request.getServletContext();
 		String contextPath = context.getContextPath();
-		return "redirect:" + contextPath;
+		ModelAndView modelAndView = new ModelAndView("redirect:" + contextPath);
+		return modelAndView;
 	}
 	
-	public String forgetPassword(HttpServletRequest request) {
-		return "/WEB-INF/pages/authentication/forget-password.jsp";
+	public ModelAndView forgetPassword(HttpServletRequest request) {
+		return new ModelAndView("/WEB-INF/pages/authentication/forget-password.jsp");
 	}
 
-	public String getForgetPassword(HttpServletRequest request) {
-		List<String> validationErrors = new ArrayList<>();
+	public ModelAndView getForgetPassword(HttpServletRequest request) {
+		Set<String> validationErrors = new HashSet<>();
 		
 		String passportSeries = request.getParameter("passportSeries");
 		if(StringUtils.isBlank(passportSeries)) {
@@ -141,15 +143,31 @@ public class SupportCommand {
 		authentication.setCodeWord(codeWord);
 		
 		if(!validationErrors.isEmpty()) {
-			request.setAttribute("validationErrors", validationErrors);
+			ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/authentication/forget-password.jsp");
+			modelAndView.addAllValidationError(validationErrors);
+			modelAndView.addViewData("authentication", authentication);
 			
-			request.setAttribute("authentication", authentication);
-			return "/WEB-INF/pages/authentication/forget-password.jsp";
+			return modelAndView;
 		}
 		
 		UserDto user = authenticationService.forgetPassword(authentication);
 		
-		request.setAttribute("user", user);
-		return "/WEB-INF/pages/authentication/forget-password.jsp";
+		if(user == null) {
+			ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/authentication/forget-password.jsp");
+			validationErrors.add("user.forgetPassword.invalid");
+			
+			modelAndView.addAllValidationError(validationErrors);
+			modelAndView.addViewData("authentication", authentication);
+			
+			return modelAndView;
+		}
+		
+		EmailService emailService = new EmailServiceImpl();
+		emailService.sendEmail("deathisthebestend@mail.ru", "Your restoried password", user.getPassword());
+		
+//		request.setAttribute("user", user);
+//		return "/WEB-INF/pages/authentication/forget-password.jsp";
+		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/authentication/forget-password-completed.jsp");
+		return modelAndView;
 	}
 }

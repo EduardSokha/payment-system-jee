@@ -5,7 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import by.htp.eduard.ps.mvc.model.ModelAndView;
 import by.htp.eduard.ps.service.AccountService;
 import by.htp.eduard.ps.service.CardService;
 import by.htp.eduard.ps.service.CurrencyService;
@@ -39,30 +41,33 @@ public class CardCommands {
 		userService = ServiceProvider.getInstance().getUserService();
 	}
 	
-	public String showAllCards(HttpServletRequest request) {
-//		Integer id = HttpUtils.getIntParam("id", request);
-//		List<CardDto> cards = cardService.getCardByIdUser(id);
-		List<CardDto> cards = cardService.getCardByIdUser(2);
-		request.setAttribute("allCards", cards);
+	public ModelAndView showAllCards(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/cards/cards-list.jsp");
+		HttpSession session = request.getSession();	
+		UserDto userDto = (UserDto)session.getAttribute("authentication");
 		
-		return "/WEB-INF/pages/cards/cards-list.jsp";
+		List<CardDto> cards = cardService.getCardByIdUser(userDto.getId());
+		modelAndView.addViewData("allCards", cards);
+		
+		return modelAndView;
 	}
 	
-	public String addCard(HttpServletRequest request) {	
-		
+	public ModelAndView addCard(HttpServletRequest request) {	
+		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/cards/card-details.jsp");
 		List<NameCardDto> allTradeNamesCards = nameCardService.getAllNamesCard();
-		request.setAttribute("allTradeNamesCards", allTradeNamesCards);
+		modelAndView.addViewData("allTradeNamesCards", allTradeNamesCards);
 		
 		List<PaymentSystemDto> allPaymentSystems = paymentSystemService.getAllPaymentSystems();
-		request.setAttribute("allPaymentSystems", allPaymentSystems);
+		modelAndView.addViewData("allPaymentSystems", allPaymentSystems);
 		
 		List<AccountDto> allAccounts = accountService.getAllAccounts();
-		request.setAttribute("allAccounts", allAccounts);
-				
-		return "/WEB-INF/pages/cards/card-details.jsp";
+		modelAndView.addViewData("allAccounts", allAccounts);
+		
+		return modelAndView;
 	}
 	
-	public String saveCard(HttpServletRequest request) {
+	public ModelAndView saveCard(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("redirect:cards-list");
 		Integer idAccount = HttpUtils.getIntParam("idAccount", request);
 		Integer idPaymentSystem = HttpUtils.getIntParam("idPaymentSystem", request);
 		Integer idTradeNameCard = HttpUtils.getIntParam("idTradeNameCard", request);
@@ -75,44 +80,51 @@ public class CardCommands {
 		
 		cardService.saveCard(card);
 		
-		return "redirect:cards-list";
+		return modelAndView;
 	}
 
-	public String editCard(HttpServletRequest request) {
+	public ModelAndView editCard(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("redirect:cards-list");
 		Integer id = HttpUtils.getIntParam("cardId", request);
 		
 		CardDto card = new CardDto();		
 		card.setId(id);
 		cardService.saveCard(card);
-		return "redirect:cards-list";
+		
+		return modelAndView;
 	}
 	
-	public String deleteCard(HttpServletRequest request) {
+	public ModelAndView deleteCard(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("redirect:cards-list");
 		Integer id = HttpUtils.getIntParam("cardId", request);
 		cardService.deleteCard(id);
-		return "redirect:cards-list";
+		
+		return modelAndView;
 	}
 	
-	public String addCardAndAccount(HttpServletRequest request) {
+	public ModelAndView addCardAndAccount(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/cards/add-card-account.jsp");
+		
 		List<NameCardDto> allTradeNamesCards = nameCardService.getAllNamesCard();
-		request.setAttribute("allTradeNamesCards", allTradeNamesCards);
+		modelAndView.addViewData("allTradeNamesCards", allTradeNamesCards);
 		
 		List<PaymentSystemDto> allPaymentSystems = paymentSystemService.getAllPaymentSystems();
-		request.setAttribute("allPaymentSystems", allPaymentSystems);
+		modelAndView.addViewData("allPaymentSystems", allPaymentSystems);
 		
 		List<AccountDto> allAccounts = accountService.getAllAccounts();
-		request.setAttribute("allAccounts", allAccounts);
+		modelAndView.addViewData("allAccounts", allAccounts);
 		
 		List<CurrencyDto> allCurrencies = currencyService.getAllCurrencies();
-		request.setAttribute("allCurrencies", allCurrencies);
+		modelAndView.addViewData("allCurrencies", allCurrencies);
 		
 		List<UserDto> allUsers = userService.getAllUsers();
-		request.setAttribute("allUsers", allUsers);
+		modelAndView.addViewData("allUsers", allUsers);
 		
-		return "/WEB-INF/pages/cards/add-card-account.jsp";
+		return modelAndView;
 	}
 	
-	public String saveCardAndAccount(HttpServletRequest request) {
+	public ModelAndView saveCardAndAccount(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("redirect:cards-list");
 		
 		Integer idAccount = HttpUtils.getIntParam("idAccount", request);
 		Integer idPaymentSystem = HttpUtils.getIntParam("idPaymentSystem", request);
@@ -140,6 +152,6 @@ public class CardCommands {
 		
 		cardService.createAccountAndCard(account, card);
 		
-		return "redirect:cards-list";
+		return modelAndView;
 	}
 }

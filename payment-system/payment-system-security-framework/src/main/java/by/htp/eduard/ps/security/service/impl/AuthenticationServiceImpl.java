@@ -23,8 +23,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
 	@Override
 	public UserDto signIn(AuthenticationDto authenticationDto) {
-		User user = converter.convertToEntity(authenticationDto, User.class);
-		User userResp = userDao.signIn(user);
+		User userResp = userDao.getUserByLogin(authenticationDto.getLogin());
+		if(userResp == null) {
+			return null;
+		}
+		
+		String dbPassword = userResp.getPassword();
+		if(!dbPassword.equals(authenticationDto.getPassword())) {
+			return null;
+		}
+		
 		UserDto userDto = converter.convertToDto(userResp, UserDto.class);
 		String permitRole = SecurityConfig.getConfig().getPermitRole();
 		
@@ -40,8 +48,20 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
 	@Override
 	public UserDto forgetPassword(AuthenticationDto authenticationDto) {
-		User user = converter.convertToEntity(authenticationDto, User.class);
-		User userResp = userDao.forgetPassword(user);
+		User userResp = userDao.getUserByPassportId(authenticationDto.getPassportId());
+		if(userResp == null) {
+			return null;
+		}
+		String dbPassportSeries = userResp.getPassportSeries();
+		if(!dbPassportSeries.equals(authenticationDto.getPassportSeries())) {
+			return null;
+		}
+		
+		String dbCodeWord = userResp.getCodeWord();
+		if(!dbCodeWord.equals(authenticationDto.getCodeWord())) {
+			return null;
+		}
+		
 		UserDto userDto = converter.convertToDto(userResp, UserDto.class);
 		return userDto;
 	}

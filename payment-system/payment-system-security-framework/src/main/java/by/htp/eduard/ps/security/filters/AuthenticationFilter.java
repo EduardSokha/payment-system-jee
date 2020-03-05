@@ -84,6 +84,5 @@ public class AuthenticationFilter extends HttpFilter {
 		String contextPath = context.getContextPath();
 		String signInUrl = contextPath + "/sign-in";
 		res.sendRedirect(signInUrl);
-
 	}
 }

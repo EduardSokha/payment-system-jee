@@ -4,7 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import by.htp.eduard.ps.mvc.model.ModelAndView;
 import by.htp.eduard.ps.service.AccountService;
 import by.htp.eduard.ps.service.CurrencyService;
 import by.htp.eduard.ps.service.NameCardService;
@@ -38,27 +40,29 @@ public class AccountCommands {
 		statusService = ServiceProvider.getInstance().getStatusService();
 	}
 	
-	public String showAllAccounts(HttpServletRequest request) {
-//		Integer id = HttpUtils.getIntParam("id", request);
-//		List<AccountDto> allAccounts = accountService.getAccountByIdUser(id);
-		List<AccountDto> allAccounts = accountService.getAccountByIdUser(2);
-		request.setAttribute("allAccounts", allAccounts);
+	public ModelAndView showAllAccounts(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/accounts/accounts-list.jsp");
+		HttpSession session = request.getSession();	
+		UserDto userDto = (UserDto)session.getAttribute("authentication");
+		List<AccountDto> allAccounts = accountService.getAccountByIdUser(userDto.getId());
+		modelAndView.addViewData("allAccounts", allAccounts);
 		
-		return "/WEB-INF/pages/accounts/accounts-list.jsp";
+		return modelAndView;
 	}
 	
-	public String addAccount(HttpServletRequest request) {	
+	public ModelAndView addAccount(HttpServletRequest request) {	
+		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/accounts/accounts-details.jsp");
 		List<CurrencyDto> allCurrencies = currencyService.getAllCurrencies();
-		request.setAttribute("allCurrencies", allCurrencies);
+		modelAndView.addViewData("allCurrencies", allCurrencies);
 		
 		List<UserDto> allUsers = userService.getAllUsers();
-		request.setAttribute("allUsers", allUsers);
+		modelAndView.addViewData("allUsers", allUsers);
 		
-		return "/WEB-INF/pages/accounts/accounts-details.jsp";
+		return modelAndView;
 	}
 	
-	public String saveAccount(HttpServletRequest request) {
-		
+	public ModelAndView saveAccount(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("redirect:accounts-list");
 		Integer id = HttpUtils.getIntParam("id", request);
 		Double balance = HttpUtils.getDoubleParam("balance", request);
 		Integer idUser = HttpUtils.getIntParam("idUser", request);
@@ -75,27 +79,30 @@ public class AccountCommands {
 		
 		accountService.saveAccount(account);
 		
-		return "redirect:accounts-list";
+		return modelAndView;
 	}
 
-	public String editAccount(HttpServletRequest request) {
+	public ModelAndView editAccount(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/accounts/accounts-edit.jsp");
 		Integer id = HttpUtils.getIntParam("accountId", request);
 		AccountDto account = accountService.getAccountById(id);
-		request.setAttribute("account", account);
+		modelAndView.addViewData("account", account);
 		
 		List<StatusDto> allStatus = statusService.getAllStatus();
-		request.setAttribute("allStatus", allStatus);
+		modelAndView.addViewData("allStatus", allStatus);
 		
-		return "/WEB-INF/pages/accounts/accounts-edit.jsp";
+		return modelAndView;
 	}
 	
-	public String deleteAccount(HttpServletRequest request) {
+	public ModelAndView deleteAccount(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("redirect:accounts-list");
 		Integer id = HttpUtils.getIntParam("accountId", request);
 		accountService.deleteAccount(id);
-		return "redirect:accounts-list";
+		return modelAndView;
 	}
 	
-	public String lockUnlockAccount(HttpServletRequest request) {
+	public ModelAndView lockUnlockAccount(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("redirect:accounts-list");
 		Integer id = HttpUtils.getIntParam("accountId", request);
 		Integer idStatus = HttpUtils.getIntParam("idStatus", request);
 		
@@ -103,25 +110,26 @@ public class AccountCommands {
 		account.setId(id);
 		account.setIdStatus(idStatus);
 		accountService.lockUnlockAccount(account);
-		return "redirect:accounts-list";
+		
+		return modelAndView;
 	}
 	
-	public String addCard(HttpServletRequest request) {
-		
+	public ModelAndView addCard(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/cards/card-details.jsp");
 		Integer id = HttpUtils.getIntParam("accountId", request);
+		
 		AccountDto account = accountService.getAccountById(id);
-		request.setAttribute("account", account);
+		modelAndView.addViewData("account", account);
 		
 		List<NameCardDto> allTradeNamesCards = nameCardService.getAllNamesCard();
-		request.setAttribute("allTradeNamesCards", allTradeNamesCards);
+		modelAndView.addViewData("allTradeNamesCards", allTradeNamesCards);
 		
 		List<PaymentSystemDto> allPaymentSystems = paymentSystemService.getAllPaymentSystems();
-		request.setAttribute("allPaymentSystems", allPaymentSystems);
+		modelAndView.addViewData("allPaymentSystems", allPaymentSystems);
 		
 		List<AccountDto> allAccounts = accountService.getAllAccounts();
-		request.setAttribute("allAccounts", allAccounts);
+		modelAndView.addViewData("allAccounts", allAccounts);
 		
-		return "/WEB-INF/pages/cards/card-details.jsp";
+		return modelAndView;
 	}
-	
 }

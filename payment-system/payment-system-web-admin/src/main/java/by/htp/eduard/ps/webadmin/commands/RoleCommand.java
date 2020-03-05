@@ -23,10 +23,9 @@ public class RoleCommand {
 	}
 	
 	public ModelAndView showAllRoles(HttpServletRequest request) {
-		
 		List<RoleDto> allRoles = roleService.getAllRoles();
-		request.setAttribute("allRoles", allRoles);
 		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/roles/roles-list.jsp");
+		modelAndView.addViewData("allRoles", allRoles);
 		
 		return modelAndView;
 	}
@@ -72,12 +71,14 @@ public class RoleCommand {
 		RoleDto role = roleService.getNameRoleById(id);
 		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/roles/role-details.jsp");
 		modelAndView.addViewData("role", role);
+		
 		return modelAndView;
 	}
 	
 	public ModelAndView deleteRole(HttpServletRequest request) {
 		Integer id = HttpUtils.getIntParam("roleId", request);
 		roleService.deleteRole(id);
+		
 		return new ModelAndView("redirect:roles-list");
 	}
 }

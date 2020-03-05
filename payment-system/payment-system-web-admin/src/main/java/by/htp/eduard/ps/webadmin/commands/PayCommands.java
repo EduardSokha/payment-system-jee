@@ -1,11 +1,13 @@
 package by.htp.eduard.ps.webadmin.commands;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import by.htp.eduard.ps.mvc.model.ModelAndView;
 import by.htp.eduard.ps.service.AccountService;
 import by.htp.eduard.ps.service.CardService;
 import by.htp.eduard.ps.service.PayService;
@@ -29,40 +31,40 @@ public class PayCommands {
 		accountService = ServiceProvider.getInstance().getAccountService();
 	}
 	
-	public String showAllPayments(HttpServletRequest request) {
+	public ModelAndView showAllPayments(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/pay/pay-list.jsp");
 		List<PayDto> allPayments = payService.getAllPay();
-		request.setAttribute("allPayments", allPayments);
+		modelAndView.addViewData("allPayments", allPayments);
 		
-		return "/WEB-INF/pages/pay/pay-list.jsp";
+		return modelAndView;
 	}
 	
-	public String createPay(HttpServletRequest request) {
+	public ModelAndView createPay(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/pay/pay-details.jsp");
 		Integer id = HttpUtils.getIntParam("cardId", request);
-		
 		CardDto card = cardService.getCardById(id);
+		modelAndView.addViewData("card", card);
 		
-		request.setAttribute("card", card);
-		
-		return "/WEB-INF/pages/pay/pay-details.jsp";
+		return modelAndView;
 	}
 	
-	public String savePay(HttpServletRequest request) {
-		List<String> validationErrors = new ArrayList<>();
+	public ModelAndView savePay(HttpServletRequest request) {
+		Set<String> validationErrors = new HashSet<>();
 		Integer id = HttpUtils.getIntParam("id", request);
 		Double price = HttpUtils.getDoubleParam("price", request);
 		if(price == null) {
 			validationErrors.add("amount.empty");
 		}
+		
 		Integer idAccount = HttpUtils.getIntParam("idAccount", request);
 		String description = request.getParameter("description");
 		
 		if(!validationErrors.isEmpty()) {
-			request.setAttribute("validationErrors", validationErrors);
-			
+			ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/pay/new-pay.jsp");
+			modelAndView.addAllValidationError(validationErrors);
 			List<AccountDto> allAccounts = accountService.getAllAccounts();
-			request.setAttribute("allAccounts", allAccounts);
-			
-			return "/WEB-INF/pages/pay/new-pay.jsp";
+			modelAndView.addViewData("allAccounts", allAccounts);
+			return modelAndView;
 		}
 		
 		PayDto pay = new PayDto();
@@ -75,35 +77,43 @@ public class PayCommands {
 		try {
 			payService.savePay(pay);
 		} catch (NegativeBalanceException e) {
+			ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/pay/new-pay.jsp");
 			List<AccountDto> allAccounts = accountService.getAllAccounts();
-			request.setAttribute("allAccounts", allAccounts);
+			modelAndView.addViewData("allAccounts", allAccounts);
 			
 			validationErrors.add("pay.balance.negative");
-			request.setAttribute("validationErrors", validationErrors);
-			return "/WEB-INF/pages/pay/new-pay.jsp";
+			modelAndView.addAllValidationError(validationErrors);
+			
+			return modelAndView;
 		} catch (NegativeAmountException e) {
+			ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/pay/new-pay.jsp");
 			List<AccountDto> allAccounts = accountService.getAllAccounts();
-			request.setAttribute("allAccounts", allAccounts);
+			modelAndView.addViewData("allAccounts", allAccounts);
 			
 			validationErrors.add("pay.amount.negative");
-			request.setAttribute("validationErrors", validationErrors);
-			return "/WEB-INF/pages/pay/new-pay.jsp";
+			modelAndView.addAllValidationError(validationErrors);
+			
+			return modelAndView;
 		}
 		
-		return "redirect:payments-list";
-	}
-	
-	public String newPay(HttpServletRequest request) {
-		List<AccountDto> allAccounts = accountService.getAllAccounts();
-		request.setAttribute("allAccounts", allAccounts);
+		ModelAndView modelAndView = new ModelAndView("redirect:payments-list");
 		
-		return "/WEB-INF/pages/pay/new-pay.jsp";
+		return modelAndView;
 	}
 	
-	public String deletePay(HttpServletRequest request) {
+	public ModelAndView newPay(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/pay/new-pay.jsp");
+		List<AccountDto> allAccounts = accountService.getAllAccounts();
+		modelAndView.addViewData("allAccounts", allAccounts);
+		
+		return modelAndView;
+	}
+	
+	public ModelAndView deletePay(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("redirect:payments-list");
 		Integer id = HttpUtils.getIntParam("payId", request);
 		payService.deletePay(id);
-		return "redirect:payments-list";
+		
+		return modelAndView;
 	}
-
 }

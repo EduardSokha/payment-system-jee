@@ -213,39 +213,13 @@ public class UserDaoImpl implements UserDao {
 		
 		return null;
 	}
-	
+
 	@Override
-	public User signIn(User user) {
+	public User getUserByPassportId(String passportId) {
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement ps = null;
-		String sq1 = "SELECT `id`, `login`, `password`, `name`, `surname`, `address`, `role_idrole`, `series_number_passport`, `identification_number_passport`, `codeword`, `phone_number`, `residence_registr_data_passport` FROM `users` WHERE `login` = '" + user.getLogin() + "' and `password` = '" + user.getPassword() + "'";
-
-		try {
-			con = cp.getConnection();
-			ps = con.prepareStatement(sq1);
-			rs = ps.executeQuery(sq1);
-
-			if (rs.next()) {
-				User userResp = createUser(rs);
-				return userResp;
-			}
-		} catch (SQLException e) {
-			logger.debug("SQLException DAO", e);
-			throw new DaoException(e);
-		} finally {
-			cp.releaseDbResourses(con, ps, rs);
-		}
-		
-		return null;
-	}
-
-	@Override
-	public User forgetPassword(User user) {
-		Connection con = null;
-		ResultSet rs = null;
-		PreparedStatement ps = null;
-		String sq1 = "SELECT `id`, `login`, `password`, `name`, `surname`, `address`, `role_idrole`, `series_number_passport`, `identification_number_passport`, `codeword`, `phone_number`, `residence_registr_data_passport` FROM `users` WHERE `series_number_passport` = '" + user.getPassportSeries() + "' and `identification_number_passport` = '" + user.getPassportId() + "' and `codeword` = '" + user.getCodeWord() + "'";
+		String sq1 = "SELECT `id`, `login`, `password`, `name`, `surname`, `address`, `role_idrole`, `series_number_passport`, `identification_number_passport`, `codeword`, `phone_number`, `residence_registr_data_passport` FROM `users` WHERE `identification_number_passport` = '" + passportId + "'";
 
 		try {
 			con = cp.getConnection();

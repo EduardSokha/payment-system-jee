@@ -7,14 +7,14 @@
 		<command-url url="/" method="showIndexPage" />
 	</command>
 	
-	<command command-class="by.htp.eduard.ps.web.commands.UserCommand">
+	<!-- <command command-class="by.htp.eduard.ps.web.commands.UserCommand">
 		<command-url url="/user-list" method="showUserList" />
 		<command-url url="/user" method="showUserDetail" />
 		<command-url url="/add-user" method="addUser" />
 		<command-url url="/save-user" method="saveUser" />
 		<command-url url="/edit-user" method="editUser" />
 		<command-url url="/home" method="home" />
-	</command>
+	</command> -->
 	
 	<command command-class="by.htp.eduard.ps.web.commands.CardCommands">
 		<command-url url="/cards-list" method="showAllCards"/>

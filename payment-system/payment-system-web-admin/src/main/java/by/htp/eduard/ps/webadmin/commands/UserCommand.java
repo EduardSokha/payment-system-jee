@@ -1,14 +1,16 @@
 package by.htp.eduard.ps.webadmin.commands;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 
+import by.htp.eduard.ps.mvc.model.ModelAndView;
 import by.htp.eduard.ps.service.RoleService;
 import by.htp.eduard.ps.service.ServiceProvider;
 import by.htp.eduard.ps.service.UserService;
@@ -26,24 +28,28 @@ public class UserCommand {
 		roleService = ServiceProvider.getInstance().getRoleService();
 	}
 
-	public String showUserList(HttpServletRequest request) throws IOException, ServletException {
+	public ModelAndView showUserList(HttpServletRequest request) throws IOException, ServletException {
+		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/users/user-list.jsp");
 		List<UserDto> allUsers = userService.getAllUsers();
-		request.setAttribute("allUsers", allUsers);
-		return "/WEB-INF/pages/users/user-list.jsp";
+//		request.setAttribute("allUsers", allUsers);
+		modelAndView.addViewData("allUsers", allUsers);
+		return modelAndView;
 	}
 
-	public String addUser(HttpServletRequest request) {
+	public ModelAndView addUser(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/users/user-details.jsp");
 		List<RoleDto> allRoles = roleService.getAllRoles();
-		request.setAttribute("allRoles", allRoles);
-		return "/WEB-INF/pages/users/user-details.jsp";
+//		request.setAttribute("allRoles", allRoles);
+		modelAndView.addViewData("allRoles", allRoles);
+		return modelAndView;
 	}
 	
-	public String showUserDetail(HttpServletRequest request) throws IOException, ServletException {
-		return "/WEB-INF/pages/users/user.jsp";
+	public ModelAndView showUserDetail(HttpServletRequest request) throws IOException, ServletException {
+		return new ModelAndView("/WEB-INF/pages/users/user.jsp");
 	}
 
-	public String saveUser(HttpServletRequest request) throws IOException, ServletException {
-		List<String> validationErrors = new ArrayList<>();
+	public ModelAndView saveUser(HttpServletRequest request) throws IOException, ServletException {
+		Set<String> validationErrors = new HashSet<>();
 		Integer id = HttpUtils.getIntParam("id", request);
 		String login = request.getParameter("login");
 		if(StringUtils.isBlank(login)) {
@@ -102,32 +108,43 @@ public class UserCommand {
 		user.setResidenceRegistr(residenceRegistr);
 		
 		if(!validationErrors.isEmpty()) {
-			request.setAttribute("validationErrors", validationErrors);
+			ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/users/user-details.jsp");			
+//			request.setAttribute("validationErrors", validationErrors);
+			modelAndView.addAllValidationError(validationErrors);
 			
 			List<RoleDto> allRoles = roleService.getAllRoles();
-			request.setAttribute("allRoles", allRoles);
+//			request.setAttribute("allRoles", allRoles);
+			modelAndView.addViewData("allRoles", allRoles);
 			
-			request.setAttribute("user", user);
-			return "/WEB-INF/pages/users/user-details.jsp";
+//			request.setAttribute("user", user);
+			modelAndView.addViewData("user", user);
+			
+			return modelAndView;
 		}
 		
 		userService.saveUser(user);
+		ModelAndView modelAndView = new ModelAndView("redirect:user-list");
 		
-		return "redirect:user-list";
+		return modelAndView;
 	}
 	
-	public String editUser(HttpServletRequest request) {
+	public ModelAndView editUser(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/users/user-details.jsp");
 		List<RoleDto> allRoles = roleService.getAllRoles();
-		request.setAttribute("allRoles", allRoles);
+//		request.setAttribute("allRoles", allRoles);
+		modelAndView.addViewData("allRoles", allRoles);
+		
 		Integer id = HttpUtils.getIntParam("userId", request);
 		UserDto user = userService.getUserById(id);
-		request.setAttribute("user", user);
-		return "/WEB-INF/pages/users/user-details.jsp";
+//		request.setAttribute("user", user);
+		modelAndView.addViewData("user", user);
+		
+		return modelAndView;
 	}
 	
-	public String deleteUser(HttpServletRequest request) {
+	public ModelAndView deleteUser(HttpServletRequest request) {
 		Integer id = HttpUtils.getIntParam("userId", request);
 		userService.deleteUser(id);
-		return "redirect:user-list";
+		return new ModelAndView("redirect:user-list");
 	}
 }
