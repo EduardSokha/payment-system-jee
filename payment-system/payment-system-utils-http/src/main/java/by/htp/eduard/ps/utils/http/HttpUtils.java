@@ -5,13 +5,19 @@ import java.io.File;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
+
 public class HttpUtils {
+	
+	private final static Logger logger = Logger.getLogger(HttpUtils.class);
+	
 	public static Integer getIntParam(String paramName, HttpServletRequest request) {
 		String idStr = request.getParameter(paramName);
 		Integer value = null;
 		try {
 			value = Integer.parseInt(idStr);
 		} catch(Exception e){
+			logger.error("Cannot parse integer value", e);
 		}
 		
 		return value;
@@ -23,6 +29,7 @@ public class HttpUtils {
 		try {
 			value = Double.parseDouble(idStr);
 		} catch(Exception e){
+			logger.error("Cannot parse double value", e);
 		}
 		
 		return value;

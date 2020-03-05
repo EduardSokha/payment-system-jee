@@ -68,7 +68,7 @@ CREATE TABLE `account` (
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_account_currency1` FOREIGN KEY (`currency_idcurrency`) REFERENCES `currency` (`id`),
   CONSTRAINT `fk_account_status1` FOREIGN KEY (`idstatus`) REFERENCES `status` (`id`),
-  CONSTRAINT `fk_account_user1` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`)
+  CONSTRAINT `fk_account_user1` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 INSERT INTO `account` VALUES (1,'86fdc196-89f0-4626-a859-5194c2cd3093',38,'2019-10-21',1,2,2),

@@ -89,10 +89,8 @@ public class DispatcherServlet extends HttpServlet {
 			router.route(modelAndView);
 			
 			return;
-			
 		}
-		
-		
+
 		ModelAndView modelAndView = (ModelAndView)result;
 		
 		HttpSession session = request.getSession();

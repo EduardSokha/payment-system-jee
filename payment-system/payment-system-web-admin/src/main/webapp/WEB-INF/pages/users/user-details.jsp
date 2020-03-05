@@ -118,7 +118,7 @@
                                                     data-select2-id="1" tabindex="-1" aria-hidden="true">
 
                                                     <c:forEach var="role" items="${allRoles}">
-                                                        <option value="${role.id}" data-select2-id="30">${role.roleName}</option>
+                                                        <option value="${role.id}" data-select2-id="30">${role.name}</option>
                                                     </c:forEach>
 
                                                 </select> <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus"

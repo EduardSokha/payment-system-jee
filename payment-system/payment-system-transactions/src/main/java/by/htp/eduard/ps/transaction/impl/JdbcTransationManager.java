@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import by.htp.eduard.ps.jdbc.mysql.ConnectionPool;
 import by.htp.eduard.ps.transaction.TransactionManeger;
 
@@ -13,6 +15,8 @@ public class JdbcTransationManager implements TransactionManeger{
 	private static final TransactionManeger transactionManeger = new JdbcTransationManager();
 	
 	private Map<Long, Connection> transactionMap = new HashMap<>();
+	
+	private final static Logger logger = Logger.getLogger(JdbcTransationManager.class);
 
 	public static TransactionManeger getTransactionmaneger() {
 		return transactionManeger;
@@ -47,6 +51,14 @@ public class JdbcTransationManager implements TransactionManeger{
 			connection.commit();
 		} catch (SQLException e) {
 			throw new RuntimeException("Some problem accured during comit transaction!", e);
+		} finally {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					logger.error("Cannot close connection", e);
+				} finally {
+					transactionMap.remove(threadId);
+				}
 		}
 	}
 
@@ -62,6 +74,14 @@ public class JdbcTransationManager implements TransactionManeger{
 			connection.rollback();
 		} catch (SQLException e) {
 			throw new RuntimeException("Some problem accured during rollBack transaction!", e);
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				logger.error("Cannot close connection", e);
+			} finally {
+				transactionMap.remove(threadId);
+			}
 		}
 	}
 
