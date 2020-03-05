@@ -15,6 +15,7 @@ import by.htp.eduard.ps.dao.AccountDao;
 import by.htp.eduard.ps.dao.entities.Account;
 import by.htp.eduard.ps.dao.exceptions.DaoException;
 import by.htp.eduard.ps.jdbc.mysql.ConnectionPool;
+import by.htp.eduard.ps.transaction.TransactionManeger;
 import by.htp.eduard.ps.utils.DateUtils;
 
 public class AccountDaoImpl implements AccountDao {
@@ -33,7 +34,7 @@ public class AccountDaoImpl implements AccountDao {
 //		String sq1 = "SELECT `id`, `number`, `balance`, `creation_date`, `iduser`, `idstatus`, `currency_idcurrency` FROM `account`";
 
 		try {
-			con = cp.getConnection();
+			con = TransactionManeger.getTransactionManeger().getConnection();
 			ps = con.prepareStatement(sq1);
 			rs = ps.executeQuery(sq1);
 
@@ -44,8 +45,6 @@ public class AccountDaoImpl implements AccountDao {
 		} catch (SQLException e) {
 			logger.debug("SQLException DAO", e);
 			throw new DaoException(e);
-		} finally {
-			cp.releaseDbResourses(con, ps, rs);
 		}
 
 		return accounts;
