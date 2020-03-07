@@ -27,7 +27,7 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
                                 <li class="breadcrumb-item active">500 Error Page</li>
                             </ol>
                         </div>
@@ -47,7 +47,7 @@
                         </h2>
 
                         <p>
-                            We will work on fixing that right away. Meanwhile, you may <a href="../../index.html">return to dashboard</a>.
+                            We will work on fixing that right away. Meanwhile, you may <a href="dashboard">return to dashboard</a>.
                         </p>
 
                     </div>
@@ -58,7 +58,6 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <jsp:include page="/WEB-INF/pages/common/footer.jsp"></jsp:include>
 
         <jsp:include page="/WEB-INF/pages/common/control-sidebar.jsp"></jsp:include>
     </div>

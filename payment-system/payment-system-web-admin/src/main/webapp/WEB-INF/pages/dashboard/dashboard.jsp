@@ -73,8 +73,6 @@
         </div>
         <!-- /.content-wrapper -->
 
-        <jsp:include page="/WEB-INF/pages/common/footer.jsp"></jsp:include>
-
         <jsp:include page="/WEB-INF/pages/common/control-sidebar.jsp"></jsp:include>
 
     </div>

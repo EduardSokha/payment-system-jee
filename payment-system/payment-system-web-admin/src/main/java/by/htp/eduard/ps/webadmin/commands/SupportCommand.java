@@ -79,8 +79,6 @@ public class SupportCommand {
 		EmailService emailService = new EmailServiceImpl();
 		emailService.sendEmail(emai, "Your restoried password", user.getPassword());
 		
-//		request.setAttribute("user", user);
-//		return "/WEB-INF/pages/authentication/forget-password.jsp";
 		ModelAndView modelAndView = new ModelAndView("redirect:sent-password");
 		return modelAndView;
 	}
