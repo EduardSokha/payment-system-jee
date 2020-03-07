@@ -27,6 +27,7 @@ import by.htp.eduard.ps.utils.http.HttpUtils;
  * @author Eduard
  *
  */
+
 public class DispatcherServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -84,6 +85,25 @@ public class DispatcherServlet extends HttpServlet {
 		if(result.getClass() == String.class) {
 			
 			ModelAndView modelAndView = new ModelAndView(result.toString());
+			
+			HttpSession session = request.getSession();
+			ModelAndView redirectModelAndView = (ModelAndView)session.getAttribute("redirectModelAndView");
+			
+			if(redirectModelAndView != null) {
+				modelAndView.addAllValidationError(redirectModelAndView.getValidationErrors());
+				modelAndView.addAllViewData(redirectModelAndView.getViewData());
+				
+				session.removeAttribute("redirectModelAndView");
+			}
+			
+			Set<String> validationErrors = modelAndView.getValidationErrors();
+			request.setAttribute("validationErrors", validationErrors);
+			
+			Map<String, Object> viewData = modelAndView.getViewData();
+			Set<String> dataKeys = viewData.keySet();
+			for (String key : dataKeys) {
+				request.setAttribute(key, viewData.get(key));
+			}
 			
 			Rourter router = RouterFactory.getRouter(modelAndView, request, response);
 			router.route(modelAndView);

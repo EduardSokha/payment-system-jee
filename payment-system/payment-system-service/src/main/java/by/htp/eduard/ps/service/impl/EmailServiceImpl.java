@@ -38,9 +38,9 @@ public class EmailServiceImpl implements EmailService {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("cukermanoid@gmail.com"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-            message.setSubject("Testing Gmail TLS");
-            message.setText("Dear Mail Crawler,"
-                    + "\n\n Please do not spam my email!");
+            message.setSubject("Yoor Password");
+            message.setText("Dear customers, your password:"
+                    + "\n\n" + body);
 
             Transport.send(message);
 

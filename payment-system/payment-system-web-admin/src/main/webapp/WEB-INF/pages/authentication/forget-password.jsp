@@ -15,9 +15,7 @@
 <body class="hold-transition register-page">
     <div class="register-box">
         <div class="register-logo">
-            <p>
-                <b>Admin</b>LTE
-            </p>
+             <p><b>Fast&Secure</b>Pay</p>
         </div>
 
         <div class="card">
@@ -66,9 +64,19 @@
                             <span id="inputLogin-error" class="error">Please enter codeword</span>
                         </mvc:error>
                     </div>
+                    <div class="input-group mb-3">
+                        <input type="text" name="emai" class="form-control" placeholder="Email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fa fa-envelope"></span>
+                            </div>
+                        </div>
+                        <mvc:error code="user.email.empty">
+                            <span id="inputLogin-error" class="error">Please enter email</span>
+                        </mvc:error>
+                    </div>
 
-                    <div class="row">
-                        
+                    <div class="row">                        
                         <!-- /.col -->
                         <div class="col-4">
                             <button type="submit" class="btn btn-primary btn-block">Send</button>

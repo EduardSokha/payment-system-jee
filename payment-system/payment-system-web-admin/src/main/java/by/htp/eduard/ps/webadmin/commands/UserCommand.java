@@ -31,7 +31,6 @@ public class UserCommand {
 	public ModelAndView showUserList(HttpServletRequest request) throws IOException, ServletException {
 		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/users/user-list.jsp");
 		List<UserDto> allUsers = userService.getAllUsers();
-//		request.setAttribute("allUsers", allUsers);
 		modelAndView.addViewData("allUsers", allUsers);
 		return modelAndView;
 	}
@@ -39,7 +38,6 @@ public class UserCommand {
 	public ModelAndView addUser(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/users/user-details.jsp");
 		List<RoleDto> allRoles = roleService.getAllRoles();
-//		request.setAttribute("allRoles", allRoles);
 		modelAndView.addViewData("allRoles", allRoles);
 		return modelAndView;
 	}
@@ -108,15 +106,12 @@ public class UserCommand {
 		user.setResidenceRegistr(residenceRegistr);
 		
 		if(!validationErrors.isEmpty()) {
-			ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/users/user-details.jsp");			
-//			request.setAttribute("validationErrors", validationErrors);
+			ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/users/user-details.jsp");	
 			modelAndView.addAllValidationError(validationErrors);
 			
 			List<RoleDto> allRoles = roleService.getAllRoles();
-//			request.setAttribute("allRoles", allRoles);
 			modelAndView.addViewData("allRoles", allRoles);
 			
-//			request.setAttribute("user", user);
 			modelAndView.addViewData("user", user);
 			
 			return modelAndView;
@@ -131,12 +126,10 @@ public class UserCommand {
 	public ModelAndView editUser(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/users/user-details.jsp");
 		List<RoleDto> allRoles = roleService.getAllRoles();
-//		request.setAttribute("allRoles", allRoles);
 		modelAndView.addViewData("allRoles", allRoles);
 		
 		Integer id = HttpUtils.getIntParam("userId", request);
 		UserDto user = userService.getUserById(id);
-//		request.setAttribute("user", user);
 		modelAndView.addViewData("user", user);
 		
 		return modelAndView;

@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Payment System</title>
+<title>Add card</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -29,12 +29,6 @@
                         <div class="col-sm-6">
                             <h1>Cards</h1>
                         </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="">Home</a></li>
-                                <li class="breadcrumb-item active">Blank Page</li>
-                            </ol>
-                        </div>
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -46,7 +40,7 @@
                 <!-- Default box -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Create New Card And Account</h3>
+                        <h3 class="card-title">Create new card and account</h3>
 
                         <jsp:include page="/WEB-INF/pages/common/card-panel-tools.jsp"></jsp:include>
                     </div>
@@ -61,12 +55,11 @@
                                 <div class="col-sm-6">
                                     <div class="tab-pane" id="settings">
                                         <form action="save-card-and-account" method="post" class="form-horizontal">
-                                        <%-- <input type="hidden" name="idAccount" value="${account.id}"> --%>
                                         <input type="hidden" name="balance" value="0">
                                         <input type="hidden" name="idStatus" value="2">
 
                                             <div class="form-group">
-                                                <label>Payment Systems</label> 
+                                                <label>Payment systems</label> 
                                                 <select name="idPaymentSystem" class="form-control select2 select2-hidden-accessible" style="width: 100%;"
                                                     data-select2-id="1" tabindex="-1" aria-hidden="true">
                                                     
@@ -80,7 +73,7 @@
                                             </div>
                                             
                                             <div class="form-group">
-                                                <label>Trade Names Cards</label> 
+                                                <label>Trade names cards</label> 
                                                 <select name="idTradeNameCard" class="form-control select2 select2-hidden-accessible" style="width: 100%;"
                                                     data-select2-id="1" tabindex="-1" aria-hidden="true">
                                                     
@@ -91,21 +84,7 @@
                                                 </select> 
                                                 <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus"
                                                     dir="ltr" data-select2-id="2" style="width: 100%;"><span class="selection"></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                            </div>                                            
-                                            
-                                            <%-- <div class="form-group">
-                                                <label>Accounts</label> 
-                                                <select name="idAccount" class="form-control select2 select2-hidden-accessible" style="width: 100%;"
-                                                    data-select2-id="1" tabindex="-1" aria-hidden="true">
-                                                    
-                                                    <c:forEach var="account" items="${allAccounts}">
-                                                        <option value="${account.id}" data-select2-id="30">${account.id}</option>
-                                                    </c:forEach>
-                                                    
-                                                </select> 
-                                                <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus"
-                                                    dir="ltr" data-select2-id="2" style="width: 100%;"><span class="selection"></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                            </div> --%>
+                                            </div>   
                                             
                                             <div class="form-group">
                                                 <label>Users</label> 
@@ -144,40 +123,9 @@
                                         </form>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12 col-md-5">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
-                                </div>
-                                <div class="col-sm-12 col-md-7">
-                                    <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-                                        <ul class="pagination">
-                                            <li class="paginate_button page-item previous disabled" id="example2_previous"><a href="#" aria-controls="example2"
-                                                data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                                            <li class="paginate_button page-item active"><a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0"
-                                                class="page-link">1</a></li>
-                                            <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0"
-                                                class="page-link">2</a></li>
-                                            <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="3" tabindex="0"
-                                                class="page-link">3</a></li>
-                                            <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="4" tabindex="0"
-                                                class="page-link">4</a></li>
-                                            <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="5" tabindex="0"
-                                                class="page-link">5</a></li>
-                                            <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="6" tabindex="0"
-                                                class="page-link">6</a></li>
-                                            <li class="paginate_button page-item next" id="example2_next"><a href="#" aria-controls="example2" data-dt-idx="7"
-                                                tabindex="0" class="page-link">Next</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            </div>                            
                         </div>
                     </div>
-
-                    <!-- /.card-body -->
-                    <div class="card-footer">Footer</div>
-                    <!-- /.card-footer-->
                 </div>
                 <!-- /.card -->
 
@@ -185,8 +133,6 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-
-        <jsp:include page="/WEB-INF/pages/common/footer.jsp"></jsp:include>
 
         <jsp:include page="/WEB-INF/pages/common/control-sidebar.jsp"></jsp:include>
 

@@ -14,7 +14,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <p><b>Admin</b>LTE</p>
+    <p><b>Fast&Secure</b>Pay</p>
   </div>
 
   <div class="card">

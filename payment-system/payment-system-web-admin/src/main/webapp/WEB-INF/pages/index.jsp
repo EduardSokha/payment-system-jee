@@ -19,9 +19,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <p>
-                <b>Admin</b>LTE
-            </p>
+             <p>Welcome to <b>Fast&Secure</b>Pay</p>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -75,9 +73,6 @@
 
                 <p class="mb-1">
                     <a href="forget-password">I forgot my password</a>
-                </p>
-                <p class="mb-0">
-                    <a href="registration" class="text-center">Register a new membership</a>
                 </p>
             </div>
             <!-- /.login-card-body -->

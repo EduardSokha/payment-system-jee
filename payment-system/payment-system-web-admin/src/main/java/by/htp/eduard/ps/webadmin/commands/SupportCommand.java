@@ -3,9 +3,7 @@ package by.htp.eduard.ps.webadmin.commands;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -14,107 +12,19 @@ import by.htp.eduard.ps.security.dto.AuthenticationDto;
 import by.htp.eduard.ps.security.service.AuthenticationService;
 import by.htp.eduard.ps.security.service.AuthenticationServiceProvider;
 import by.htp.eduard.ps.service.EmailService;
-import by.htp.eduard.ps.service.ServiceProvider;
-import by.htp.eduard.ps.service.UserService;
 import by.htp.eduard.ps.service.dto.UserDto;
 import by.htp.eduard.ps.service.impl.EmailServiceImpl;
-import by.htp.eduard.ps.utils.http.HttpUtils;
 
 public class SupportCommand {
 	
 	private final AuthenticationService authenticationService;
-	private final UserService userService;
 
 	public SupportCommand() {
 		authenticationService = AuthenticationServiceProvider.getInstance().getAuthenticationService();
-		userService = ServiceProvider.getInstance().getUserService();
 	}
 	
 	public ModelAndView registrationNewUser(HttpServletRequest request) {
 		return new ModelAndView("/WEB-INF/pages/users/registration-new-user.jsp");
-	}
-	
-	public ModelAndView saveNewUser(HttpServletRequest request) {
-		Set<String> validationErrors = new HashSet<>();
-		HttpSession session = request.getSession();	
-		
-		if(!request.getParameter("password").equals(request.getParameter("password2"))) {
-			validationErrors.add("password.match");
-		}
-		
-		Integer id = HttpUtils.getIntParam("id", request);
-		String login = request.getParameter("login");
-		if(StringUtils.isBlank(login)) {
-			validationErrors.add("user.login.empty");
-		}
-		if(userService.isLoginExists(login)) {
-			validationErrors.add("user.login.duplicate");
-		}
-		String password = request.getParameter("password");
-		if(StringUtils.isBlank(password)) {
-			validationErrors.add("user.password.empty");
-		}
-		String name = request.getParameter("name");
-		if(StringUtils.isBlank(name)) {
-			validationErrors.add("user.name.empty");
-		}
-		String surname = request.getParameter("surname");
-		if(StringUtils.isBlank(surname)) {
-			validationErrors.add("user.surname.empty");
-		}
-		String address = request.getParameter("address");
-		Integer roleId = HttpUtils.getIntParam("roleId", request);
-		String passportSeries = request.getParameter("passportSeries");
-		if(StringUtils.isBlank(passportSeries)) {
-			validationErrors.add("user.passportSeries.empty");
-		}
-		String passportId = request.getParameter("passportId");
-		if(StringUtils.isBlank(passportId)) {
-			validationErrors.add("user.passportId.empty");
-		}
-		String codeWord = request.getParameter("codeWord");
-		if(StringUtils.isBlank(codeWord)) {
-			validationErrors.add("user.codeWord.empty");
-		}
-		String phoneNumber = request.getParameter("phoneNumber");
-		if(StringUtils.isBlank(phoneNumber)) {
-			validationErrors.add("user.phoneNumber.empty");
-		}
-		String residenceRegistr = request.getParameter("residenceRegistr");
-		if(StringUtils.isBlank(residenceRegistr)) {
-			validationErrors.add("user.residenceRegistr.empty");
-		}
-		
-		UserDto user = new UserDto();
-		user.setId(id);
-		user.setLogin(login);
-		user.setPassword(password);
-		user.setName(name);
-		user.setSurname(surname);
-		user.setAddress(address);
-		user.setRoleId(roleId);
-		user.setPassportSeries(passportSeries);
-		user.setPassportId(passportId);
-		user.setCodeWord(codeWord);
-		user.setPhoneNumber(phoneNumber);
-		user.setResidenceRegistr(residenceRegistr);
-		
-		if(!validationErrors.isEmpty()) {
-			ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/users/registration-new-user.jsp");
-			modelAndView.addAllValidationError(validationErrors);
-			
-			modelAndView.addViewData("user", user);
-			return modelAndView;
-		}
-		
-		userService.saveUser(user);
-		
-		session.setAttribute("successRegistr", true);
-		
-		ServletContext context = request.getServletContext();
-		String contextPath = context.getContextPath();
-		ModelAndView modelAndView = new ModelAndView("redirect:" + contextPath);
-		return modelAndView;
 	}
 	
 	public ModelAndView forgetPassword(HttpServletRequest request) {
@@ -135,6 +45,10 @@ public class SupportCommand {
 		String codeWord = request.getParameter("codeWord");
 		if(StringUtils.isBlank(codeWord)) {
 			validationErrors.add("user.codeWord.empty");
+		}
+		String emai = request.getParameter("emai");
+		if(StringUtils.isBlank(emai)) {
+			validationErrors.add("user.email.empty");
 		}
 		
 		AuthenticationDto authentication = new AuthenticationDto();
@@ -163,11 +77,15 @@ public class SupportCommand {
 		}
 		
 		EmailService emailService = new EmailServiceImpl();
-		emailService.sendEmail("deathisthebestend@mail.ru", "Your restoried password", user.getPassword());
+		emailService.sendEmail(emai, "Your restoried password", user.getPassword());
 		
 //		request.setAttribute("user", user);
 //		return "/WEB-INF/pages/authentication/forget-password.jsp";
-		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/authentication/forget-password-completed.jsp");
+		ModelAndView modelAndView = new ModelAndView("redirect:sent-password");
 		return modelAndView;
+	}
+	
+	public ModelAndView sentForgetPassword(HttpServletRequest request) {
+		return new ModelAndView("/WEB-INF/pages/authentication/forget-password-completed.jsp");
 	}
 }

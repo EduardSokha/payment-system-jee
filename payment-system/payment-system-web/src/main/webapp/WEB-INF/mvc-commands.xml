@@ -8,46 +8,31 @@
 	</command>
 	
 	<command command-class="by.htp.eduard.ps.web.commands.UserCommand">
-		<command-url url="/user-list" method="showUserList" />
-		<command-url url="/user" method="showUserDetail" />
-		<command-url url="/add-user" method="addUser" />
-		<command-url url="/save-user" method="saveUser" />
-		<command-url url="/edit-user" method="editUser" />
-		<command-url url="/home" method="home" />
+		<command-url url="/save-user" method="saveUser"/>
 	</command>
 	
 	<command command-class="by.htp.eduard.ps.web.commands.CardCommands">
 		<command-url url="/cards-list" method="showAllCards"/>
-		<command-url url="/add-card" method="addCard"/>
-		<command-url url="/save-card" method="saveCard"/>
-		<command-url url="/edit-card" method="editCard"/>
-		<command-url url="/delete-card" method="deleteCard"/>
 		<command-url url="/add-card-and-account" method="addCardAndAccount"/>
 		<command-url url="/save-card-and-account" method="saveCardAndAccount"/>	
 	</command>
 	
 	<command command-class="by.htp.eduard.ps.web.commands.AccountCommands">
 		<command-url url="/accounts-list" method="showAllAccounts"/>
-		<command-url url="/add-account" method="addAccount"/>
-		<command-url url="/save-account" method="saveAccount"/>
-		<command-url url="/edit-account" method="editAccount"/>
-		<command-url url="/delete-account" method="deleteAccount"/>
-		<command-url url="/lock-unlock-account" method="lockUnlockAccount"/>
-		<command-url url="/add-card-to-account" method="addCard"/>
 	</command>
 	
 	<command command-class="by.htp.eduard.ps.web.commands.PayCommands">
 		<command-url url="/payments-list" method="showAllPayments"/>
 		<command-url url="/create-pay" method="createPay"/>
 		<command-url url="/save-pay" method="savePay"/>
-		<command-url url="/delete-pay" method="deletePay"/>
 	</command>
 	
 	<command command-class="by.htp.eduard.ps.web.commands.SupportCommands">
 		<command-url url="/registration" method="registrationNewUser"/>
 		<command-url url="/save-new-user" method="saveNewUser" />
 		<command-url url="/forget-password" method="forgetPassword"/>
-		<command-url url="/get-password" method="getForgetPassword" />		
+		<command-url url="/get-password" method="getForgetPassword" />	
+		<command-url url="/home" method="home" />	
 	</command>
 
 </mvc-commands>

@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Register a new membership</title>
+  <title>Create new user</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <p><b>Admin</b>LTE</p>
+    <p><b>Fast&Secure</b>Pay</p>
   </div>
 
   <div class="card">

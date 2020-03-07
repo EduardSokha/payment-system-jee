@@ -12,7 +12,7 @@
 <jsp:include page="/WEB-INF/pages/common/css-include.jsp"></jsp:include>
 
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini sidebar-collapse">
     <div class="wrapper">
 
         <jsp:include page="/WEB-INF/pages/common/nav-bar.jsp"></jsp:include>
@@ -26,13 +26,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>User</h1>
-                        </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="home">Home</a></li>
-                                <li class="breadcrumb-item active">User Profile</li>
-                            </ol>
+                            <h1>Profile</h1>
                         </div>
                     </div>
                 </div>
@@ -49,23 +43,16 @@
                             <div class="card card-primary card-outline">
                                 <div class="card-body box-profile">
                                     <div class="text-center">
- <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-                                       <%--  <c:url value="/static-content/images/user4-128x128.jpg" var="imagesUser4"></c:url>
-                                        <img class="profile-user-img img-fluid img-circle" src="${imagesUser4}" alt="User profile picture"> --%>
- <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
                                     </div>
 
-                                    <h3 class="profile-username text-center">${user.name} ${user.surname}</h3>
-
-                                    <!-- <p class="text-muted text-center">Software Engineer</p> -->
+                                    <h3 class="profile-username text-center">${authentication.name} ${authentication.surname}</h3>
 
                                     <ul class="list-group list-group-unbordered mb-3">
-                                        <li class="list-group-item"><b>Id</b> <a class="float-right">${user.id}</a></li>
-                                        <li class="list-group-item"><b>Login</b> <a class="float-right">${user.login}</a></li>
-                                        <li class="list-group-item"><b>Phone Number</b> <a class="float-right">${user.phoneNumber}</a></li>
+                                        <li class="list-group-item"><b>Id</b> <a class="float-right">${authentication.id}</a></li>
+                                        <li class="list-group-item"><b>Login</b> <a class="float-right">${authentication.login}</a></li>
+                                        <li class="list-group-item"><b>Phone Number</b> <a class="float-right">${authentication.phoneNumber}</a></li>
                                     </ul>
 
-                                    <!-- <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> -->
                                 </div>
                                 <!-- /.card-body -->
                             </div>
@@ -80,31 +67,31 @@
                                 <div class="card-body">
                                     <strong><i class="fas fa-map-marker-alt mr-1"></i>Address</strong>
 
-                                    <p class="text-muted">${user.address}</p>
+                                    <p class="text-muted">${authentication.address}</p>
                                     
                                     <hr>
 
                                     <strong><i class="far fa-file-alt mr-1"></i>Passport Series</strong>
 
-                                    <p class="text-muted">${user.passportSeries}</p>
+                                    <p class="text-muted">${authentication.passportSeries}</p>
                                     
                                     <hr>
 
                                     <strong><i class="far fa-file-alt mr-1"></i>Passport Id</strong>
 
-                                    <p class="text-muted">${user.passportId}</p>
+                                    <p class="text-muted">${authentication.passportId}</p>
                                     
                                     <hr>
 
                                     <strong><i class="far fa-file-alt mr-1"></i>Residence Registration</strong>
 
-                                    <p class="text-muted">${user.residenceRegistr}</p>
+                                    <p class="text-muted">${authentication.residenceRegistr}</p>
                                     
                                     <hr>
 
                                     <strong><i class="far fa-file-alt mr-1"></i>CodeWord</strong>
 
-                                    <p class="text-muted">${user.codeWord}</p>
+                                    <p class="text-muted">${authentication.codeWord}</p>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
@@ -119,23 +106,14 @@
                                         <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Му accounts</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Correction data</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#payments" data-toggle="tab">My payments</a></li>
-                                       <!--  <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Correct password</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Transfer between cards</a></li> -->
                                     </ul>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <div class="tab-content">
- <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
                                         <div class="active tab-pane" id="activity">
                                             <!-- Post -->
-                                            
-                                            <!-- /.post -->
-
-                                            <!-- Post -->
                                             <div class="post clearfix">
-                                                 <a href="add-card-and-account" class="btn btn-success">Add Card And Account</a>
-                                                 <br><br>
                                                  <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                                                     <thead>
                                                         <tr role="row">
@@ -157,8 +135,6 @@
                                                                 aria-label="Platform(s): activate to sort column ascending">Currency</th>
                                                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                                                                 aria-label="Platform(s): activate to sort column ascending">Status</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                                                aria-label="Browser: activate to sort column ascending">Actions</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -173,28 +149,13 @@
                                                                 <td>${card.balance}</td>
                                                                 <td>${card.currency}</td>
                                                                 <td>${card.status}</td>
-                                                                
-                                                                <td>
-                                                                
-                                                                    <c:url value="create-pay" var="payUrl">
-                                                                        <c:param name="cardId" value="${card.id}" />
-                                                                    </c:url>
-                                                                    
-                                                                    <a href="${payUrl}" type="button" class="btn btn-info btn-xs">Make payment</a>
-                                                                    
-                                                                </td>
                                                             </tr>
                                                         </c:forEach>
                                                     </tbody>
                                                 </table>
                                             </div>
                                             <!-- /.post -->
-
-                                            <!-- Post -->
-                                         
-                                            <!-- /.post -->
                                         </div>
- <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
                                         <!-- /.tab-pane -->
                                         <div class="tab-pane" id="timeline">
                                         
@@ -228,7 +189,6 @@
                                                             <td>${account.userLogin}</td>
                                                             <td>${account.statusName}</td>
                                                             <td>${account.currencyName}</td>
-                                                            
                                                         </tr>
                                                     </c:forEach>
         
@@ -238,71 +198,70 @@
                                             
                                         </div>
                                         <!-- /.tab-pane -->
- <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
                                         <div class="tab-pane" id="settings">
                                             <form class="form-horizontal" action="save-user">
                                             
-                                            <input type="hidden" name="id" value="${user.id}">
-                                            <input type="hidden" name="roleId" value="${user.roleId}">
+                                            <input type="hidden" name="id" value="${authentication.id}">
+                                            <input type="hidden" name="roleId" value="${authentication.roleId}">
 
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Login</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="login" value="${user.login}" class="form-control" id="inputName" placeholder="Login">
+                                                    <input type="text" name="login" value="${authentication.login}" class="form-control" id="inputName" placeholder="Login">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Password</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="password" value="${user.password}" class="form-control" id="inputName" placeholder="Password">
+                                                    <input type="text" name="password" value="${authentication.password}" class="form-control" id="inputName" placeholder="Password">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="name" value="${user.name}" class="form-control" id="inputName" placeholder="Name">
+                                                    <input type="text" name="name" value="${authentication.name}" class="form-control" id="inputName" placeholder="Name">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Surname</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="surname" value="${user.surname}" class="form-control" id="inputName" placeholder="Surname">
+                                                    <input type="text" name="surname" value="${authentication.surname}" class="form-control" id="inputName" placeholder="Surname">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Address</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="address" value="${user.address}" class="form-control" id="inputName" placeholder="Address">
+                                                    <input type="text" name="address" value="${authentication.address}" class="form-control" id="inputName" placeholder="Address">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Passport Series</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="passportSeries" value="${user.passportSeries}" class="form-control" id="inputName" placeholder="Passport Series">
+                                                    <input type="text" name="passportSeries" value="${authentication.passportSeries}" class="form-control" id="inputName" placeholder="Passport Series">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Passport Id</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="passportId" value="${user.passportId}" class="form-control" id="inputName" placeholder="Passport Id">
+                                                    <input type="text" name="passportId" value="${authentication.passportId}" class="form-control" id="inputName" placeholder="Passport Id">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Codeword</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="codeWord" value="${user.codeWord}" class="form-control" id="inputName" placeholder="Codeword">
+                                                    <input type="text" name="codeWord" value="${authentication.codeWord}" class="form-control" id="inputName" placeholder="Codeword">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Phone Number</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="phoneNumber" value="${user.phoneNumber}" class="form-control" id="inputName" placeholder="Phone Number">
+                                                    <input type="text" name="phoneNumber" value="${authentication.phoneNumber}" class="form-control" id="inputName" placeholder="Phone Number">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Residence Registration</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="residenceRegistr" value="${user.residenceRegistr}" class="form-control" id="inputName" placeholder="Residence Registration">
+                                                    <input type="text" name="residenceRegistr" value="${authentication.residenceRegistr}" class="form-control" id="inputName" placeholder="Residence Registration">
                                                 </div>
                                             </div>
                                                 
@@ -314,7 +273,6 @@
                                             </form>
                                         </div>
                                         <!-- /.tab-pane -->
- <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
                                         <div class="tab-pane" id="payments">
                                             
                                             <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
@@ -364,8 +322,6 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-
-        <jsp:include page="/WEB-INF/pages/common/footer.jsp"></jsp:include>
 
         <jsp:include page="/WEB-INF/pages/common/control-sidebar.jsp"></jsp:include>
 

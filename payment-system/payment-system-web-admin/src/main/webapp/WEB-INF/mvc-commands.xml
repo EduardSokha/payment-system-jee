@@ -3,13 +3,13 @@
 
 	<static-content url="/static-content" />
 	
-	<command command-class="by.htp.eduard.ps.webadmin.commands.DashbordCommand">
-		<command-url url="/dashboard" method="showDashboardPage" />
-	</command>
-	
 	<command command-class="by.htp.eduard.ps.webadmin.commands.ErrorPageCommand">
 		<command-url url="/error-page" method="showErrorPage" />
 		<command-url url="/not-found-page" method="showNotFoundPage" />
+	</command>
+	
+	<command command-class="by.htp.eduard.ps.webadmin.commands.DashbordCommand">
+		<command-url url="/dashboard" method="showDashboardPage" />
 	</command>
 	
 	<command command-class="by.htp.eduard.ps.webadmin.commands.IndexCommand">
@@ -87,9 +87,9 @@
 	
 	<command command-class="by.htp.eduard.ps.webadmin.commands.SupportCommand">
 		<command-url url="/registration" method="registrationNewUser"/>
-		<command-url url="/save-new-user" method="saveNewUser" />
 		<command-url url="/forget-password" method="forgetPassword"/>
-		<command-url url="/get-password" method="getForgetPassword" />
+		<command-url url="/get-password" method="getForgetPassword"/>
+		<command-url url="/sent-password" method="sentForgetPassword" />
 	</command>
 	
 	<command command-class="by.htp.eduard.ps.webadmin.commands.StatusCommands">

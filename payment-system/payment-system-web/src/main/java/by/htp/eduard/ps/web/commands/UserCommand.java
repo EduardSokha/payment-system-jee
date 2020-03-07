@@ -1,45 +1,28 @@
 package by.htp.eduard.ps.web.commands;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import by.htp.eduard.ps.service.RoleService;
+import by.htp.eduard.ps.mvc.model.ModelAndView;
 import by.htp.eduard.ps.service.ServiceProvider;
 import by.htp.eduard.ps.service.UserService;
-import by.htp.eduard.ps.service.dto.RoleDto;
 import by.htp.eduard.ps.service.dto.UserDto;
 import by.htp.eduard.ps.utils.http.HttpUtils;
 
 public class UserCommand {
 	
 	private final UserService userService;
-	private final RoleService roleService;
-	
+
 	public UserCommand() {
 		userService = ServiceProvider.getInstance().getUserService();
-		roleService = ServiceProvider.getInstance().getRoleService();
 	}
 
-	public String showUserList(HttpServletRequest request) throws IOException, ServletException {
-		List<UserDto> allUsers = userService.getAllUsers();
-		request.setAttribute("allUsers", allUsers);
-		return "/WEB-INF/pages/users/user-list.jsp";
-	}
-
-	public String addUser(HttpServletRequest request) {
-		List<RoleDto> allRoles = roleService.getAllRoles();
-		request.setAttribute("allRoles", allRoles);
-		return "/WEB-INF/pages/users/user-details.jsp";
-	}
-	
-	public String showUserDetail(HttpServletRequest request) throws IOException, ServletException {
-		return "/WEB-INF/pages/users/user.jsp";
-	}
-
-	public String saveUser(HttpServletRequest request) throws IOException, ServletException {
+	public ModelAndView saveUser(HttpServletRequest request) throws IOException, ServletException {
+		ModelAndView modelAndView = new ModelAndView("redirect:home");
+		HttpSession session = request.getSession();	
 //		List<String> validationErrors = new ArrayList<>();
 		Integer id = HttpUtils.getIntParam("id", request);
 		String login = request.getParameter("login");
@@ -85,24 +68,8 @@ public class UserCommand {
 		user.setResidenceRegistr(residenceRegistr);
 		
 		user = userService.saveUser(user);
-		request.setAttribute("user", user);
+		session.setAttribute("authentication", user);
 		
-		return "/WEB-INF/pages/users/user-edit.jsp";
-	}
-	
-	public String editUser(HttpServletRequest request) {
-		List<RoleDto> allRoles = roleService.getAllRoles();
-		request.setAttribute("allRoles", allRoles);
-		Integer id = HttpUtils.getIntParam("userId", request);
-		UserDto user = userService.getUserById(id);
-		request.setAttribute("user", user);
-		return "/WEB-INF/pages/users/user-details.jsp";
-	}
-	
-	public String home(HttpServletRequest request) {
-//		Integer id = HttpUtils.getIntParam("id", request);
-//		UserDto user = userService.getUserById(id);
-//		request.setAttribute("user", user);
-		return "/WEB-INF/pages/users/user-edit.jsp";
+		return modelAndView;
 	}
 }

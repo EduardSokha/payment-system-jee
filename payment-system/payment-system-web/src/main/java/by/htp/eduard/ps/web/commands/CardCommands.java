@@ -52,56 +52,6 @@ public class CardCommands {
 		return modelAndView;
 	}
 	
-	public ModelAndView addCard(HttpServletRequest request) {	
-		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/cards/card-details.jsp");
-		List<NameCardDto> allTradeNamesCards = nameCardService.getAllNamesCard();
-		modelAndView.addViewData("allTradeNamesCards", allTradeNamesCards);
-		
-		List<PaymentSystemDto> allPaymentSystems = paymentSystemService.getAllPaymentSystems();
-		modelAndView.addViewData("allPaymentSystems", allPaymentSystems);
-		
-		List<AccountDto> allAccounts = accountService.getAllAccounts();
-		modelAndView.addViewData("allAccounts", allAccounts);
-		
-		return modelAndView;
-	}
-	
-	public ModelAndView saveCard(HttpServletRequest request) {
-		ModelAndView modelAndView = new ModelAndView("redirect:cards-list");
-		Integer idAccount = HttpUtils.getIntParam("idAccount", request);
-		Integer idPaymentSystem = HttpUtils.getIntParam("idPaymentSystem", request);
-		Integer idTradeNameCard = HttpUtils.getIntParam("idTradeNameCard", request);
-		
-		CardDto card = new CardDto();
-		card.setDate(new Date());	
-		card.setIdAccount(idAccount);
-		card.setIdPaymentSystem(idPaymentSystem);
-		card.setIdTradeNameCard(idTradeNameCard);
-		
-		cardService.saveCard(card);
-		
-		return modelAndView;
-	}
-
-	public ModelAndView editCard(HttpServletRequest request) {
-		ModelAndView modelAndView = new ModelAndView("redirect:cards-list");
-		Integer id = HttpUtils.getIntParam("cardId", request);
-		
-		CardDto card = new CardDto();		
-		card.setId(id);
-		cardService.saveCard(card);
-		
-		return modelAndView;
-	}
-	
-	public ModelAndView deleteCard(HttpServletRequest request) {
-		ModelAndView modelAndView = new ModelAndView("redirect:cards-list");
-		Integer id = HttpUtils.getIntParam("cardId", request);
-		cardService.deleteCard(id);
-		
-		return modelAndView;
-	}
-	
 	public ModelAndView addCardAndAccount(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/cards/add-card-account.jsp");
 		
@@ -126,11 +76,9 @@ public class CardCommands {
 	public ModelAndView saveCardAndAccount(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView("redirect:cards-list");
 		
-		Integer idAccount = HttpUtils.getIntParam("idAccount", request);
 		Integer idPaymentSystem = HttpUtils.getIntParam("idPaymentSystem", request);
 		Integer idTradeNameCard = HttpUtils.getIntParam("idTradeNameCard", request);
 		
-		Integer id = HttpUtils.getIntParam("id", request);
 		Double balance = HttpUtils.getDoubleParam("balance", request);
 		Integer idUser = HttpUtils.getIntParam("idUser", request);
 		Integer idStatus = HttpUtils.getIntParam("idStatus", request);
@@ -138,12 +86,10 @@ public class CardCommands {
 		
 		CardDto card = new CardDto();
 		card.setDate(new Date());	
-		card.setIdAccount(idAccount);
 		card.setIdPaymentSystem(idPaymentSystem);
 		card.setIdTradeNameCard(idTradeNameCard);
 		
 		AccountDto account = new AccountDto();
-		account.setId(id);
 		account.setBalance(balance);
 		account.setDate(new Date());
 		account.setIdUser(idUser);

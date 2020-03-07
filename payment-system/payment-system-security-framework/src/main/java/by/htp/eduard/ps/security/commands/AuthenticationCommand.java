@@ -1,6 +1,7 @@
 package by.htp.eduard.ps.security.commands;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.ServletContext;
@@ -14,14 +15,27 @@ import by.htp.eduard.ps.security.config.SecurityConfig;
 import by.htp.eduard.ps.security.dto.AuthenticationDto;
 import by.htp.eduard.ps.security.service.AuthenticationService;
 import by.htp.eduard.ps.security.service.AuthenticationServiceProvider;
+import by.htp.eduard.ps.service.AccountService;
+import by.htp.eduard.ps.service.CardService;
+import by.htp.eduard.ps.service.PayService;
+import by.htp.eduard.ps.service.ServiceProvider;
+import by.htp.eduard.ps.service.dto.AccountDto;
+import by.htp.eduard.ps.service.dto.CardDto;
+import by.htp.eduard.ps.service.dto.PayDto;
 import by.htp.eduard.ps.service.dto.UserDto;
 
 public class AuthenticationCommand {
 	
 	private final AuthenticationService authenticationService;
+	private final AccountService accountService;
+	private final CardService cardService;
+	private final PayService payService;
 
 	public AuthenticationCommand() {
 		authenticationService = AuthenticationServiceProvider.getInstance().getAuthenticationService();
+		accountService = ServiceProvider.getInstance().getAccountService();
+		cardService = ServiceProvider.getInstance().getCardService();
+		payService = ServiceProvider.getInstance().getPayService();
 	}
 	
 	public ModelAndView signIn(HttpServletRequest request) {
@@ -75,6 +89,16 @@ public class AuthenticationCommand {
 		if(redirectUrl == null) {
 			String viewName = "redirect:" + SecurityConfig.getConfig().getSuccsessLoginUrl();
 			ModelAndView modelAndView = new ModelAndView(viewName);
+			
+			List<CardDto> cards = cardService.getCardByIdUser(user.getId());
+			modelAndView.addViewData("allCards", cards);
+			
+			List<AccountDto> allAccounts = accountService.getAccountByIdUser(user.getId());
+			modelAndView.addViewData("allAccounts", allAccounts);
+			
+			List<PayDto> allPayments = payService.getPayByIdUser(user.getId());
+			modelAndView.addViewData("allPayments", allPayments);
+			
 			return modelAndView;
 		}
 		
@@ -83,6 +107,16 @@ public class AuthenticationCommand {
 		}
 		
 		ModelAndView modelAndView = new ModelAndView(redirectUrl);
+		
+		List<CardDto> cards = cardService.getCardByIdUser(user.getId());
+		modelAndView.addViewData("allCards", cards);
+		
+		List<AccountDto> allAccounts = accountService.getAccountByIdUser(user.getId());
+		modelAndView.addViewData("allAccounts", allAccounts);
+		
+		List<PayDto> allPayments = payService.getPayByIdUser(user.getId());
+		modelAndView.addViewData("allPayments", allPayments);
+		
 		return modelAndView;
 	}
 	

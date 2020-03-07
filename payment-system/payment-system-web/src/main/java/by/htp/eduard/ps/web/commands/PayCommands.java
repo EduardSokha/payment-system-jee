@@ -53,13 +53,11 @@ public class PayCommands {
 	public ModelAndView savePay(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView("redirect:payments-list");
 		
-		Integer id = HttpUtils.getIntParam("id", request);
 		Double price = HttpUtils.getDoubleParam("price", request);
 		Integer idAccount = HttpUtils.getIntParam("idAccount", request);
 		String description = request.getParameter("description");
 		
 		PayDto pay = new PayDto();
-		pay.setId(id);
 		pay.setDate(new Date());
 		pay.setPrice(price);
 		pay.setIdAccount(idAccount);
@@ -74,11 +72,5 @@ public class PayCommands {
 		}
 		
 		return modelAndView;
-	}
-	
-	public ModelAndView deletePay(HttpServletRequest request) {
-		Integer id = HttpUtils.getIntParam("payId", request);
-		payService.deletePay(id);
-		return new ModelAndView("redirect:payments-list");
 	}
 }

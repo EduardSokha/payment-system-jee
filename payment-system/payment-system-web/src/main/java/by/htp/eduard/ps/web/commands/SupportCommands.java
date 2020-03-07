@@ -37,35 +37,6 @@ public class SupportCommands {
 		payService = ServiceProvider.getInstance().getPayService();
 	}
 	
-	public String authorization(HttpServletRequest request) {
-		
-		String login = request.getParameter("login");
-		String password = request.getParameter("password");
-		
-		AuthenticationDto authentication = new AuthenticationDto();
-		authentication.setLogin(login);
-		authentication.setPassword(password);
-		
-		UserDto user = authenticationService.signIn(authentication);
-		if(user==null) {
-			ServletContext context = request.getServletContext();
-			String contextPath = context.getContextPath();
-			return "redirect:" + contextPath;
-		}
-		request.setAttribute("user", user);
-		
-		List<CardDto> cards = cardService.getCardByIdUser(user.getId());
-		request.setAttribute("allCards", cards);
-		
-		List<AccountDto> allAccounts = accountService.getAccountByIdUser(user.getId());
-		request.setAttribute("allAccounts", allAccounts);
-		
-		List<PayDto> allPayments = payService.getPayByIdUser(user.getId());
-		request.setAttribute("allPayments", allPayments);
-		
-		return "/WEB-INF/pages/users/user-edit.jsp";
-	}
-	
 	public ModelAndView registrationNewUser(HttpServletRequest request) {
 		return new ModelAndView("/WEB-INF/pages/users/registration-new-user.jsp");
 	}
@@ -78,7 +49,6 @@ public class SupportCommands {
 			return "redirect:registration";
 		}
 		
-		Integer id = HttpUtils.getIntParam("id", request);
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
@@ -92,7 +62,6 @@ public class SupportCommands {
 		String residenceRegistr = request.getParameter("residenceRegistr");
 		
 		UserDto user = new UserDto();
-		user.setId(id);
 		user.setLogin(login);
 		user.setPassword(password);
 		user.setName(name);
@@ -133,6 +102,24 @@ public class SupportCommands {
 		
 		UserDto user = authenticationService.forgetPassword(authentication);
 		modelAndView.addViewData("user", user);
+		
+		return modelAndView;
+	}
+	
+	public ModelAndView home(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserDto user = (UserDto)session.getAttribute("authentication");
+		
+		ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/users/user-edit.jsp");
+		
+		List<CardDto> cards = cardService.getCardByIdUser(user.getId());
+		modelAndView.addViewData("allCards", cards);
+		
+		List<AccountDto> allAccounts = accountService.getAccountByIdUser(user.getId());
+		modelAndView.addViewData("allAccounts", allAccounts);
+		
+		List<PayDto> allPayments = payService.getPayByIdUser(user.getId());
+		modelAndView.addViewData("allPayments", allPayments);
 		
 		return modelAndView;
 	}
