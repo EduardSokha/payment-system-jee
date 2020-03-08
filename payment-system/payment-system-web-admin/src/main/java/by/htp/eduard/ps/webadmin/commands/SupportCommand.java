@@ -80,6 +80,7 @@ public class SupportCommand {
 		emailService.sendEmail(emai, "Your restoried password", user.getPassword());
 		
 		ModelAndView modelAndView = new ModelAndView("redirect:sent-password");
+		
 		return modelAndView;
 	}
 	

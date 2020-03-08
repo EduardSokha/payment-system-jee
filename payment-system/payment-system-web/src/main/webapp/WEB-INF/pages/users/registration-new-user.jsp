@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="mvc" uri="http://eduard.htp.by/mvc"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,106 +22,131 @@
     <div class="card-body register-card-body">
       <p class="login-box-msg">Register a new membership</p>
       <p class="form-title">${response}</p>
+      
+        <mvc:error code="password.match">
+            <span id="inputLogin-error" class="error">Password1 and Password2 don't match!</span>
+        </mvc:error>
 
       <form action="save-new-user" method="post">
 	  <input type="hidden" name="roleId" value="2">
-        <div class="input-group mb-3">
-          <input type="text" name="login" class="form-control" placeholder="Login">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
+            <div class="input-group mb-3">
+                <input type="text" name="login" value="${user.login}" class="form-control" placeholder="Login">                                       
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-user"></span>
+                    </div>
+                </div>
+                <mvc:error code="user.login.empty">
+                    <span id="inputLogin-error" class="error">Please enter a login</span>
+                </mvc:error>
+                <mvc:error code="user.login.duplicate">
+                    <span id="inputLogin-error" class="error">User with this login already exist!</span>
+                </mvc:error>
             </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+            <div class="input-group mb-3">
+                <input type="password" name="password" class="form-control" placeholder="Password">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+                <mvc:error code="user.password.empty">
+                    <span id="inputLogin-error" class="error">Please enter a password</span>
+                </mvc:error>
             </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" name="password2" class="form-control" placeholder="Retype Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+            <div class="input-group mb-3">
+                <input type="password" name="password2" class="form-control" placeholder="Retype Password">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-		<div class="input-group mb-3">
-          <input type="text" name="name" class="form-control" placeholder="Full Name">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="far fa-address-card"></span>
+            <div class="input-group mb-3">
+                <input type="text" name="name" value="${user.name}" class="form-control" placeholder="Full Name">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="far fa-address-card"></span>
+                    </div>
+                </div>
+                <mvc:error code="user.name.empty">
+                    <span id="inputLogin-error" class="error">Please enter name</span>
+                </mvc:error>
             </div>
-          </div>
-        </div>
-		<div class="input-group mb-3">
-          <input type="text" name="surname" class="form-control" placeholder="Full Surname">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="far fa-address-card"></span>
+            <div class="input-group mb-3">
+                <input type="text" name="surname" value="${user.surname}" class="form-control" placeholder="Full Surname">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="far fa-address-card"></span>
+                    </div>
+                </div>
+                <mvc:error code="user.surname.empty">
+                    <span id="inputLogin-error" class="error">Please enter surname</span>
+                </mvc:error>
             </div>
-          </div>
-        </div>
-		<div class="input-group mb-3">
-          <input type="text" name="address" class="form-control" placeholder="Your Address">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-map-marker-alt"></span>
+            <div class="input-group mb-3">
+                <input type="text" name="address" value="${user.address}" class="form-control" placeholder="Your Address">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-map-marker-alt"></span>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-		<div class="input-group mb-3">
-          <input type="text" name="passportSeries" class="form-control" placeholder="Passport Series">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="far fa-address-card"></span>
+            <div class="input-group mb-3">
+                <input type="text" name="passportSeries" value="${user.passportSeries}" class="form-control" placeholder="Passport Series">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="far fa-address-card"></span>
+                    </div>
+                </div>
+                <mvc:error code="user.passportSeries.empty">
+                    <span id="inputLogin-error" class="error">Please enter passport series</span>
+                </mvc:error>
             </div>
-          </div>
-        </div>
-		<div class="input-group mb-3">
-          <input type="text" name="passportId" class="form-control" placeholder="Passport Id">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="far fa-address-card"></span>
+            <div class="input-group mb-3">
+                <input type="text" name="passportId" value="${user.passportId}" class="form-control" placeholder="Passport Id">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="far fa-address-card"></span>
+                    </div>
+                </div>
+                <mvc:error code="user.passportId.empty">
+                    <span id="inputLogin-error" class="error">Please enter passport id</span>
+                </mvc:error>
             </div>
-          </div>
-        </div>
-		<div class="input-group mb-3">
-          <input type="text" name="codeWord" class="form-control" placeholder="Code Word">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-key"></span>
+            <div class="input-group mb-3">
+                <input type="text" name="codeWord" value="${user.codeWord}" class="form-control" placeholder="Code Word">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-key"></span>
+                    </div>
+                </div>
+                <mvc:error code="user.codeWord.empty">
+                    <span id="inputLogin-error" class="error">Please enter codeword</span>
+                </mvc:error>
             </div>
-          </div>
-        </div>
-		<div class="input-group mb-3">
-          <input type="text" name="phoneNumber" class="form-control" placeholder="Phone Number">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-mobile"></span>
+            <div class="input-group mb-3">
+                <input type="text" name="phoneNumber" value="${user.phoneNumber}" class="form-control" placeholder="Phone Number">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-mobile"></span>
+                    </div>
+                </div>
+                <mvc:error code="user.phoneNumber.empty">
+                    <span id="inputLogin-error" class="error">Please enter phone number</span>
+                </mvc:error>
             </div>
-          </div>
-        </div>
-		<div class="input-group mb-3">
-          <input type="text" name="residenceRegistr" class="form-control" placeholder="Residence Registration">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-map-pin"></span>
+            <div class="input-group mb-3">
+                <input type="text" name="residenceRegistr" value="${user.residenceRegistr}" class="form-control" placeholder="Residence Registration">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-map-pin"></span>
+                    </div>
+                </div>
+                <mvc:error code="user.residenceRegistr.empty">
+                    <span id="inputLogin-error" class="error">Please enter residence registration</span>
+                </mvc:error>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-              <label for="agreeTerms">
-               I agree to the <a href="#">terms</a>
-              </label>
-            </div>
-          </div>
           <!-- /.col -->
           <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block">Register</button>
@@ -128,9 +154,14 @@
           <!-- /.col -->
         </div>
       </form>
+      
+        <p class="mb-1">
+            <c:url value="/" var="backUrl"></c:url>
+            <a href="${backUrl}" class="text-center">Back</a>
+        </p>
 
-		<c:url value="/" var="backUrl"></c:url>
-		<a href="${backUrl}" class="text-center">Back</a>
+		<%-- <c:url value="/" var="backUrl"></c:url>
+		<a href="${backUrl}" class="text-center">Back</a> --%>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

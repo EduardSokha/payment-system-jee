@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="mvc" uri="http://eduard.htp.by/mvc"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,36 +22,47 @@
     <div class="card-body register-card-body">
       <p class="login-box-msg">Get a password</p>
        <c:if test="${user != null}">
-            <p class="form-title">
-                Your login = '${user.login}', your password = '${user.password}'
-            </p>
-       </c:if>
+            <p class="form-title">Your login = '${user.login}', your password = '${user.password}'</p>
+        </c:if>
+        
+        <mvc:error code="user.forgetPassword.invalid">
+            <span id="inputLogin-error" class="error">Please enter correct passport data</span>
+        </mvc:error>
 
       <form action="get-password" method="post">
 	  
-		<div class="input-group mb-3">
-          <input type="text" name="passportSeries" class="form-control" placeholder="Passport Series">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="far fa-address-card"></span>
+        <div class="input-group mb-3">
+            <input type="text" name="passportSeries" value="${authentication.passportSeries}" class="form-control" placeholder="Passport Series">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="far fa-address-card"></span>
+                </div>
             </div>
-          </div>
+            <mvc:error code="user.passportSeries.empty">
+                <span id="inputLogin-error" class="error">Please enter passport series</span>
+            </mvc:error>
         </div>
-		<div class="input-group mb-3">
-          <input type="text" name="passportId" class="form-control" placeholder="Passport Id">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="far fa-address-card"></span>
+        <div class="input-group mb-3">
+            <input type="text" name="passportId" value="${authentication.passportId}" class="form-control" placeholder="Passport Id">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="far fa-address-card"></span>
+                </div>
             </div>
-          </div>
+            <mvc:error code="user.passportId.empty">
+                <span id="inputLogin-error" class="error">Please enter passport id</span>
+            </mvc:error>
         </div>
-		<div class="input-group mb-3">
-          <input type="text" name="codeWord" class="form-control" placeholder="Code Word">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-key"></span>
+        <div class="input-group mb-3">
+            <input type="text" name="codeWord" value="${authentication.codeWord}" class="form-control" placeholder="Code Word">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-key"></span>
+                </div>
             </div>
-          </div>
+            <mvc:error code="user.codeWord.empty">
+                <span id="inputLogin-error" class="error">Please enter codeword</span>
+            </mvc:error>
         </div>
 		
         <div class="row">
@@ -70,8 +82,10 @@
         </div>
       </form>
 
-		<c:url value="/" var="backUrl"></c:url>
-		<a href="${backUrl}" class="text-center">Back</a>
+		<p class="mb-1">
+            <c:url value="/" var="backUrl"></c:url>
+            <a href="${backUrl}" class="text-center">Back</a>
+        </p>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

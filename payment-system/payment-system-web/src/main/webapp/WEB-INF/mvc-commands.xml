@@ -3,6 +3,11 @@
 
 	<static-content url="/static-content" />
 	
+	<command command-class="by.htp.eduard.ps.web.commands.ErrorPageCommand">
+		<command-url url="/error-page" method="showErrorPage" />
+		<command-url url="/not-found-page" method="showNotFoundPage" />
+	</command>
+	
 	<command command-class="by.htp.eduard.ps.web.commands.IndexCommand">
 		<command-url url="/" method="showIndexPage" />
 	</command>

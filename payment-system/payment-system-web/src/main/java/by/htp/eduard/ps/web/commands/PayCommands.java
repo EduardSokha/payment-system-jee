@@ -1,7 +1,9 @@
 package by.htp.eduard.ps.web.commands;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -51,11 +53,21 @@ public class PayCommands {
 	}
 	
 	public ModelAndView savePay(HttpServletRequest request) {
-		ModelAndView modelAndView = new ModelAndView("redirect:payments-list");
+		Set<String> validationErrors = new HashSet<>();
 		
 		Double price = HttpUtils.getDoubleParam("price", request);
+		if(price == null) {
+			validationErrors.add("amount.empty");
+		}
+		
 		Integer idAccount = HttpUtils.getIntParam("idAccount", request);
 		String description = request.getParameter("description");
+		
+		if(!validationErrors.isEmpty()) {
+			ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/pay/pay-details.jsp");
+			modelAndView.addAllValidationError(validationErrors);
+			return modelAndView;
+		}
 		
 		PayDto pay = new PayDto();
 		pay.setDate(new Date());
@@ -66,10 +78,22 @@ public class PayCommands {
 		try {
 			payService.savePay(pay);
 		} catch (NegativeBalanceException e) {
-			e.printStackTrace();
+			ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/pay/pay-details.jsp");
+						
+			validationErrors.add("pay.balance.negative");
+			modelAndView.addAllValidationError(validationErrors);
+			
+			return modelAndView;
 		} catch (NegativeAmountException e) {
-			e.printStackTrace();
+			ModelAndView modelAndView = new ModelAndView("/WEB-INF/pages/pay/pay-details.jsp");
+			
+			validationErrors.add("pay.amount.negative");
+			modelAndView.addAllValidationError(validationErrors);
+			
+			return modelAndView;
 		}
+		
+		ModelAndView modelAndView = new ModelAndView("redirect:payments-list");
 		
 		return modelAndView;
 	}

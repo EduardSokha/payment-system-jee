@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="mvc" uri="http://eduard.htp.by/mvc"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,20 @@
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
-                <p class="form-title">${successRegistr}</p>
+                
+                <c:if test="${successRegistr==true}"> 
+                    <p class="form-title">Registration was successful!</p>
+                </c:if>
+                
+                <mvc:error code="no.such.user">
+                    <span id="inputLogin-error" class="error">We haven't user with this login!</span>
+                </mvc:error>
+                <mvc:error code="user.login.empty">
+                            <span id="inputLogin-error" class="error">Please enter a login</span>
+                </mvc:error>
+                <mvc:error code="user.password.empty">
+                            <span id="inputLogin-error" class="error">Please enter a password</span>
+                </mvc:error>
 
                 <form action="auth" method="post">
                     <div class="input-group mb-3">
