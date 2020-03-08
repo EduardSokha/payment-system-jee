@@ -10,15 +10,6 @@ import java.sql.Date;
  */
 public class DateUtils {
 	
-	/**
-	 * sdxnxdtnxdfgy,fgyu.f,
-	 * dryxdcftu,cghg,hukhjnk
-	 * mfvmtycgyu,cvgyvghkj
-	 * 
-	 * @param date	mvhjmfg,jghj
-	 * 
-	 * @return	ftycftyu
-	 */
 	public static Date convertDateToSql(java.util.Date date) {
 		long time = date.getTime();
 		Date sqlDate = new Date(time);
