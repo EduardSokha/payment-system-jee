@@ -12,11 +12,7 @@ public class InsertsToSQL {
 	 public static final String ACCOUNT_DAO_IMPL_UPDATE_ACCOUNT = "UPDATE `account` SET `balance` = ?, `idstatus` = ? WHERE `id` = ?";
 	 public static final String ACCOUNT_DAO_IMPL_LOCK_UNLOCK_ACCOUNT = "UPDATE `account` SET `idstatus` = ? WHERE `id` = ?";
 	 public static final String ACCOUNT_DAO_IMPL_UPDATE_BALANCE_ACCOUNT = "UPDATE `account` SET `balance` = ? WHERE `id` = ?";
-	 public static final String ACCOUNT_DAO_IMPL_DELETE_ACCOUNT = "DELETE FROM `account` WHERE `id` = ?";
-	 
-	 
-//	 public static final String AUTHENTICATION_DAO_IMPL_SIGN_IN = "UPDATE payment_system.usersж";
-//	 public static final String AUTHENTICATION_DAO_IMPL_ = "UPDATE payment_system.usersж";
+	 public static final String ACCOUNT_DAO_IMPL_DELETE_ACCOUNT = "DELETE FROM `account` WHERE `id` = ?";	 
 	 
 	 public static final String CARD_DAO_IMPL_GET_ALL_CARDS = "SELECT `id`, `creation_date`, `account_idaccount`, `payment_system_card_idpayment_system_card`, `name_card_idname_card` FROM `card`";
 	 public static final String CARD_DAO_IMPL_GET_CARD_BY_ID_ACCOUNT = "SELECT `id`, `creation_date`, `account_idaccount`, `payment_system_card_idpayment_system_card`, `name_card_idname_card` FROM `card` WHERE `account_idaccount` = ";

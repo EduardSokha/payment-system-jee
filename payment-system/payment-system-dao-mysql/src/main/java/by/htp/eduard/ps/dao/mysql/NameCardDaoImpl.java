@@ -28,7 +28,6 @@ public class NameCardDaoImpl implements NameCardDao {
 		PreparedStatement ps = null;
 		List<NameCard> namesCard = new ArrayList<NameCard>();
 		String sq1 = InsertsToSQL.NAME_CARD_DAO_IMPL_GET_ALL_NAMES_CARD;
-//		String sq1 = "SELECT `id`, `name_card` FROM `name_card`";
 
 		try {
 			con = cp.getConnection();
@@ -55,7 +54,6 @@ public class NameCardDaoImpl implements NameCardDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.NAME_CARD_DAO_IMPL_GET_NAME_CARD_BY_ID + id;
-//		String sq1 = "SELECT `id`, `name_card` FROM `name_card` WHERE `id` = " + id;
 
 
 		try {
@@ -83,7 +81,6 @@ public class NameCardDaoImpl implements NameCardDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.NAME_CARD_DAO_IMPL_SAVE_NAME_CARD;
-//		String sq1 = "INSERT INTO `name_card` (`name_card`) VALUES (?)";
 		
 		try {
 			con = cp.getConnection();
@@ -112,7 +109,6 @@ public class NameCardDaoImpl implements NameCardDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.NAME_CARD_DAO_IMPL_UPDATE_NAME_CARD;
-//		String sq1 = "UPDATE `name_card` SET `name_card` = ? WHERE `id` = ?";
 
 		try {
 			con = cp.getConnection();
@@ -136,7 +132,6 @@ public class NameCardDaoImpl implements NameCardDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.NAME_CARD_DAO_IMPL_DELETE_NAME_CARD;
-//		String sq1 = "DELETE FROM `name_card` WHERE `id` = ?";
 		
 		try {
 			con = cp.getConnection();

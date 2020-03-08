@@ -28,10 +28,6 @@ public class UserDaoImpl implements UserDao {
 		PreparedStatement ps = null;
 		List<User> users = new ArrayList<User>();
 		String sq1 = InsertsToSQL.USER_DAO_IMPL_GET_ALL_USERS;
-//		String sq1 = "SELECT `id`, `login`, `password`, `name`, `surname`, `address`, `role_idrole`, "
-//		          + "`series_number_passport`, `identification_number_passport`, `codeword`, "
-//		          + "`phone_number`, `residence_registr_data_passport` "
-//		          + "FROM `users`";
 
 		try {
 			con = cp.getConnection();
@@ -71,7 +67,6 @@ public class UserDaoImpl implements UserDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.USER_DAO_IMPL_GET_USER_BY_ID + id;
-//		String sq1 = "SELECT `id`, `login`, `password`, `name`, `surname`, `address`, `role_idrole`, `series_number_passport`, `identification_number_passport`, `codeword`, `phone_number`, `residence_registr_data_passport` FROM `users` WHERE `id` = " + id;
 
 		try {
 			con = cp.getConnection();
@@ -98,7 +93,6 @@ public class UserDaoImpl implements UserDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.USER_DAO_IMPL_SAVE_USER;
-//		String sq1 = "INSERT INTO users(login, password, name, surname, address, role_idrole, series_number_passport, identification_number_passport, codeword, phone_number, residence_registr_data_passport) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 
 		try {
 			con = cp.getConnection();
@@ -137,7 +131,6 @@ public class UserDaoImpl implements UserDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.USER_DAO_IMPL_UPDATE_USER;
-//		String sq1 = "UPDATE `users` SET `login` = ?, `password` = ?, `name` = ?, `surname` = ?, `address` = ?, `role_idrole` = ?, `series_number_passport` = ?, `identification_number_passport` = ?, `codeword` = ?, `phone_number` = ?, `residence_registr_data_passport` = ? WHERE `id` = ?";
 
 		try {
 			con = cp.getConnection();
@@ -172,7 +165,6 @@ public class UserDaoImpl implements UserDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.USER_DAO_IMPL_DELETE_USER;
-//		String sq1 = "DELETE FROM `users` WHERE `id` = ?";
 		
 		try {
 			con = cp.getConnection();

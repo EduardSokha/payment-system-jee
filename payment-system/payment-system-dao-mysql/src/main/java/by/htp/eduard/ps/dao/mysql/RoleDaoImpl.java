@@ -28,7 +28,6 @@ public class RoleDaoImpl implements RoleDao {
 		PreparedStatement ps = null;
 		List<Role> roles = new ArrayList<Role>();
 		String sq1 = InsertsToSQL.ROLE_DAO_IMPL_GET_ALL_ROLES;
-//		String sq1 = "SELECT `id`, `title` FROM `role`";
 
 		try {
 			con = cp.getConnection();
@@ -55,7 +54,6 @@ public class RoleDaoImpl implements RoleDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.ROLE_DAO_IMPL_GET_NAME_ROLE_BY_ID + id;
-//		String sq1 = "SELECT `id`, `title` FROM `role` WHERE `id` = " + id;
 
 		try {
 			con = cp.getConnection();
@@ -82,7 +80,6 @@ public class RoleDaoImpl implements RoleDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.ROLE_DAO_IMPL_SAVE_ROLE;
-//		String sq1 = "INSERT INTO `role` (`title`) VALUES (?)";
 
 		try {
 			con = cp.getConnection();
@@ -111,7 +108,6 @@ public class RoleDaoImpl implements RoleDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.ROLE_DAO_IMPL_UPDATE_NAME_ROLE;
-//		String sq1 = "UPDATE `role` SET `title` = ? WHERE `id` = ?";
 
 		try {
 			con = cp.getConnection();
@@ -135,7 +131,6 @@ public class RoleDaoImpl implements RoleDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.ROLE_DAO_IMPL_DELETE_ROLE;
-//		String sq1 = "DELETE FROM `role` WHERE `id` = ?";
 		
 		try {
 			con = cp.getConnection();

@@ -28,7 +28,6 @@ public class PaymentSystemDaoImpl implements PaymentSystemDao {
 		PreparedStatement ps = null;
 		List<PaymentSystem> paymentSystems = new ArrayList<PaymentSystem>();
 		String sq1 = InsertsToSQL.PAYMENT_SYSTEM_DAO_IMPL_GET_ALL_PAYMENT_SYSTEMS;
-//		String sq1 = "SELECT `id`, `type_paym_syst_card` FROM `payment_system_card`";
 
 		try {
 			con = cp.getConnection();
@@ -55,9 +54,7 @@ public class PaymentSystemDaoImpl implements PaymentSystemDao {
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement ps = null;
-		//String sq1 = "SELECT `id`, `type_paym_syst_card` FROM `payment_system_card` WHERE `id` = ?";
 		String sq1 = InsertsToSQL.PAYMENT_SYSTEM_DAO_IMPL_GET_PAYMENT_SYSTEM_BY_ID + id;
-//		String sq1 = "SELECT `id`, `type_paym_syst_card` FROM `payment_system_card` WHERE `id` = " + id;
 
 		try {
 			con = cp.getConnection();
@@ -85,7 +82,6 @@ public class PaymentSystemDaoImpl implements PaymentSystemDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.PAYMENT_SYSTEM_DAO_IMPL_SAVE_PAYMENT_SYSTEM;
-//		String sq1 = "INSERT INTO `payment_system_card` (`type_paym_syst_card`) VALUES (?)";
 
 		try {
 			con = cp.getConnection();
@@ -116,7 +112,6 @@ public class PaymentSystemDaoImpl implements PaymentSystemDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.PAYMENT_SYSTEM_DAO_IMPL_UPDATE_PAYMENT_SYSTEM;
-//		String sq1 = "UPDATE `payment_system_card` SET `type_paym_syst_card` = ? WHERE `id` = ?";
 
 		try {
 			con = cp.getConnection();
@@ -140,7 +135,6 @@ public class PaymentSystemDaoImpl implements PaymentSystemDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.PAYMENT_SYSTEM_DAO_IMPL_DELETE_PAYMENT_SYSTEM;
-//		String sq1 = "DELETE FROM `payment_system_card` WHERE `id` = ?";
 
 		try {
 			con = cp.getConnection();

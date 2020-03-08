@@ -31,7 +31,6 @@ public class AccountDaoImpl implements AccountDao {
 		PreparedStatement ps = null;
 		List<Account> accounts = new ArrayList<Account>();
 		String sq1 = InsertsToSQL.ACCOUNT_DAO_IMPL_GET_ALL_ACCOUNTS;
-//		String sq1 = "SELECT `id`, `number`, `balance`, `creation_date`, `iduser`, `idstatus`, `currency_idcurrency` FROM `account`";
 
 		try {
 			con = TransactionManeger.getTransactionManeger().getConnection();
@@ -57,7 +56,6 @@ public class AccountDaoImpl implements AccountDao {
 		PreparedStatement ps = null;
 		List<Account> accounts = new ArrayList<Account>();
 		String sq1 = InsertsToSQL.ACCOUNT_DAO_IMPL_GET_ACCOUNT_BY_ID_USER + id;
-//		String sq1 = "SELECT `id`, `number`, `balance`, `creation_date`, `iduser`, `idstatus`, `currency_idcurrency` FROM `account` WHERE `iduser` = " + id;
 
 		try {
 			con = cp.getConnection();
@@ -84,7 +82,6 @@ public class AccountDaoImpl implements AccountDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.ACCOUNT_DAO_IMPL_GET_ACCOUNT_BY_ID + id;
-//		String sq1 = "SELECT `id`, `number`, `balance`, `creation_date`, `iduser`, `idstatus`, `currency_idcurrency` FROM `account` WHERE `id` = " + id;
 
 		try {
 			con = cp.getConnection();
@@ -111,7 +108,6 @@ public class AccountDaoImpl implements AccountDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.ACCOUNT_DAO_IMPL_SAVE_ACCOUNT;
-//		String sq1 = "INSERT INTO `account` (`number`, `balance`, `creation_date`, `iduser`, `idstatus`, `currency_idcurrency`) VALUES (?,?,?,?,?,?)";
 		
 		try {
 			con = cp.getConnection();
@@ -146,7 +142,6 @@ public class AccountDaoImpl implements AccountDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.ACCOUNT_DAO_IMPL_UPDATE_ACCOUNT;
-//		String sq1 = "UPDATE `account` SET `balance` = ?, `idstatus` = ? WHERE `id` = ?";
 
 		try {
 			con = cp.getConnection();
@@ -171,7 +166,6 @@ public class AccountDaoImpl implements AccountDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.ACCOUNT_DAO_IMPL_LOCK_UNLOCK_ACCOUNT;
-//		String sq1 = "UPDATE `account` SET `idstatus` = ? WHERE `id` = ?";
 
 		try {
 			con = cp.getConnection();
@@ -195,7 +189,6 @@ public class AccountDaoImpl implements AccountDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.ACCOUNT_DAO_IMPL_UPDATE_BALANCE_ACCOUNT;
-//		String sq1 = "UPDATE `account` SET `balance` = ? WHERE `id` = ?";
 
 		try {
 			con = cp.getConnection();
@@ -219,7 +212,6 @@ public class AccountDaoImpl implements AccountDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.ACCOUNT_DAO_IMPL_DELETE_ACCOUNT;
-//		String sq1 = "DELETE FROM `account` WHERE `id` = ?";
 
 		try {
 			con = cp.getConnection();

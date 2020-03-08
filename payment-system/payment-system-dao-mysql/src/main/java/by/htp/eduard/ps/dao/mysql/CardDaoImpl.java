@@ -29,7 +29,6 @@ public class CardDaoImpl implements CardDao {
 		PreparedStatement ps = null;
 		List<Card> cards = new ArrayList<Card>();
 		String sq1 = InsertsToSQL.CARD_DAO_IMPL_GET_ALL_CARDS;
-//		String sq1 = "SELECT `id`, `creation_date`, `account_idaccount`, `payment_system_card_idpayment_system_card`, `name_card_idname_card` FROM `card`";
 
 		try {
 			con = cp.getConnection();
@@ -56,7 +55,6 @@ public class CardDaoImpl implements CardDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.CARD_DAO_IMPL_GET_CARD_BY_ID_ACCOUNT + id;
-//		String sq1 = "SELECT `id`, `creation_date`, `account_idaccount`, `payment_system_card_idpayment_system_card`, `name_card_idname_card` FROM `card` WHERE `account_idaccount` = " + id;
 
 		try {
 			con = cp.getConnection();
@@ -83,7 +81,6 @@ public class CardDaoImpl implements CardDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.CARD_DAO_IMPL_GET_CARD_BY_ID + id;
-//		String sq1 = "SELECT `id`, `creation_date`, `account_idaccount`, `payment_system_card_idpayment_system_card`, `name_card_idname_card` FROM `card` WHERE `id` = " + id;
 
 		try {
 			con = cp.getConnection();
@@ -110,7 +107,6 @@ public class CardDaoImpl implements CardDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.CARD_DAO_IMPL_SAVE_CARD;
-//		String sq1 = "INSERT INTO `card` (`creation_date`, `account_idaccount`, `payment_system_card_idpayment_system_card`, `name_card_idname_card`) VALUES (?, ?, ?, ?)";
 
 		try {
 			con = cp.getConnection();
@@ -142,7 +138,6 @@ public class CardDaoImpl implements CardDao {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sq1 = InsertsToSQL.CARD_DAO_IMPL_DELETE_CARD;
-//		String sq1 = "DELETE FROM `card` WHERE `id` = ?";
 		
 		try {
 			con = cp.getConnection();
