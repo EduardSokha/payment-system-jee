@@ -14,7 +14,6 @@ public class DozerEntityDtoConverter implements EntityDtoConverter{
 	public DozerEntityDtoConverter() {
 		mapper = new DozerBeanMapper();
 		mapper.setMappingFiles(configDozerMappings());
-		//mapper.setCustomConverters(configDozerConverters());
 	}
 
 	@Override
@@ -62,22 +61,10 @@ public class DozerEntityDtoConverter implements EntityDtoConverter{
 	private List<String> configDozerMappings() {
 		List<String> mappings = new ArrayList<String>();
 		
-//		mappings.add("dozer/role_maping.xml");
 		mappings.add("dozer/account_mapping.xml");
-//		mappings.add("dozer/currency_mapping.xml");
 		mappings.add("dozer/card_mapping.xml");
 		mappings.add("dozer/user_mapping.xml");
 		mappings.add("dozer/pay-mapping.xml");
 		return mappings;
 	}
-	
-//	private List<CustomConverter> configDozerConverters() {
-//		List<CustomConverter> converters = new ArrayList<>();
-//		
-//		converters.add(new AccountStatusIdNameConverter());
-//		converters.add(new CurrencyIdNameConverter());
-//		converters.add(new UserIdNameConverter());
-//		
-//		return converters;
-//	}
 }
